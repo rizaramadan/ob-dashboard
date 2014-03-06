@@ -72,16 +72,16 @@
 					Query untuk mengisi value dari projects progress (progress)
 				*/
 					/* projecttask */
-				$resultprogresses[$z] = pg_exec($dbconn, "select pss_progresshistory.pss_progresshistory_id,
-				pss_progresshistory.progress_project as amount, 
-				to_char(pss_progresshistory.created, 'mm') as bulan,
-				to_char(pss_progresshistory.created, 'dd') as tanggal,
+				$resultprogresses[$z] = pg_exec($dbconn, "select pjt_progresshistory.pjt_progresshistory_id,
+				pjt_progresshistory.progress_project as amount, 
+				to_char(pjt_progresshistory.created, 'mm') as bulan,
+				to_char(pjt_progresshistory.created, 'dd') as tanggal,
 				c_projectphase.c_project_id as project_id
-						from pss_progresshistory
+						from pjt_progresshistory
 						join c_projectphase
-						on pss_progresshistory.c_projectphase_id = c_projectphase.c_projectphase_id
+						on pjt_progresshistory.c_projectphase_id = c_projectphase.c_projectphase_id
 						where c_projectphase.c_project_id = '$projectid'
-						order by pss_progresshistory.created");
+						order by pjt_progresshistory.created");
 
 				/*
 					Query untuk mengisi value dari projects payments (payment plan)
@@ -138,16 +138,16 @@
 			Query untuk mengisi value dari projects progress (progress)
 		*/
 			/* projecttask */
-		$resultprogress = pg_exec($dbconn, "select pss_progresshistory.pss_progresshistory_id,
-			pss_progresshistory.progress_project as amount, 
-			to_char(pss_progresshistory.created, 'mm') as bulan,
-			to_char(pss_progresshistory.created, 'dd') as tanggal,
+		$resultprogress = pg_exec($dbconn, "select pjt_progresshistory.pjt_progresshistory_id,
+			pjt_progresshistory.progress_project as amount, 
+			to_char(pjt_progresshistory.created, 'mm') as bulan,
+			to_char(pjt_progresshistory.created, 'dd') as tanggal,
 			c_projectphase.c_project_id as project_id
-			from pss_progresshistory
+			from pjt_progresshistory
 			join c_projectphase
-			on pss_progresshistory.c_projectphase_id = c_projectphase.c_projectphase_id
+			on pjt_progresshistory.c_projectphase_id = c_projectphase.c_projectphase_id
 			where c_projectphase.c_project_id = '$project_id'
-			order by pss_progresshistory.created");
+			order by pjt_progresshistory.created");
 
 		/*
 			Query untuk mengisi value dari projects payments (payment plan)
@@ -205,29 +205,29 @@
 				/*
 					Query untuk mengisi value dari projects progress (progress)
 				*/
-				$resultprogresses[$z] = pg_exec($dbconn, "select pss_progresshistory.pss_progresshistory_id,
-				pss_progresshistory.progress_project as amount, 
-				to_char(pss_progresshistory.created, 'mm') as bulan,
-				to_char(pss_progresshistory.created, 'dd') as tanggal,
+				$resultprogresses[$z] = pg_exec($dbconn, "select pjt_progresshistory.pjt_progresshistory_id,
+				pjt_progresshistory.progress_project as amount, 
+				to_char(pjt_progresshistory.created, 'mm') as bulan,
+				to_char(pjt_progresshistory.created, 'dd') as tanggal,
 				c_projectphase.c_project_id as project_id
-						from pss_progresshistory
+						from pjt_progresshistory
 						join c_projectphase
-						on pss_progresshistory.c_projectphase_id = c_projectphase.c_projectphase_id
+						on pjt_progresshistory.c_projectphase_id = c_projectphase.c_projectphase_id
 						where c_projectphase.c_project_id = '$projectid'
-						order by pss_progresshistory.created");
-				/*select pss_progresshistory.pss_progresshistory_id,
-				pss_progresshistory.progress_project as amount, 
-				to_char(pss_progresshistory.created, 'mm') as bulan,
-				to_char(pss_progresshistory.created, 'dd') as tanggal,
+						order by pjt_progresshistory.created");
+				/*select pjt_progresshistory.pjt_progresshistory_id,
+				pjt_progresshistory.progress_project as amount, 
+				to_char(pjt_progresshistory.created, 'mm') as bulan,
+				to_char(pjt_progresshistory.created, 'dd') as tanggal,
 				c_projectphase.c_project_id as project_id, c_projectphase.m_product_id, c_projectphase.c_projectphase_id
-						from pss_progresshistory
+						from pjt_progresshistory
 						join c_projectphase
-						on pss_progresshistory.c_projectphase_id = c_projectphase.c_projectphase_id
+						on pjt_progresshistory.c_projectphase_id = c_projectphase.c_projectphase_id
 			join m_product
 			on m_product.m_product_id = c_projectphase.m_product_id 
 						join c_budgetline
 						on m_product.m_product_id = c_budgetline.m_product_id
-						order by pss_progresshistory.created*/
+						order by pjt_progresshistory.created*/
 
 				/*
 					Query untuk mengisi value dari projects payments (payment plan)
@@ -282,16 +282,16 @@
 		/*
 			Query untuk mengisi value dari projects progress (progress)
 		*/
-		$resultprogress = pg_exec($dbconn, "select pss_progresshistory.pss_progresshistory_id,
-			pss_progresshistory.progress_project as amount, 
-			to_char(pss_progresshistory.created, 'mm') as bulan,
-			to_char(pss_progresshistory.created, 'dd') as tanggal,
+		$resultprogress = pg_exec($dbconn, "select pjt_progresshistory.pjt_progresshistory_id,
+			pjt_progresshistory.progress_project as amount, 
+			to_char(pjt_progresshistory.created, 'mm') as bulan,
+			to_char(pjt_progresshistory.created, 'dd') as tanggal,
 			c_projectphase.c_project_id as project_id
-			from pss_progresshistory
+			from pjt_progresshistory
 			join c_projectphase
-			on pss_progresshistory.c_projectphase_id = c_projectphase.c_projectphase_id
+			on pjt_progresshistory.c_projectphase_id = c_projectphase.c_projectphase_id
 			where c_projectphase.c_project_id = '$project_id'
-			order by pss_progresshistory.created");
+			order by pjt_progresshistory.created");
 
 		/*
 			Query untuk mengisi value dari projects payments (payment plan)
@@ -364,6 +364,7 @@
 			}
 		}
 	}
+	if($total == 0) $total = 1;
 	$databudget[0] = ($databudget[0]/$total)*100;
 	$databudget[1] = ($databudget[1]/$total)*100;
 	$databudget[2] = ($databudget[2]/$total)*100;
@@ -451,7 +452,7 @@
 				$datapayment[$i] = $datapayment[$i-1];
 			}
 		}
-
+		if($total == 0) $total = 1;
 		for($i = 0;$i<=11;$i++){
 			$datapayment[$i] = $datapayment[$i]/$total*100;
 		}

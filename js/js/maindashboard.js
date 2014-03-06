@@ -20,7 +20,7 @@
 
 
 
-        $.getJSON('http://localhost/topleft.php?callback=?',function(result){
+        $.getJSON('http://localhost/ob/topleft.php?callback=?',function(result){
             for (var i in result['databudget']){
                 topleft_budget.push(result['databudget'][i]);
             };
@@ -36,7 +36,7 @@
         });
 
 
-        $.getJSON("http://localhost/topright.php?callback=?",function(result){
+        $.getJSON("http://localhost/ob/topright.php?callback=?",function(result){
             for (var i in result['totalbudget']){
                 topright_totalbudget.push(result['totalbudget'][i]);
             };
@@ -55,7 +55,7 @@
         });
 
             var demo_tasks;
-            $.getJSON("http://localhost/gantt.php?callback=?",function(result){              
+            $.getJSON("http://localhost/ob/gantt.php?callback=?",function(result){              
                 demo_tasks = result;
             });
 
@@ -286,7 +286,7 @@
 
 
          var rows_mid = new Array();
-            $.getJSON('http://localhost/middleleft.php?callback=?',function(result){
+            $.getJSON('http://localhost/ob/middleleft.php?callback=?',function(result){
                 for (var i in result){
                     var rows1 = [];
                     rows1[0] = result[i][0];
@@ -316,7 +316,7 @@
             }
             
                 var rows_bottom = new Array();
-                $.getJSON("http://localhost/bottomleft.php?callback=?",function(result){
+                $.getJSON("http://localhost/ob/bottomleft.php?callback=?",function(result){
                      for (var i in result){
                         var rows2 = [];
                         rows2[0] = result[i][0];
@@ -346,7 +346,7 @@
 
                 /**/
 
-                $.getJSON("http://localhost/getbudget.php?callback=?",function(j){
+                $.getJSON("http://localhost/ob/getbudget.php?callback=?",function(j){
                 var options = '';
                 options += '<option value="">All</option>';
                 for (var i = 0; i < j.length; i++) {
@@ -370,7 +370,7 @@
                 budgetBottomRight2 = $("#budgetBottomRight2" ).val();
             });
 
-            $.getJSON("http://localhost/getproject.php?callback=?",function(j){
+            $.getJSON("http://localhost/ob/getproject.php?callback=?",function(j){
                 var options = '';
                 options += '<option value="">All Project</option>';
                 for (var i = 0; i < j.length; i++) {
@@ -387,7 +387,7 @@
                 topleft_x.length = 0;
                 topleft_payment_plan.length = 0;
 
-                $.getJSON('http://localhost/topleft.php?callback=?','project='+projecttopleft+'&budget=' +budgetTopLeft,function(result){
+                $.getJSON('http://localhost/ob/topleft.php?callback=?','project='+projecttopleft+'&budget=' +budgetTopLeft,function(result){
                     for (var i in result['databudget']){
                         topleft_budget.push(result['databudget'][i]);
                     };
@@ -411,7 +411,7 @@
                 topright_paymentplan.length = 0;
                 topright_x.length = 0;
 
-                $.getJSON("http://localhost/topright.php?callback=?",'budget='+budgetTopRight,function(result){
+                $.getJSON("http://localhost/ob/topright.php?callback=?",'budget='+budgetTopRight,function(result){
                     for (var i in result['totalbudget']){
                         topright_totalbudget.push(result['totalbudget'][i]);
                     };
@@ -433,7 +433,7 @@
             
             $("#btnMiddleLeft").click(function(){
                 rows_mid.length = 0;
-                $.getJSON('http://localhost/middleleft.php?callback=?','budget='+budgetMiddleLeft,function(result){
+                $.getJSON('http://localhost/ob/middleleft.php?callback=?','budget='+budgetMiddleLeft,function(result){
                     for (var i in result){
                         var rows1 = [];
                         rows1[0] = result[i][0];
@@ -464,7 +464,7 @@
 
             $("#btnBottomLeft").click(function(){
                 rows_bottom.length = 0;
-                $.getJSON("http://localhost/bottomleft.php?callback=?","budget1="+budgetBottomRight1+"&budget2="+budgetBottomRight2,function(result){
+                $.getJSON("http://localhost/ob/bottomleft.php?callback=?","budget1="+budgetBottomRight1+"&budget2="+budgetBottomRight2,function(result){
                      for (var i in result){
                         var rows2 = [];
                         rows2[0] = result[i][0];

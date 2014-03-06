@@ -59,7 +59,8 @@
 		   	$budget_2->f = $row["amount2"];
 
 			$row_s = new stdClass;
-			$int = ((int)$row["amount1"]/(int)$row["amount2"])*100;
+			$rowAmount2 = (int)$row["amount2"] == 0 ? 1 : $row["amount2"];
+			$int = ((int)$row["amount1"]/$rowAmount2)*100;
 			$row_s->v = $int;
 			$row_s->f = "$int%";
 
@@ -74,6 +75,7 @@
 	pg_free_result($result);
 	// close connection
 	pg_close($dbconn);
-
-	echo $_GET['callback'] . '(' . json_encode($data) . ')';
+	
+	//echo $_GET['callback'] . '(' . json_encode($data) . ')';
+	echo  json_encode($data) ;
 ?>

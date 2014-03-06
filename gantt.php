@@ -10,19 +10,19 @@
 
 	include "dbcon.php";
 
-	$result1 = pg_exec($dbconn, "select c_project_id, name, datecontract, em_pss_startcontract, (datecontract-em_pss_startcontract) as len, to_char(em_pss_startcontract,'DD-MM-YYYY') as custom 
+	$result1 = pg_exec($dbconn, "select c_project_id, name, datecontract, em_pjt_startcontract, (datecontract-em_pjt_startcontract) as len, to_char(em_pjt_startcontract,'DD-MM-YYYY') as custom 
 			from c_project
-			where datecontract is not null and em_pss_startcontract is not null
+			where datecontract is not null and em_pjt_startcontract is not null
 			");
 
-	$result2 = pg_exec($dbconn, "select c_projectphase_id, c_project_id, name, datecontract, em_pss_startcontract, (datecontract-em_pss_startcontract) as len, to_char(em_pss_startcontract,'DD-MM-YYYY') as custom
+	$result2 = pg_exec($dbconn, "select c_projectphase_id, c_project_id, name, datecontract, em_pjt_startcontract, (datecontract-em_pjt_startcontract) as len, to_char(em_pjt_startcontract,'DD-MM-YYYY') as custom
 			from c_projectphase
-			where datecontract is not null and em_pss_startcontract is not null
+			where datecontract is not null and em_pjt_startcontract is not null
 			");
 
-	$result3 = pg_exec($dbconn, "select c_projecttask_id, c_projectphase_id, name, datecontract, em_pss_startcontract, (datecontract-em_pss_startcontract) as len, to_char(em_pss_startcontract,'DD-MM-YYYY') as custom
+	$result3 = pg_exec($dbconn, "select c_projecttask_id, c_projectphase_id, name, datecontract, em_pjt_startcontract, (datecontract-em_pjt_startcontract) as len, to_char(em_pjt_startcontract,'DD-MM-YYYY') as custom
 			from c_projectphase
-			where datecontract is not null and em_pss_startcontract is not null
+			where datecontract is not null and em_pjt_startcontract is not null
 			");
 
 	$data = array();
