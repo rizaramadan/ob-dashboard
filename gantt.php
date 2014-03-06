@@ -8,7 +8,7 @@
 	 * @version    1.0
 	 */
 
-	$dbconn = pg_connect("host=localhost dbname=openbravo user=postgres password=postgres") or die('Could not connect: ' . pg_last_error());
+	include "dbcon.php";
 
 	$result1 = pg_exec($dbconn, "select c_project_id, name, datecontract, em_pss_startcontract, (datecontract-em_pss_startcontract) as len, to_char(em_pss_startcontract,'DD-MM-YYYY') as custom 
 			from c_project

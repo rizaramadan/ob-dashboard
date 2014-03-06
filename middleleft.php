@@ -8,7 +8,7 @@
 	 * @version    1.0
 	 */
 	 
-	$dbconn = pg_connect("host=localhost dbname=openbravo user=postgres password=postgres") or die('Could not connect: ' . pg_last_error());
+	include "dbcon.php";
 	
 	$budget = $_GET['budget'];
 
@@ -67,18 +67,19 @@
 		   
 		   $thn2013 = new stdClass;
 		   $thn2013->v = (int)$row["thn2013"];
-		   $thn2013->f = $row["thn2013"];
+		   $thn2013->f = "".round((float)$row["thn2013"], 2);
 		   
 		   $thn2014 = new stdClass;
 		   $thn2014->v = (int)$row["thn2014"];
-		   $thn2014->f = $row["thn2014"];
+		   $thn2014->f = "".round((float)$row["thn2014"], 2);
 		   
 		   $thn2015 = new stdClass;
 		   $thn2015->v = (int)$row["thn2015"];
-		   $thn2015->f = $row["thn2015"];
+		   $thn2015->f = "".round((float)$row["thn2015"], 2);
 
 		   $sisa = (int)$row["budget"] - ((int)$row["thn2013"]+(int)$row["thn2014"]+(int)$row["thn2015"]);
 		   $persen = $sisa/(int)$row["budget"] * 100;
+		   $persen = round($persen, 2);
 		   $row_s = new stdClass;
 		   $row_s->v = $persen;
 		   $row_s->f = "$persen %";

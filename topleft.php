@@ -8,7 +8,7 @@
 	 * @version    1.1
 	 */
  
-	$dbconn = pg_connect("host=localhost dbname=openbravo user=postgres password=postgres") or die('Could not connect: ' . pg_last_error());
+ 	include "dbcon.php";
 	
 	$project_id = $_GET['project'];
 	$budget_id = $_GET['budget'];
@@ -378,6 +378,7 @@
 	$databudget[11] = ($databudget[11]/$total)*100;
 
 	for($i = 0;$i<=11;$i++){
+		$databudget[$i] = round($databudget[$i], 2);
 		if($databudget[$i] < $databudget[$i-1]){
 			$databudget[$i] = $databudget[$i-1];
 		}
@@ -489,6 +490,7 @@
 
 	$data['datax'] = $datax;
 	$data['databudget'] = $databudget;
+	// $data['databudget'] = round((float)$databudget, 2);
 	$data['progress'] = $dataprogress; 
 	$data['payment_plan'] = $datapayment;
 

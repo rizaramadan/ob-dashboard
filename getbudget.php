@@ -8,7 +8,7 @@
 	 * @version    1.0
 	 */
 	 
-	$dbconn = pg_connect("host=localhost dbname=openbravo user=postgres password=postgres") or die('Could not connect: ' . pg_last_error());
+	include "dbcon.php";
 
 	$result = pg_exec($dbconn, "select * from c_budget order by created desc");
 	$data = array();

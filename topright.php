@@ -7,7 +7,7 @@
 	 * @version    1.1
 	 */
 	 
-	$dbconn = pg_connect("host=localhost dbname=openbravo user=postgres password=postgres") or die('Could not connect: ' . pg_last_error());
+	include "dbcon.php";
 	
 	$budget_id = $_GET['budget'];
 

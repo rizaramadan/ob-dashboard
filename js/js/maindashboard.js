@@ -1,26 +1,24 @@
-<html>
-    <head>
-        <script src="../js/js/jquery.js"></script>
-        <script src="../js/js/highcharts.js"></script>
-        <script src="../js/js/highcharts-more.js"></script>
-        <script src="../js/js/modules/exporting.js"></script>
-
-        <script type='text/javascript' src='https://www.google.com/jsapi'></script>
-        <script>
-
         var topleft_progress = new Array();
         var topleft_budget = new Array();
         var topleft_payment_plan = new Array();
         var topleft_x = new Array();
 
-        var project;
-        var budget;
+        var globalproject;
+        var projecttopleft;
+        var budgetTopLeft;
 
         var topright_totalbudget = new Array();
         var topright_budgetplan = new Array();
         var topright_totalpayment = new Array();
         var topright_paymentplan = new Array();
         var topright_x = new Array();
+
+        var budgetTopRight;
+        var budgetMiddleLeft;
+        var budgetBottomLeft1;
+        var budgetBottomRight2
+
+
 
         $.getJSON('http://localhost/topleft.php?callback=?',function(result){
             for (var i in result['databudget']){
@@ -38,7 +36,7 @@
         });
 
 
-        $.getJSON("http://localhost/topright.php?callback=?",'budget=a',function(result){
+        $.getJSON("http://localhost/topright.php?callback=?",function(result){
             for (var i in result['totalbudget']){
                 topright_totalbudget.push(result['totalbudget'][i]);
             };
@@ -58,11 +56,8 @@
 
             var demo_tasks;
             $.getJSON("http://localhost/gantt.php?callback=?",function(result){              
-                // console.log(result);
                 demo_tasks = result;
             });
-
-
 
         function topleft(){
             $('#top-left').highcharts({
@@ -159,7 +154,7 @@
             });
         }
 
-        function topright(){
+        function toprightGraph(){
             $('#top-right').highcharts({
                 colors: [
                    '#4572A7', 
@@ -286,45 +281,12 @@
 
         $(function () {
             topleft();
-            topright();
+            toprightGraph();
         });
 
-        </script>
-       
-        <script>       
 
-            // google.load('visualization', '1', {packages:['timeline','table']});
-            // google.setOnLoadCallback(drawChart);
-            // function drawChart() {
-            
-            //     var container = document.getElementById('bottom-left');
-            //     var chart = new google.visualization.Timeline(container);
-            
-            //     var dataTable = new google.visualization.DataTable();
-            //     dataTable.addColumn({ type: 'string', id: 'Item' });
-            //     dataTable.addColumn({ type: 'string', id: 'Name' });
-            //     dataTable.addColumn({ type: 'date', id: 'Start' });
-            //     dataTable.addColumn({ type: 'date', id: 'End' });
-            //     dataTable.addRows([
-            //         [ 'CIBIS Tower 1','', new Date(2013, 1, 1), new Date(2015,1, 1)],
-            //         [ 'CIBIS Tower 2',' ', new Date(2014, 1, 1), new Date(2016,1, 1)],
-            //         [ 'CIBIS Tower 3','  ', new Date(2015, 1, 1), new Date(2016,6, 1)]
-            //     ]);
-            
-            //     var options = {
-            //         timeline: { groupByRowLabel: false }
-            //     };
-                
-            //     chart.draw(dataTable,options);
-                
-            // }
-            
-        </script>
-
-        <script>
-            var rows = new Array();
-
-            $.getJSON('http://localhost/middleleft.php?callback=?','project=a&budget=b',function(result){
+         var rows_mid = new Array();
+            $.getJSON('http://localhost/middleleft.php?callback=?',function(result){
                 for (var i in result){
                     var rows1 = [];
                     rows1[0] = result[i][0];
@@ -333,28 +295,27 @@
                     rows1[3] = result[i][3]; 
                     rows1[4] = result[i][4]; 
                     rows1[5] = result[i][5]; 
-                    rows.push(rows1);
+                    rows_mid.push(rows1);
                 };
             }); 
 
             google.load('visualization', '1', {packages:['table']});
-            google.setOnLoadCallback(drawTable);
-            function drawTable() {
+            google.setOnLoadCallback(drawTable1);
+            function drawTable1() {
                 var data = new google.visualization.DataTable();
                 data.addColumn('string', 'Phase');
                 data.addColumn('number', 'Budget 1');
-                data.addColumn('number', '2012');
                 data.addColumn('number', '2013');
                 data.addColumn('number', '2014');
+                data.addColumn('number', '2015');
                 data.addColumn('number', 'Balance');
-                data.addRows(rows);
+                data.addRows(rows_mid);
 
                 var table = new google.visualization.Table(document.getElementById('bottom-right'));
                 table.draw(data, {showRowNumber: true});
             }
-            </script>
-            <script type="text/javascript">
-                var bl = new Array();
+            
+                var rows_bottom = new Array();
                 $.getJSON("http://localhost/bottomleft.php?callback=?",function(result){
                      for (var i in result){
                         var rows2 = [];
@@ -362,143 +323,62 @@
                         rows2[1] = result[i][1];
                         rows2[2] = result[i][2];
                         rows2[3] = result[i][3];
-                        bl.push(rows2);
+                        rows_bottom.push(rows2);
                      };
                  });
 
 
-            google.load('visualization', '1', {packages:['table']});
-            google.setOnLoadCallback(drawTable);
-            function drawTable(){
-                var data = new google.visualization.DataTable();
-                data.addColumn('string', 'Phase');
-                data.addColumn('number', 'Budget 1');
-                data.addColumn('number', 'Budget 2');
-                data.addColumn('number', 'Variance');
-                data.addRows(bl);
+                google.load('visualization', '1', {packages:['table']});
+                google.setOnLoadCallback(drawTable2);
+                function drawTable2(){
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('string', 'Phase');
+                    data.addColumn('number', 'Budget A');
+                    data.addColumn('number', 'Budget B');
+                    data.addColumn('number', 'Variance');
+                    data.addRows(rows_bottom);
 
-                var table = new google.visualization.Table(document.getElementById('bottom-right2'));
-                table.draw(data, {showRowNumber: true});
-            }
-        </script>
-    </head>
+                    var table = new google.visualization.Table(document.getElementById('bottom-right2'));
+                    table.draw(data, {showRowNumber: true});
+                }
 
-    <body cellspacing='5'>
-        <script src="../js/codebase/dhtmlxgantt.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../js/codebase/ext/dhtmlxgantt_quick_info.js" type="text/javascript" charset="utf-8"></script>
 
-        <link rel="stylesheet" href="../js/codebase/dhtmlxgantt.css" type="text/css" media="screen" title="no title" charset="utf-8">
 
-        <script type="text/javascript" src="../js/common/testdata.js"></script>
-        
-        <!-- SCRIPT -->
-        <script type="text/javascript">
-        </script>
+                /**/
 
-        <div id="top" style='height:48%;'>
-        <!-- TOP LEFT -->
-            <span style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e;fill:#4d759e; float:left">Select Budget:</span> 
-            <select id='optBudgetTopLeft'>        </select>
-            <input type='button' value='Apply' id='btnTopLeftBudget'></input>
-            </br>
-
-            <span style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e;fill:#4d759e; float:left">Select Project:</span>
-            <select id='optProjectTopLeft'>       </select>
-            <input type='button' value='Apply' id='btnTopLeftProject' style="display:none"></input>
-            </br>
-
-        <div id="top-left" style='width:50%; float:left'></div>
-        <!-- TOP LEFT -->
-
-        <!-- TOP RIGHT -->
-        <span style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e;fill:#4d759e; float:left">Select Budget:</span> <select id='optBudgetTopRight'>
-                    <option>Budget 1</option>
-                    <option>Budget 2</option>
-                </select>
-                <input type='button' value='Apply'></input>
-        <div id="top-right" style='width:50%; float:right'></div>
-        <!-- TOP RIGHT -->
-
-        </div>
-        <div id="bottom" style='height:48%;'>
-            <br />
-
-            <div id="bottom-left-header" style='width:48%; float:right'>
-                <center>
-                <text x="333" y="25" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:16px;color:#274b6d;fill:#274b6d;" text-anchor="middle" class="highcharts-title" zIndex="4"><tspan x="333">Gantt Chart Project</tspan></text><br />
-                <text x="333" y="40" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e;fill:#4d759e;" text-anchor="middle" class="highcharts-subtitle" zIndex="4"><tspan x="333">contains project timeline</tspan></text>
-                </center>
-                <br />
-                <div id="bottom-left1" style='width:100%;'></div>
-                <div id="gantt_here" style='width:100%; height:85%;'></div>
-                <script type="text/javascript">
-                    gantt.config.readonly = true;
-                    gantt.config.drag_progress = false;
-                    gantt.init("gantt_here");
-                    gantt.parse(demo_tasks);
-                </script>
-            </div>
-
-            <div id="bottom-right-header" style='width:48%; float:left'>
-                <center>
-                <text x="333" y="25" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:16px;color:#274b6d;fill:#274b6d;" text-anchor="middle" class="highcharts-title" zIndex="4"><tspan x="333">Budget vs Cost Table</tspan></text><br />
-                <text x="333" y="40" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e;fill:#4d759e;" text-anchor="middle" class="highcharts-subtitle" zIndex="4"><tspan x="333">contains budget vs cost yearly</tspan></text>
-                </center>
-                <span style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e;fill:#4d759e;">Select Budget:</span> <select>
-                    <option>Budget v5</option>
-                    <option>Budget v4</option>
-                </select>
-                <input type='button' value='Apply'></input>
-                <br />
-                <br />
-                <div id="bottom-right" style='width:100%;'>
-
-                </div>
-            </div>  
-            
-            <div id="bottom-right-header2" style='width:48%; float:left'>
-                <br /><br />
-                <center>
-                <text x="333" y="25" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:16px;color:#274b6d;fill:#274b6d;" text-anchor="middle" class="highcharts-title" zIndex="4"><tspan x="333">Budget Comparison</tspan></text><br />
-                <text x="333" y="40" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e;fill:#4d759e;" text-anchor="middle" class="highcharts-subtitle" zIndex="4"><tspan x="333">contains comparison between budget</tspan></text>
-                </center>
-                <span style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e;fill:#4d759e;">First Budget:</span> <select>
-                    <option>Budget v5</option>
-                    <option>Budget v4</option>
-                </select>
-                <span style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e;fill:#4d759e;">Second Budget:</span> <select id=''>
-                    <option>Budget v5</option>
-                    <option>Budget v4</option>
-                </select>
-                <input type='button' value='Apply'></input>
-                <br />
-                <br />
-                <div id="bottom-right2" style='width:100%;'></div>
-                <br />
-
-            </div>          
-        </div>
-
-        <script type="text/javascript">
-            $.getJSON("http://localhost/getbudget.php?callback=?",function(j){
+                $.getJSON("http://localhost/getbudget.php?callback=?",function(j){
                 var options = '';
+                options += '<option value="">All</option>';
                 for (var i = 0; i < j.length; i++) {
                     options += '<option value="' + j[i].c_budget_id + '">' + j[i].name + '</option>';
                 }
                 $("select#optBudgetTopLeft").html(options);
+
+                var options = '';
+                for (var i = 0; i < j.length; i++) {
+                    options += '<option value="' + j[i].c_budget_id + '">' + j[i].name + '</option>';
+                }
+
                 $("select#optBudgetTopRight").html(options);
-                $("select#optBgdCpr1").html(options);
-                $("select#optBgdCpr1").html(options);
-                budget = $("#optBudgetTopLeft" ).val();
+                $("select#budgetMiddleLeft").html(options);
+                $("select#budgetBottomRight1").html(options);
+                $("select#budgetBottomRight2").html(options);
+                budgetTopLeft = $("#optBudgetTopLeft" ).val();
+                budgetTopRight = $("#optBudgetTopRight" ).val();
+                budgetMiddleLeft = $("#budgetMiddleLeft" ).val();
+                budgetBottomRight1 = $("#budgetBottomRight1" ).val();
+                budgetBottomRight2 = $("#budgetBottomRight2" ).val();
             });
 
             $.getJSON("http://localhost/getproject.php?callback=?",function(j){
                 var options = '';
+                options += '<option value="">All Project</option>';
                 for (var i = 0; i < j.length; i++) {
                     options += '<option value="' + j[i].c_project_id + '">' + j[i].name + '</option>';
                 }
                 $("select#optProjectTopLeft").html(options);
-                project = $("#optProjectTopLeft" ).val();
+                $("select#globalproject").html(options);
+                projecttopleft = $("#optProjectTopLeft" ).val();
             });
 
             $("#btnTopLeftBudget").click(function(){
@@ -506,12 +386,8 @@
                 topleft_budget.length = 0;
                 topleft_x.length = 0;
                 topleft_payment_plan.length = 0;
-                // topleft_progress = [];
-                // topleft_budget = [];
-                // topleft_x = [];
-                // topleft_payment_plan = [];
 
-                $.getJSON('http://localhost/topleft.php?callback=?','project='+project+'&budget='+budget,function(result){
+                $.getJSON('http://localhost/topleft.php?callback=?','project='+projecttopleft+'&budget=' +budgetTopLeft,function(result){
                     for (var i in result['databudget']){
                         topleft_budget.push(result['databudget'][i]);
                     };
@@ -528,13 +404,109 @@
                 });
             });
 
+            $("#btnTopRight").click(function(){
+                topright_totalbudget.length = 0;
+                topright_budgetplan.length = 0;
+                topright_totalpayment.length = 0;
+                topright_paymentplan.length = 0;
+                topright_x.length = 0;
+
+                $.getJSON("http://localhost/topright.php?callback=?",'budget='+budgetTopRight,function(result){
+                    for (var i in result['totalbudget']){
+                        topright_totalbudget.push(result['totalbudget'][i]);
+                    };
+                    for (var i in result['budgetplan']){
+                        topright_budgetplan.push(result['budgetplan'][i]);
+                    };
+                    for (var i in result['totalpayment']){
+                        topright_totalpayment.push(result['totalpayment'][i]);
+                    };
+                    for (var i in result['paymentplan']){
+                        topright_paymentplan.push(result['paymentplan'][i]);
+                    };
+                    for (var i in result['datax']){
+                        topright_x.push(result['datax'][i]);
+                    };
+                    toprightGraph();
+                });
+            });
+            
+            $("#btnMiddleLeft").click(function(){
+                rows_mid.length = 0;
+                $.getJSON('http://localhost/middleleft.php?callback=?','budget='+budgetMiddleLeft,function(result){
+                    for (var i in result){
+                        var rows1 = [];
+                        rows1[0] = result[i][0];
+                        rows1[1] = result[i][1]; 
+                        rows1[2] = result[i][2]; 
+                        rows1[3] = result[i][3]; 
+                        rows1[4] = result[i][4]; 
+                        rows1[5] = result[i][5]; 
+                        rows_mid.push(rows1);
+                    };
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('string', 'Phase');
+                    data.addColumn('number', 'Budget 1');
+                    data.addColumn('number', '2013');
+                    data.addColumn('number', '2014');
+                    data.addColumn('number', '2015');
+                    data.addColumn('number', 'Balance');
+                    data.addRows(rows_mid);
+
+                    var table = new google.visualization.Table(document.getElementById('bottom-right'));
+                    table.draw(data, {showRowNumber: true});
+                }); 
+                // google.load('visualization', '1', {packages:['table']});
+                // google.setOnLoadCallback(drawTable1);
+                // drawTable1();
+                // alert(rows_mid);
+            });
+
+            $("#btnBottomLeft").click(function(){
+                rows_bottom.length = 0;
+                $.getJSON("http://localhost/bottomleft.php?callback=?","budget1="+budgetBottomRight1+"&budget2="+budgetBottomRight2,function(result){
+                     for (var i in result){
+                        var rows2 = [];
+                        rows2[0] = result[i][0];
+                        rows2[1] = result[i][1];
+                        rows2[2] = result[i][2];
+                        rows2[3] = result[i][3];
+                        rows_bottom.push(rows2);
+                     };
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('string', 'Phase');
+                    data.addColumn('number', result[i][4]);
+                    data.addColumn('number', result[i][5]);
+                    data.addColumn('number', 'Variance');
+                    data.addRows(rows_bottom);
+
+                    var table = new google.visualization.Table(document.getElementById('bottom-right2'));
+                    table.draw(data, {showRowNumber: true});
+                 });
+                // google.load('visualization', '1', {packages:['table']});
+                // google.setOnLoadCallback(drawTable2);
+            });
+
             $("#optBudgetTopLeft" ).change(function() {
-              budget = $(this).val();
+              budgetTopLeft = $(this).val();
             });
 
             $("#optProjectTopLeft" ).change(function() {
-              project = $(this).val();
+              projecttopleft = $(this).val();
             });
-        </script>
-    </body>
-</html>
+
+            $("#optBudgetTopRight" ).change(function() {
+              budgetTopRight = $(this).val();
+            });
+
+            $("#budgetMiddleLeft" ).change(function() {
+              budgetMiddleLeft = $(this).val();
+            });
+
+            $("#budgetBottomRight1" ).change(function() {
+              budgetBottomRight1 = $(this).val();
+            });
+
+            $("#budgetBottomRight2" ).change(function() {
+              budgetBottomRight2 = $(this).val();
+            });
