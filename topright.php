@@ -8,40 +8,35 @@
 	 */
 	 
 	include "dbcon.php";
+	$firstyear = 2011;
 	
-	$budget_id = $_GET['budget'];
+	if(isset($_GET['budget'])){
+		$budget_id = " = '".$_GET['budget']."'";
+	} else {
+		$budget_id = " is not null ";
+	}
+	
+	//$budget_id = $_GET['budget'];
 
 
 	$resultx = pg_exec($dbconn, "select c_period.name, startdate
 			from c_period
 			join c_budgetline
 			on c_budgetline.c_period_id = c_period.c_period_id
-			where to_char(startdate, 'YYYY') in (
-					select to_char(c_period.startdate, 'YYYY') as custom_year
-					from c_period
-					join c_budgetline
-					on c_budgetline.c_period_id = c_period.c_period_id
-					group by c_period.name, startdate
-					order by startdate
-					limit 1
-				)
+			where true
 			group by c_period.name, startdate
 			order by startdate");
 	
-	//awal buka page dashboard
-	if(isset($_GET['budget'])){
-		/*
-			ketika $_GET['budget'] tidak terdefinisi
-		*/
-		$budget = $_GET['budget'];
+	
+		//$budget = $_GET['budget'];
 		/*
 			Query untuk mengisi value dari budget plan
 		*/
-		$result_budgetplan = pg_exec($dbconn, "select c_budgetline.amount, c_period.startdate, to_char(c_period.startdate, 'MM') as month, c_period.name, c_budget_id, c_currency_id
+		$result_budgetplan = pg_exec($dbconn, "select c_budgetline.amount, c_period.startdate, (date_part('year',c_period.startdate) - ".$firstyear.") * 12 + date_part('month',c_period.startdate) as month, c_period.name, c_budget_id, c_currency_id
 			from c_budgetline
 			join c_period
 			on c_budgetline.c_period_id = c_period.c_period_id
-			where c_budget_id = '$budget'
+			where c_budget_id ".$budget_id." 
 			order by startdate");
 			
 		/*
@@ -51,23 +46,15 @@
 			from c_budgetline
 			join c_period
 			on c_budgetline.c_period_id = c_period.c_period_id
-			where  c_budget_id = '$budget'
-			and to_char(startdate, 'YYYY') in (
-					select to_char(c_period.startdate, 'YYYY') as custom_year
-					from c_period
-					join c_budgetline
-					on c_budgetline.c_period_id = c_period.c_period_id
-					group by c_period.name, startdate
-					order by startdate
-					limit 1
-				)
+			where  c_budget_id  ".$budget_id." 
+			and true
 			order by startdate");
 
 		/*
 			Query untuk mengisi value dari payment plan
 		*/
 			/* projecttask */
-		$result_paymentplan = pg_exec($dbconn, "select fin_payment.finacc_txn_amount as amount, to_char(fin_payment.paymentdate, 'MM') as month,
+		$result_paymentplan = pg_exec($dbconn, "select fin_payment.finacc_txn_amount as amount,(date_part('year',fin_payment.paymentdate) - ".$firstyear.") * 12 + date_part('month',fin_payment.paymentdate) as  month,
 			to_char(fin_payment.paymentdate, 'YY') as tahun,
 			c_budgetline.c_budget_id
 			from fin_payment
@@ -79,130 +66,13 @@
 			on m_product.m_product_id = c_projectphase.m_product_id
 			join c_budgetline
 			on m_product.m_product_id = c_budgetline.m_product_id 
-			where fin_payment.isreceipt = 'N' and to_char(fin_payment.paymentdate, 'YY') in (
-					select to_char(c_period.startdate, 'YY') as custom_year
-					from c_period
-					join c_budgetline
-					on c_budgetline.c_period_id = c_period.c_period_id
-					group by startdate
-					order by startdate
-					limit 1
-				)
+			where fin_payment.isreceipt = 'N' and true
 			and c_projectphase.c_projectphase_id not in (select c_projecttask.c_projectphase_id from c_projecttask)
-			and c_budgetline.c_budget_id = '$budget_id' 
+			and c_budgetline.c_budget_id  ".$budget_id." 
 			group by month, tahun, c_budget_id, fin_payment.finacc_txn_amount
 			order by tahun, month");
-		/*
-			Query untuk mengisi value dari total payment
-			tidak dipakai, data diambil dr result_paymentplan
-		*/
-			/* projecttask */
-		// $result_totalpayment = pg_exec($dbconn, "select fin_payment.finacc_txn_amount as amount, to_char(paymentdate, 'MM') as month,
-		// 	to_char(paymentdate, 'YY') as tahun,
-		// 	c_budgetline.c_budget_id
-		// 	from fin_payment
-		// 	join c_project
-		// 	on c_project.c_project_id = fin_payment.c_project_id
-		// 	join c_projectphase
-		// 	on c_project.c_project_id = c_projectphase.c_project_id
-		// 	join m_product
-		// 	on m_product.m_product_id = c_projectphase.m_product_id
-		// 	join c_budgetline
-		// 	on m_product.m_product_id = c_budgetline.m_product_id 
-		// 	where c_budgetline.c_budget_id = '$budget_id' 
-		// 		and fin_payment.isreceipt = 'N'
-		// 	and to_char(paymentdate, 'YY') in (
-		// 			select to_char(c_period.startdate, 'YYYY') as custom_year
-		// 			from c_period
-		// 			join c_budgetline
-		// 			on c_budgetline.c_period_id = c_period.c_period_id
-		// 			group by c_period.name, startdate
-		// 			order by startdate
-		// 			limit 1
-		// 		)
-		// 	group by month, tahun, c_budget_id, fin_payment.finacc_txn_amount
-		// 	order by month");
+		
 
-	} else {
-		/*
-			ketika $_GET['budget'] terdefinisi
-		*/
-		/*
-			Query untuk mengisi value dari budget plan
-		*/
-		$result_budgetplan = pg_exec($dbconn, "select c_budgetline.amount, c_period.startdate, to_char(c_period.startdate, 'MM') as month, c_period.name, c_budget_id, c_currency_id
-			from c_budgetline
-			join c_period
-			on c_budgetline.c_period_id = c_period.c_period_id
-			where c_budget_id = (select c_budget_id from c_budget order by created desc limit 1)
-			order by startdate");
-	//			
-		/*
-			Query untuk mengisi value dari total budget
-		*/
-		$result_totalbudget = pg_exec($dbconn, "select c_budgetline.amount, c_period.startdate, to_char(c_period.startdate, 'MM') as month, c_period.name, c_budget_id, c_currency_id
-			from c_budgetline
-			join c_period
-			on c_budgetline.c_period_id = c_period.c_period_id
-			where c_budget_id = (select c_budget_id from c_budget order by created desc limit 1)
-			order by startdate");
-
-		/*
-			Query untuk mengisi value dari payment plan
-			subquery di sini, untuk mengambil tahun dari c_budgetline terakhir
-		*/
-			/* projecttask 
-			hanya yang tidak memiliki projecttask
-				and c_projectphase.c_projectphase_id not in (select c_projecttask.c_projectphase_id from c_projecttask)
-			terus digabung dengan query yg dari project task
-			*/
-		$result_paymentplan = pg_exec($dbconn, "select fin_payment.finacc_txn_amount as amount, to_char(fin_payment.paymentdate, 'MM') as month,
-			to_char(fin_payment.paymentdate, 'YY') as tahun,
-			c_budgetline.c_budget_id
-			from fin_payment
-			join c_project
-			on c_project.c_project_id = fin_payment.c_project_id
-			join c_projectphase
-			on c_project.c_project_id = c_projectphase.c_project_id
-			join m_product
-			on m_product.m_product_id = c_projectphase.m_product_id
-			join c_budgetline
-			on m_product.m_product_id = c_budgetline.m_product_id 
-			where fin_payment.isreceipt = 'N' and to_char(fin_payment.paymentdate, 'YY') in (
-					select to_char(c_period.startdate, 'YY') as custom_year
-					from c_period
-					join c_budgetline
-					on c_budgetline.c_period_id = c_period.c_period_id
-					group by startdate
-					order by startdate
-					limit 1
-				)
-			and c_projectphase.c_projectphase_id not in (select c_projecttask.c_projectphase_id from c_projecttask)
-			group by month, tahun, c_budget_id, fin_payment.finacc_txn_amount
-			order by tahun, month");
-
-		/*
-			Query untuk mengisi value dari total payment
-			ga dipake, data diambil dr result_paymentplan
-		*/
-			/* projecttask */
-		// $result_totalpayment = pg_exec($dbconn, "select fin_payment.amount as amount, to_char(paymentdate, 'MM') as month,
-		// 	to_char(paymentdate, 'YY') as tahun,
-		// 	c_budgetline.c_budget_id
-		// 	from fin_payment
-		// 	join c_project
-		// 	on c_project.c_project_id = fin_payment.c_project_id
-		// 	join c_projectphase
-		// 	on c_project.c_project_id = c_projectphase.c_project_id
-		// 	join m_product
-		// 	on m_product.m_product_id = c_projectphase.m_product_id
-		// 	join c_budgetline
-		// 	on m_product.m_product_id = c_budgetline.m_product_id 
-		// 	and to_char(paymentdate, 'YY') = to_char(now(), 'YY')
-		// 	group by month, tahun, c_budget_id, fin_payment.amount
-		// 	order by month");
-
-	}
 
 	$data = array();
 	$databudgetplan = array();
@@ -318,7 +188,7 @@
 	// free memory
 	pg_free_result($result_budgetplan);
 	// close connection
-	pg_close($dbh);
+	pg_close($dbconn);
 	
 	echo $_GET['callback'] . '(' . json_encode($data) . ')';
 ?>

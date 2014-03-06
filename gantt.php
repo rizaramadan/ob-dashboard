@@ -17,13 +17,21 @@
 
 	$result2 = pg_exec($dbconn, "select c_projectphase_id, c_project_id, name, datecontract, em_pjt_startcontract, (datecontract-em_pjt_startcontract) as len, to_char(em_pjt_startcontract,'DD-MM-YYYY') as custom
 			from c_projectphase
-			where datecontract is not null and em_pjt_startcontract is not null
+			where datecontract is not null and em_pjt_startcontract is not null and c_project_id is not null
 			");
 
-	$result3 = pg_exec($dbconn, "select c_projecttask_id, c_projectphase_id, name, datecontract, em_pjt_startcontract, (datecontract-em_pjt_startcontract) as len, to_char(em_pjt_startcontract,'DD-MM-YYYY') as custom
-			from c_projectphase
-			where datecontract is not null and em_pjt_startcontract is not null
-			");
+	$result3 = pg_exec($dbconn, "select 
+									c_projecttask_id, 
+									c_projecttask.c_projectphase_id, 
+									c_projecttask.name, 
+									c_projecttask.datecontract, 
+									c_projecttask.em_pjt_startcontract, 
+									(c_projecttask.datecontract - c_projecttask.em_pjt_startcontract) as len, 
+									to_char(c_projecttask.em_pjt_startcontract,'DD-MM-YYYY') as custom
+								from 
+									c_projecttask inner join c_projectphase  cpp on c_projecttask.c_projectphase_id = cpp.c_projectphase_id
+								where 
+									c_projecttask.datecontract is not null and c_projecttask.em_pjt_startcontract is not null and c_project_id is not null");
 
 	$data = array();
 	while($row = pg_fetch_array($result1)) {
