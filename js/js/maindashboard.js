@@ -1,9 +1,10 @@
+        /* var init */
         var topleft_progress = new Array();
         var topleft_budget = new Array();
         var topleft_payment_plan = new Array();
         var topleft_x = new Array();
 
-        var globalproject;
+        var globalproject_id;
         var projecttopleft;
         var budgetTopLeft;
 
@@ -17,10 +18,10 @@
         var budgetMiddleLeft;
         var budgetBottomLeft1;
         var budgetBottomRight2
-
-
-
-        $.getJSON('http://localhost/ob/topleft.php?callback=?',function(result){
+        /* var init */
+      
+        /* retrieve data */
+        $.getJSON('http://localhost/topleft.php?callback=?',function(result){
             for (var i in result['databudget']){
                 topleft_budget.push(result['databudget'][i]);
             };
@@ -36,7 +37,7 @@
         });
 
 
-        $.getJSON("http://localhost/ob/topright.php?callback=?",function(result){
+        $.getJSON("http://localhost/topright.php?callback=?",function(result){
             for (var i in result['totalbudget']){
                 topright_totalbudget.push(result['totalbudget'][i]);
             };
@@ -54,11 +55,43 @@
             };
         });
 
-            var demo_tasks;
-            $.getJSON("http://localhost/ob/gantt.php?callback=?",function(result){              
-                demo_tasks = result;
-            });
+        $.getJSON("http://localhost/getbudget.php?callback=?",function(j){
+            var options = '';
+            options += '<option value="">All</option>';
+            for (var i = 0; i < j.length; i++) {
+                options += '<option value="' + j[i].c_budget_id + '">' + j[i].name + '</option>';
+            }
+            $("select#optBudgetTopLeft").html(options);
 
+            var options = '';
+            for (var i = 0; i < j.length; i++) {
+                options += '<option value="' + j[i].c_budget_id + '">' + j[i].name + '</option>';
+            }
+
+            $("select#optBudgetTopRight").html(options);
+            $("select#budgetMiddleLeft").html(options);
+            $("select#budgetBottomRight1").html(options);
+            $("select#budgetBottomRight2").html(options);
+            budgetTopLeft = $("#optBudgetTopLeft" ).val();
+            budgetTopRight = $("#optBudgetTopRight" ).val();
+            budgetMiddleLeft = $("#budgetMiddleLeft" ).val();
+            budgetBottomRight1 = $("#budgetBottomRight1" ).val();
+            budgetBottomRight2 = $("#budgetBottomRight2" ).val();
+        });
+
+        $.getJSON("http://localhost/getproject.php?callback=?",function(j){
+            var options = '';
+            options += '<option value="">All Project</option>';
+            for (var i = 0; i < j.length; i++) {
+                options += '<option value="' + j[i].c_project_id + '">' + j[i].name + '</option>';
+            }
+            $("select#optProjectTopLeft").html(options);
+            $("select#globalproject").html(options);
+            projecttopleft = $("#optProjectTopLeft" ).val();
+        });
+        /* retrieve data */
+        
+        /* func init */
         function topleft(){
             $('#top-left').highcharts({
                  colors: [
@@ -75,6 +108,9 @@
                 chart: {
                     zoomType: 'xy'
                 },
+                credits: {
+                      enabled: false
+                  },
                 title: {
                     text: 'Graph of Budget, Progress & Payment'
                 },
@@ -176,6 +212,9 @@
                 chart: {
                     zoomType: 'xy'
                 },
+                credits: {
+                      enabled: false
+                  },
                 title: {
                     text: 'Graph of Budget and Cashflow'
                 },
@@ -278,15 +317,109 @@
                 }]
             });
         }
+        /* func init */
 
-        $(function () {
-            topleft();
-            toprightGraph();
-        });
+            /* call */
+            $(function () {
+                topleft();
+                toprightGraph();
+            });
+            /* call */
+
+            /* select */
+            $("#optBudgetTopLeft" ).change(function() {
+              budgetTopLeft = $(this).val();
+            });
+
+            $("#optProjectTopLeft" ).change(function() {
+              projecttopleft = $(this).val();
+            });
+
+            $("#optBudgetTopRight" ).change(function() {
+              budgetTopRight = $(this).val();
+            });
+
+            $("#globalproject").change(function() {
+                globalproject_id = $(this).val();
+            });
+            /* select */
+            
+            /* button */
+            $("#btnTopLeftBudget").click(function(){
+                topleft_progress.length = 0;
+                topleft_budget.length = 0;
+                topleft_x.length = 0;
+                topleft_payment_plan.length = 0;
+
+                $.getJSON('http://localhost/topleft.php?callback=?','project='+projecttopleft+'&budget=' +budgetTopLeft,function(result){
+                    for (var i in result['databudget']){
+                        topleft_budget.push(result['databudget'][i]);
+                    };
+                    for (var i in result['datax']){
+                        topleft_x.push(result['datax'][i]);
+                    };
+                    for (var i in result['progress']){
+                        topleft_progress.push(result['progress'][i]);
+                    };
+                    for (var i in result['payment_plan']){
+                        topleft_payment_plan.push(result['payment_plan'][i]);
+                    };
+                    topleft();
+                });
+            });
+
+            $("#btnTopRight").click(function(){
+                topright_totalbudget.length = 0;
+                topright_budgetplan.length = 0;
+                topright_totalpayment.length = 0;
+                topright_paymentplan.length = 0;
+                topright_x.length = 0;
+
+                $.getJSON("http://localhost/topright.php?callback=?",'budget='+budgetTopRight,function(result){
+                    for (var i in result['totalbudget']){
+                        topright_totalbudget.push(result['totalbudget'][i]);
+                    };
+                    for (var i in result['budgetplan']){
+                        topright_budgetplan.push(result['budgetplan'][i]);
+                    };
+                    for (var i in result['totalpayment']){
+                        topright_totalpayment.push(result['totalpayment'][i]);
+                    };
+                    for (var i in result['paymentplan']){
+                        topright_paymentplan.push(result['paymentplan'][i]);
+                    };
+                    for (var i in result['datax']){
+                        topright_x.push(result['datax'][i]);
+                    };
+                    toprightGraph();
+                });
+            });
+
+            /* button */
 
 
-         var rows_mid = new Array();
-            $.getJSON('http://localhost/ob/middleleft.php?callback=?',function(result){
+            /* gantt chart */
+            gantt.config.readonly = true;
+            gantt.config.drag_progress = false;
+            gantt.config.scale_unit = "week";
+            gantt.init("gantt_here");
+        
+            $.getJSON("http://localhost/gantt.php?callback=?",function(result){    
+                gantt.parse(result);
+            });
+            
+            $("#btnGlobalProject").click(function(){
+                 $.getJSON("http://localhost/gantt.php?callback=?","project_id="+globalproject_id,function(result){    
+                    gantt.clearAll();
+                    gantt.parse(result);
+                });
+            });
+            /* gantt chart */
+
+
+            /* middleleft */
+            var rows_mid = new Array();
+            $.getJSON('http://localhost/middleleft.php?callback=?',function(result){
                 for (var i in result){
                     var rows1 = [];
                     rows1[0] = result[i][0];
@@ -314,126 +447,10 @@
                 var table = new google.visualization.Table(document.getElementById('bottom-right'));
                 table.draw(data, {showRowNumber: true});
             }
-            
-                var rows_bottom = new Array();
-                $.getJSON("http://localhost/ob/bottomleft.php?callback=?",function(result){
-                     for (var i in result){
-                        var rows2 = [];
-                        rows2[0] = result[i][0];
-                        rows2[1] = result[i][1];
-                        rows2[2] = result[i][2];
-                        rows2[3] = result[i][3];
-                        rows_bottom.push(rows2);
-                     };
-                 });
 
-
-                google.load('visualization', '1', {packages:['table']});
-                google.setOnLoadCallback(drawTable2);
-                function drawTable2(){
-                    var data = new google.visualization.DataTable();
-                    data.addColumn('string', 'Phase');
-                    data.addColumn('number', 'Budget A');
-                    data.addColumn('number', 'Budget B');
-                    data.addColumn('number', 'Variance');
-                    data.addRows(rows_bottom);
-
-                    var table = new google.visualization.Table(document.getElementById('bottom-right2'));
-                    table.draw(data, {showRowNumber: true});
-                }
-
-
-
-                /**/
-
-                $.getJSON("http://localhost/ob/getbudget.php?callback=?",function(j){
-                var options = '';
-                options += '<option value="">All</option>';
-                for (var i = 0; i < j.length; i++) {
-                    options += '<option value="' + j[i].c_budget_id + '">' + j[i].name + '</option>';
-                }
-                $("select#optBudgetTopLeft").html(options);
-
-                var options = '';
-                for (var i = 0; i < j.length; i++) {
-                    options += '<option value="' + j[i].c_budget_id + '">' + j[i].name + '</option>';
-                }
-
-                $("select#optBudgetTopRight").html(options);
-                $("select#budgetMiddleLeft").html(options);
-                $("select#budgetBottomRight1").html(options);
-                $("select#budgetBottomRight2").html(options);
-                budgetTopLeft = $("#optBudgetTopLeft" ).val();
-                budgetTopRight = $("#optBudgetTopRight" ).val();
-                budgetMiddleLeft = $("#budgetMiddleLeft" ).val();
-                budgetBottomRight1 = $("#budgetBottomRight1" ).val();
-                budgetBottomRight2 = $("#budgetBottomRight2" ).val();
-            });
-
-            $.getJSON("http://localhost/ob/getproject.php?callback=?",function(j){
-                var options = '';
-                options += '<option value="">All Project</option>';
-                for (var i = 0; i < j.length; i++) {
-                    options += '<option value="' + j[i].c_project_id + '">' + j[i].name + '</option>';
-                }
-                $("select#optProjectTopLeft").html(options);
-                $("select#globalproject").html(options);
-                projecttopleft = $("#optProjectTopLeft" ).val();
-            });
-
-            $("#btnTopLeftBudget").click(function(){
-                topleft_progress.length = 0;
-                topleft_budget.length = 0;
-                topleft_x.length = 0;
-                topleft_payment_plan.length = 0;
-
-                $.getJSON('http://localhost/ob/topleft.php?callback=?','project='+projecttopleft+'&budget=' +budgetTopLeft,function(result){
-                    for (var i in result['databudget']){
-                        topleft_budget.push(result['databudget'][i]);
-                    };
-                    for (var i in result['datax']){
-                        topleft_x.push(result['datax'][i]);
-                    };
-                    for (var i in result['progress']){
-                        topleft_progress.push(result['progress'][i]);
-                    };
-                    for (var i in result['payment_plan']){
-                        topleft_payment_plan.push(result['payment_plan'][i]);
-                    };
-                    topleft();
-                });
-            });
-
-            $("#btnTopRight").click(function(){
-                topright_totalbudget.length = 0;
-                topright_budgetplan.length = 0;
-                topright_totalpayment.length = 0;
-                topright_paymentplan.length = 0;
-                topright_x.length = 0;
-
-                $.getJSON("http://localhost/ob/topright.php?callback=?",'budget='+budgetTopRight,function(result){
-                    for (var i in result['totalbudget']){
-                        topright_totalbudget.push(result['totalbudget'][i]);
-                    };
-                    for (var i in result['budgetplan']){
-                        topright_budgetplan.push(result['budgetplan'][i]);
-                    };
-                    for (var i in result['totalpayment']){
-                        topright_totalpayment.push(result['totalpayment'][i]);
-                    };
-                    for (var i in result['paymentplan']){
-                        topright_paymentplan.push(result['paymentplan'][i]);
-                    };
-                    for (var i in result['datax']){
-                        topright_x.push(result['datax'][i]);
-                    };
-                    toprightGraph();
-                });
-            });
-            
             $("#btnMiddleLeft").click(function(){
                 rows_mid.length = 0;
-                $.getJSON('http://localhost/ob/middleleft.php?callback=?','budget='+budgetMiddleLeft,function(result){
+                $.getJSON('http://localhost/middleleft.php?callback=?','budget='+budgetMiddleLeft,function(result){
                     for (var i in result){
                         var rows1 = [];
                         rows1[0] = result[i][0];
@@ -462,9 +479,14 @@
                 // alert(rows_mid);
             });
 
-            $("#btnBottomLeft").click(function(){
-                rows_bottom.length = 0;
-                $.getJSON("http://localhost/ob/bottomleft.php?callback=?","budget1="+budgetBottomRight1+"&budget2="+budgetBottomRight2,function(result){
+            $("#budgetMiddleLeft" ).change(function() {
+              budgetMiddleLeft = $(this).val();
+            });
+            /* middleleft */
+            
+                /* bottomleft */
+                var rows_bottom = new Array();
+                $.getJSON("http://localhost/bottomleft.php?callback=?",function(result){
                      for (var i in result){
                         var rows2 = [];
                         rows2[0] = result[i][0];
@@ -473,40 +495,52 @@
                         rows2[3] = result[i][3];
                         rows_bottom.push(rows2);
                      };
+                 });
+
+                google.load('visualization', '1', {packages:['table']});
+                google.setOnLoadCallback(drawTable2);
+                function drawTable2(){
                     var data = new google.visualization.DataTable();
                     data.addColumn('string', 'Phase');
-                    data.addColumn('number', result[i][4]);
-                    data.addColumn('number', result[i][5]);
+                    data.addColumn('number', 'Budget A');
+                    data.addColumn('number', 'Budget B');
                     data.addColumn('number', 'Variance');
                     data.addRows(rows_bottom);
 
                     var table = new google.visualization.Table(document.getElementById('bottom-right2'));
                     table.draw(data, {showRowNumber: true});
-                 });
-                // google.load('visualization', '1', {packages:['table']});
-                // google.setOnLoadCallback(drawTable2);
-            });
+                }
 
-            $("#optBudgetTopLeft" ).change(function() {
-              budgetTopLeft = $(this).val();
-            });
+                $("#btnBottomLeft").click(function(){
+                    rows_bottom.length = 0;
+                    $.getJSON("http://localhost/bottomleft.php?callback=?","budget1="+budgetBottomRight1+"&budget2="+budgetBottomRight2,function(result){
+                         for (var i in result){
+                            var rows2 = [];
+                            rows2[0] = result[i][0];
+                            rows2[1] = result[i][1];
+                            rows2[2] = result[i][2];
+                            rows2[3] = result[i][3];
+                            rows_bottom.push(rows2);
+                         };
+                        var data = new google.visualization.DataTable();
+                        data.addColumn('string', 'Phase');
+                        data.addColumn('number', result[i][4]);
+                        data.addColumn('number', result[i][5]);
+                        data.addColumn('number', 'Variance');
+                        data.addRows(rows_bottom);
 
-            $("#optProjectTopLeft" ).change(function() {
-              projecttopleft = $(this).val();
-            });
+                        var table = new google.visualization.Table(document.getElementById('bottom-right2'));
+                        table.draw(data, {showRowNumber: true});
+                     });
+                    // google.load('visualization', '1', {packages:['table']});
+                    // google.setOnLoadCallback(drawTable2);
+                });
 
-            $("#optBudgetTopRight" ).change(function() {
-              budgetTopRight = $(this).val();
-            });
+                $("#budgetBottomRight1" ).change(function() {
+                  budgetBottomRight1 = $(this).val();
+                });
 
-            $("#budgetMiddleLeft" ).change(function() {
-              budgetMiddleLeft = $(this).val();
-            });
-
-            $("#budgetBottomRight1" ).change(function() {
-              budgetBottomRight1 = $(this).val();
-            });
-
-            $("#budgetBottomRight2" ).change(function() {
-              budgetBottomRight2 = $(this).val();
-            });
+                $("#budgetBottomRight2").change(function() {
+                  budgetBottomRight2 = $(this).val();
+                });
+                /* bottomleft */

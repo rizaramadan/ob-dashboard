@@ -9,18 +9,9 @@
 	 */
  
  	include "dbcon.php";
-	$barCount = 59;
-	$firstyear = 2011;
-	
-	/*
-		-- $projectId = "='13FA9BAABD464926A2EE42068C117BDA'" 
--- $projectId = " is not null ";
--- $budgetId = "='13FA9BAABD464926A2EE42068C117BDA'" 
--- $budgetId = " is not null ";
-	 
-	$project_id = $_GET['project'];
-	$budget_id = $_GET['budget'];
-	*/
+	$barCount = 35;
+	$firstyear = 2013;
+
 	$project_id = " is not null ";
 	$budget_id = " is not null ";
 	if(!isset($_GET['project'])||($_GET['project'] == '')&&($_GET['budget'] == '')){
@@ -60,7 +51,10 @@
 		$queryFetchValueFromBudget = "select c_budgetline.amount as amount, c_period.startdate, c_period.name, c_budgetline.c_budget_id as budget_id, (date_part('year',c_period.startdate) - ".$firstyear.") * 12 + date_part('month',c_period.startdate) as bulan
 			from c_period
 			left outer join c_budgetline on c_budgetline.c_period_id = c_period.c_period_id
-			left outer join c_projectphase on c_projectphase.name = c_budgetline.description
+			left outer join m_product
+			on m_product.m_product_id = c_budgetline.m_product_id 
+			left outer join c_projectphase
+			on m_product.m_product_id = c_projectphase.m_product_id
 			
 			where
 			c_budgetline.c_currency_id = '303' and c_projectphase.c_project_id ".$project_id."  and c_budgetline.c_budget_id ".$budget_id." 
@@ -89,16 +83,16 @@
 		/*
 			Query untuk mengisi value dari projects progress (progress)
 		*/
-		$resultprogress = pg_exec($dbconn, "select pjt_progresshistory.pjt_progresshistory_id,
-			pjt_progresshistory.progress_project as amount, 
-			(date_part('year',pjt_progresshistory.created) - ".$firstyear.") * 12 + date_part('month',pjt_progresshistory.created) as bulan,
-			to_char(pjt_progresshistory.created, 'dd') as tanggal,
+		$resultprogress = pg_exec($dbconn, "select pss_progresshistory.pss_progresshistory_id,
+			pss_progresshistory.progress_project as amount, 
+			(date_part('year',pss_progresshistory.created) - ".$firstyear.") * 12 + date_part('month',pss_progresshistory.created) as bulan,
+			to_char(pss_progresshistory.created, 'dd') as tanggal,
 			c_projectphase.c_project_id as project_id
-			from pjt_progresshistory
+			from pss_progresshistory
 			join c_projectphase
-			on pjt_progresshistory.c_projectphase_id = c_projectphase.c_projectphase_id
+			on pss_progresshistory.c_projectphase_id = c_projectphase.c_projectphase_id
 			where c_projectphase.c_project_id ".$project_id."
-			order by pjt_progresshistory.created");
+			order by pss_progresshistory.created");
 
 		/*
 			Query untuk mengisi value dari projects payments (payment plan)
@@ -195,6 +189,11 @@
 			if($i > 0 && $dataprogress[$i] < $dataprogress[$i-1]){
 				$dataprogress[$i] = $dataprogress[$i-1];
 			}
+		}
+
+		if($lastProgressValue == 0) $lastProgressValue = 1;
+		for($i = 0;$i<=$barCount;$i++){
+			$dataprogress[$i] = $dataprogress[$i]/$lastProgressValue*100;
 		}
 	} else {
 		for($m=0;$m<count($resultprogresses);$m++){
