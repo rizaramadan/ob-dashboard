@@ -195,10 +195,10 @@
                       enabled: false
                   },
                 title: {
-                    text: 'Graph of Budget, Progress & Payment'
+                    text: 'Grafik Budget, Progress & Jadwal Pembayaran'
                 },
                 subtitle: {
-                    text: 'contains data about budget, projects progress and projects payments'
+                    text: 'berisikan perbandingan data budget, progress proyek and jadwal pembayaran'
                 },
                 xAxis: [{                    
                     categories: topleft_x
@@ -299,10 +299,10 @@
                       enabled: false
                   },
                 title: {
-                    text: 'Graph of Budget and Cashflow'
+                    text: 'Grafik Budget dan Aliran Dana'
                 },
                 subtitle: {
-                    text: 'contains data about budget and cashflow '
+                    text: 'menampilkan data aliran budget dan aliran dana '
                 },
                 xAxis: [{
                     categories: topright_x
@@ -353,7 +353,7 @@
                     }
         
                 }, {
-                    name: 'Budget Plan',
+                    name: 'Rencana Budget',
                     type: 'column',
                     dataLabels: {
                         enabled: true
@@ -368,7 +368,7 @@
                     }
         
                 }, {
-                    name: 'Total Payment',
+                    name: 'Total Pembayaran',
                     type: 'spline',
                     index: 3,
                     dashStyle: 'ShortDash',
@@ -381,7 +381,7 @@
                         valuePrefix: 'Rp. '
                     }
                 } , {
-                    name: 'Payment Plan',
+                    name: 'Jadwal Pembayaran',
                     type: 'column',
                     dataLabels: {
                         enabled: true
@@ -407,6 +407,7 @@
                 topleft();
                 toprightGraph();
 				refreshBudgetCost();
+				refreshBudgetGrossNett();
             });
             /* call */
 
@@ -482,7 +483,7 @@
 
 			google.load('visualization', '1', {packages:['table']});
 			google.setOnLoadCallback(drawTable2);
-			google.setOnLoadCallback(drawTable3);
+			//google.setOnLoadCallback(drawTable3);
 			
 			function drawTable2(){
 				var data = new google.visualization.DataTable();
@@ -506,7 +507,7 @@
 				data.addRows(rows_bottommost);
 
 				var table = new google.visualization.Table(document.getElementById('bottom-most'));
-				table.draw(data, {showRowNumber: true});
+				//table.draw(data, {showRowNumber: true});
 			}
 
 			
@@ -530,7 +531,7 @@
 				budgetBottomRight1; budgetBottomRight2;
 				//alert("b. budget bottom right1 :"+budgetBottomRight1+", right 2:"+budgetBottomRight2);
 				refreshBudgetComparison();
-				
+				refreshBudgetGrossNett();
 				
             });
 			
@@ -724,7 +725,7 @@
 			}
 			
 			function refreshBudgetGrossNett() {
-				rows_bottommost.length = 0;
+				/*rows_bottommost.length = 0;
 				$.getJSON("http://localhost/ob/BudgetGrossNett.php?callback=?",function(result){
 					for (var i in result){
 					   var rows2 = [];
@@ -743,7 +744,21 @@
 				data.addRows(rows_bottommost);
 
 				var table = new google.visualization.Table(document.getElementById('bottom-most'));
-				table.draw(data, {showRowNumber: true});
+				table.draw(data, {showRowNumber: true});*/
+				$.ajax({
+					url: "http://localhost/ob/BudgetGrossNett.php",
+					type: "GET",
+					dataType: "html",
+					success: function (data) {
+						$('#bottom-most').html(data);
+					},
+					error: function (xhr, status) {
+						alert("recheck the ajax calling");
+					},
+					complete: function (xhr, status) {
+						//$('#showresults').slideDown('slow')
+					}
+				});
 				
 			}
 			
@@ -755,26 +770,26 @@
 						gantt.config.scale_unit = "year";
 						gantt.config.step = 1;
 						gantt.config.date_scale = "%Y";
-						gantt.config.min_column_width = 50;
+						gantt.config.min_column_width = 35;
 
 						gantt.config.scale_height = 90;
 
 						var monthScaleTemplate = function(date){
-							var dateToStr = gantt.date.date_to_str("%M");
+							var dateToStr = gantt.date.date_to_str("%m");
 							var endDate = gantt.date.add(date, 2, "month");
 							return dateToStr(date) + " - " + dateToStr(endDate);
 						};
 
 						gantt.config.subscales = [
 							{unit:"month", step:3, template:monthScaleTemplate},
-							{unit:"month", step:1, date:"%M" }
+							{unit:"month", step:1, date:"%m" }
 						];
 
 						gantt.init("gantt_here");
 						gantt.parse(result);
 					} else {
 						
-						gantt.parse(result)
+						gantt.parse(result);
 					}
 				});
 			}

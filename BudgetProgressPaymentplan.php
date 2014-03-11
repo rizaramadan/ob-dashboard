@@ -11,6 +11,8 @@
  	include "dbcon.php";
  	include "QueryManager.php";
  	include "Utils.php";
+ 	include "dummy.php";
+	$dummy = true;
 
 
 	$project_id = getCleanParam($_GET,'project');
@@ -93,6 +95,20 @@
 			}
 		}
 	}
+
+	$totalDummyBudget = 0;
+	if($dummy) {
+		$dummyBudget = getDummyBudget($project_id);
+		for($i = 0; $i < count($dummyBudget); ++$i) {
+			$totalDummyBudget += $dummyBudget[$i];
+			$dummyBudget[$i] = $totalDummyBudget;
+		}
+		for($i = 0; $i < count($dummyBudget); ++$i) {
+			$dummyBudget[$i] = $dummyBudget[$i]/$totalDummyBudget*100;
+		}
+	}
+	
+	
 	
 	if($total == 0) $total = 1;
 	for($i = 0; $i <= $barCount; ++$i) {
@@ -132,6 +148,18 @@
 		}*/
 	}
 	
+	if($dummy) {
+		$temp = 0;
+		$dummyProgress = getDummyProgress($project_id);
+		for($i = 0; $i < count($dummyProgress); ++$i) {
+			$temp += $dummyProgress[$i];
+			$dummyProgress[$i] = $temp;
+		}
+		for($i = 0; $i < count($dummyProgress); ++$i) {
+			$dummyProgress[$i] = $dummyProgress[$i]/$totalDummyBudget*100;
+		}
+	}
+	
 
 	/*
 		Query untuk mengisi value dari projects payments (payment plan)
@@ -161,11 +189,28 @@
 		$datapayment[$i] = $datapayment[$i] / $realtotalbudget * 100;
 	}
 	
+	
+	if($dummy) {
+		$temp = 0;
+		$dummyPaymentplan = getDummyPaymentPlan($project_id);
+		for($i = 0; $i < count($dummyPaymentplan); ++$i) {
+			$temp += $dummyPaymentplan[$i];
+			$dummyPaymentplan[$i] = $temp;
+		}
+		for($i = 0; $i < count($dummyPaymentplan); ++$i) {
+			$dummyPaymentplan[$i] = $dummyPaymentplan[$i]/$totalDummyBudget*100;
+		}
+		
+		$databudget = $dummyBudget;
+		$dataprogress = $dummyProgress;
+		$datapayment = $dummyPaymentplan;
+	}
+	
 	if (isset($_GET['year'])&&$_GET['year']!=""){
 		$mulai = ($_GET['year']-$firstyear)*12;
 		$data['datax'] = array_slice($datax,$mulai,12);
 		$data['databudget'] = array_slice($databudget,$mulai,12);
-		$data['progress'] = array_slice($dataprogress,$mulai,12); 
+		if($mulai < 36) {$data['progress'] = array_slice($dataprogress,$mulai,12); }
 		$data['payment_plan'] = array_slice($datapayment,$mulai,12);
 	} else {
 		$data['datax'] = $datax;

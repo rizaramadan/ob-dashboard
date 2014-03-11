@@ -10,6 +10,9 @@
 	include "dbcon.php";
 	include "QueryManager.php";
  	include "Utils.php";
+ 	include "dummy.php";
+	
+	$dummmy = true;
 
 	$project_id = getCleanParam($_GET,'project');
 	$budget_id = getCleanParam($_GET,'budget');
@@ -59,6 +62,16 @@
 		$databudgetplan[$row['bulan']-1]  += (int) $row['amount'];
 		$datatotalbudget[$row['bulan']-1]  += (int) $row['amount'];
 	}
+	
+	if($dummmy) {
+		$dummyBudget = getDummyBudget($project_id);
+		for($i = 0; $i < count($dummyBudget); ++$i) {
+			$databudgetplan[$i] = $dummyBudget[$i];
+			$datatotalbudget[$i] = $dummyBudget[$i];
+		}
+		
+	}
+	
 	$lastBudgetPlanValue = 0;
 	for($i = 0;$i<=$barCount;$i++){
 		if($datatotalbudget[$i] == 0) {
@@ -84,6 +97,17 @@
   		$datapaymentPlan[$row['bulan']-1]  = (int) $row['amount'];
 		$datapaymentTotal[$row['bulan']-1]  = (int) $row['amount'];
 	}
+	
+	if($dummmy) {
+		$temp = 0;
+		$dummyPaymentplan = getDummyPaymentPlan($project_id);
+		for($i = 0; $i < count($dummyPaymentplan); ++$i) {
+			$datapaymentPlan[$i]  = $dummyPaymentplan[$i];
+			$datapaymentTotal[$i]  = $dummyPaymentplan[$i];
+		}
+	}
+	
+	
 	$lastPaymentPlanValue = 0;
 	for($i = 0;$i<=$barCount;$i++){
 		if($datapaymentTotal[$i] == 0) {
