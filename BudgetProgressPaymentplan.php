@@ -18,7 +18,7 @@
 	$year = getCleanParam($_GET,'year');
 	$barCount = ($year == " is not null ") ? $barCount : 11;
 	$penguranganbulan = ($year == " is not null ") ? 0 : 12*($_GET['year']-$firstyear);
-	
+	$realtotalbudget = 500000000;
 	//echo (int)($firstyear);
 	/*
 		Query untuk mengisi value dari x-Axis
@@ -93,9 +93,10 @@
 			}
 		}
 	}
+	
 	if($total == 0) $total = 1;
 	for($i = 0; $i <= $barCount; ++$i) {
-		$databudget[$i] = ($databudget[$i]/$total)*100;
+		$databudget[$i] = ($databudget[$i]/$realtotalbudget)*100;
 	}
 
 	
