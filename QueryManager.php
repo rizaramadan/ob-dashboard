@@ -19,8 +19,8 @@ $firstyear = 2010;
 function getBudgetQuery ($project_id, $budget_id, $year) {
 	global $firstyear;
 	$retval = "select c_budgetline_id, c_budgetline.c_project_id as project_id, c_budgetline.em_bgt_c_projectphase_id as project_phase, c_budgetline.em_bgt_c_projecttask_id as project_task,
-			c_budgetline.amount/1000 as amount, em_pjt_phasegroup_id, ppg.name, cp.name as projectName,
-			c_currency_convert(amount/1000, '303','100',c_period.startdate, null, '*') as amount_usd, c_budgetline.c_budget_id as name ,c_budgetline.c_budget_id as budget,
+			c_budgetline.amount as amount, em_pjt_phasegroup_id, ppg.name, cp.name as projectName,
+			c_currency_convert(amount, '303','100',c_period.startdate, null, '*') as amount_usd, c_budgetline.c_budget_id as name ,c_budgetline.c_budget_id as budget,
 			c_period.startdate as actualdate, date_part('year',c_period.startdate) as actualyear, c_period.name as period_name, c_budgetline.c_budget_id as budget_id, (date_part('year',c_period.startdate) -  ".$firstyear.") * 12 + date_part('month',c_period.startdate) as bulan
 		from c_period left outer join c_budgetline on c_budgetline.c_period_id = c_period.c_period_id
 		left outer join c_projectphase pp on c_budgetline.em_bgt_c_projectphase_id = pp.c_projectphase_id
@@ -115,7 +115,7 @@ function getBudgetVsCostQuery($project_id, $budget_id) {
 			inner join c_budgetline cbl on cbl.em_bgt_c_projecttask_id = pt.c_projecttask_id
 			inner join c_budget cb on cbl.c_budget_id = cb.c_budget_id
 			 inner join c_project cp on cp.c_project_id = pp.c_project_id
-		where pp.c_project_id ".$project_id." and cb.c_budget_id ".$budget_id." cb.ad_client_id = '142F2095A9FE48ECB13CD19A06A0BD9C' order by budget_name, project_name, group_name desc, phase_name, task_name;";
+		where pp.c_project_id ".$project_id." and cb.c_budget_id ".$budget_id."  order by budget_name, project_name, group_name desc, phase_name, task_name;";
 	return $retval;
 }
 
