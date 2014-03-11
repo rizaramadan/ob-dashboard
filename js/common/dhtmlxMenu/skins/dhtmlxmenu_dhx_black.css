@@ -48,8 +48,8 @@ div.dhtmlxMenu_dhx_black_TopLevel_Item_Selected {
 }
 div.dhtmlxMenu_dhx_black_TopLevel_Item_Normal,
 div.dhtmlxMenu_dhx_black_TopLevel_Item_Disabled {
-	#border-color: #000000;
-	#filter:progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+	border-color: #000000;
+	filter:progid:DXImageTransform.Microsoft.Chroma(color='#000000');
 }
 /* toplevel item disabled */
 div.dhtmlxMenu_dhx_black_TopLevel_Item_Disabled {
@@ -254,7 +254,7 @@ div.dhtmlxMenu_dhx_black_SubLevelArea_ArrowUp_Over,
 div.dhtmlxMenu_dhx_black_SubLevelArea_ArrowUp_Disabled {
 	position: absolute;
 	height: 16px;
-	height= 18px;
+	height: 18px;
 	padding: 1px 1px 0px 1px;
 	font-size: 1px;
 	background-color: #eaf2fb;
@@ -270,7 +270,7 @@ div.dhtmlxMenu_dhx_black_SubLevelArea_ArrowDown_Over,
 div.dhtmlxMenu_dhx_black_SubLevelArea_ArrowDown_Disabled {
 	position: absolute;
 	height: 16px;
-	height= 18px;
+	height: 18px;
 	font-size: 1px;
 	padding: 1px 1px 0px 1px;
 	background-color: #eaf2fb;

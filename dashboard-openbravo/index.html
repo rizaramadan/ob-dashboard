@@ -4,110 +4,168 @@
         <script src="../js/js/highcharts.js"></script>
         <script src="../js/js/highcharts-more.js"></script>
         <script src="../js/js/modules/exporting.js"></script>
-
+		<script type="text/javascript" src="../js/treegrid/treegrid.js"></script>
+		<link rel="stylesheet" type="text/css" href="../js/treegrid/treegrid.css">
+		<link rel="stylesheet" href="../js/codebase/dhtmlxgantt.css" type="text/css" media="screen" title="no title" >
         <script type='text/javascript' src='https://www.google.com/jsapi'></script>
-       
+		<title> Project Budget Payment Dashboard </title>
+		<style>
+			table.budgetcost th { 
+				font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica,
+				sans-serif;
+				color: #6D929B;
+				border-right: 1px solid #C1DAD7;
+				border-bottom: 1px solid #C1DAD7;
+				border-top: 1px solid #C1DAD7;
+				letter-spacing: 2px;
+				text-transform: uppercase;
+				text-align: left;
+				padding: 6px 6px 6px 12px;
+				background: #CAE8EA url(images/bg_header.jpg) no-repeat;
+			}
+
+			table.budgetcost th.nobg {
+				border-top: 0;
+				border-left: 0;
+				border-right: 1px solid #C1DAD7;
+				background: none;
+			}
+
+			table.budgetcost td {
+				font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica,
+				sans-serif;
+				border-right: 1px solid #C1DAD7;
+				border-bottom: 1px solid #C1DAD7;
+				background: #fff;
+				padding: 6px 6px 6px 12px;
+				color: #6D929B;
+			}
+
+
+			table.budgetcost td.alt {
+				background: #F5FAFA;
+				color: #B4AA9D;
+			}
+			
+		</style>
     </head>
 
-    <body cellspacing='5'>
+    <!--body cellspacing='5'-->
+    <body >
         <script src="../js/codebase/dhtmlxgantt.js" type="text/javascript" charset="utf-8"></script>
         <script src="../js/codebase/ext/dhtmlxgantt_quick_info.js" type="text/javascript" charset="utf-8"></script>
-
-        <link rel="stylesheet" href="../js/codebase/dhtmlxgantt.css" type="text/css" media="screen" title="no title" charset="utf-8">
+		
+		<!--TODO: grafik dibikin pertahun, ada pilihan tahun -->
+        
 
         <!-- SCRIPT -->
         <script type="text/javascript">
         </script>
-        <span style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e;fill:#4d759e; float:left">Project : <select id='globalproject'></select><input type='button' value='Apply' id='btnGlobalProject'></input></span>
-        
+        <!--span style="font-family:'Lucida Grande', 'Lucida Sans Unicode', Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e;fill:#4d759e; float:left">Project : <select id='globalproject'></select><input type='button' value='Apply' id='btnGlobalProject'></input></span-->
+		<span style="font-family:'Lucida Grande', 'Lucida Sans Unicode', Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e; float:left">Project : <select id='globalproject'></select> <input type='button' value='Apply' id='btnGlobalProject' /></span>
+        <span style="font-family:'Lucida Grande', 'Lucida Sans Unicode', Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e; float:left">Year : <select id='globalyear'></select> <input type='button' value='Apply' id='btnGlobalYear' /></span>
+		
         <br/> <br/>
         <hr/>
 
         <div id="top" style='height:48%;'>
         <!-- TOP LEFT -->
-            <span style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e;fill:#4d759e; float:left">Select Budget : <select id='optBudgetTopLeft'>        </select>
-            <input type='button' value='Apply' id='btnTopLeftBudget'></input></span> 
+            <span style="font-family:'Lucida Grande', 'Lucida Sans Unicode', Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e; float:left">Select Budget : <select id='optBudgetTopLeft'>        </select>
+            <input type='button' value='Apply' id='btnTopLeftBudget' /></span> 
             
-            </br></br>
+            <br /><br />
 
-            <span style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e;fill:#4d759e; float:left">Select Project : <select id='optProjectTopLeft'></select>   <input type='button' value='Apply' id='btnTopLeftProject' style="display:none"></input></span>
             
-            </br>
+            
+            <br />
 
         <div id="top-left" style='width:100%; float:left'></div>
         <!-- TOP LEFT -->
 
         <!-- TOP RIGHT -->
-        <span style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e;fill:#4d759e; float:left">Select Budget : <select id='optBudgetTopRight'></select>
-                <input type='button' value='Apply' id='btnTopRight'></input></span> 
+        <span style="font-family:'Lucida Grande', 'Lucida Sans Unicode', Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e; float:left">Select Budget : <select id='optBudgetTopRight'></select>
+                <input type='button' value='Apply' id='btnTopRight' /></span> 
         <div id="top-right" style='width:100%; float:right'></div>
         <!-- TOP RIGHT -->
 
         </div>
         <div id="bottom" style='height:48%;'>
             <br />
-
-            <div id="bottom-left-header" style='width:100%; float:right'>
+			<div id="bottom-left-header" style='width:100%; float:right'>
                 <center>
-                <text x="333" y="25" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:16px;color:#274b6d;fill:#274b6d;" text-anchor="middle" class="highcharts-title" zIndex="4"><tspan x="333">Gantt Chart Project</tspan></text><br />
-                <text x="333" y="40" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e;fill:#4d759e;" text-anchor="middle" class="highcharts-subtitle" zIndex="4"><tspan x="333">contains project timeline</tspan></text>
+                Gantt Chart Project<br />
+                contains project timeline
                 </center>
                 <br />
                 <div id="bottom-left1" style='width:100%;'></div>
-                <div id="gantt_here" style='width:100%; height:85%;'></div>
+                <div id="gantt_here" style='width:100%; height:100%;'></div>
             </div>
-
+			<br />
+            
             <div id="bottom-right-header" style='width:100%; float:left'>
                 <center>
-                <text x="333" y="25" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:16px;color:#274b6d;fill:#274b6d;" text-anchor="middle" class="highcharts-title" zIndex="4"><tspan x="333">Budget vs Cost Table</tspan></text><br />
-                <text x="333" y="40" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e;fill:#4d759e;" text-anchor="middle" class="highcharts-subtitle" zIndex="4"><tspan x="333">contains budget vs cost yearly</tspan></text>
+                <br /><br />Budget vs Cost Table<br />
+                contains budget vs cost yearly
                 </center>
-                <span style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e;fill:#4d759e;">Select Budget:</span> <select id='budgetMiddleLeft'>
+                <span style="font-family:'Lucida Grande', 'Lucida Sans Unicode', Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e;">Select Budget:</span> <select id='budgetMiddleLeft'>
                     <option>Budget v5</option>
                     <option>Budget v4</option>
                 </select>
-                <input type='button' value='Apply' id='btnMiddleLeft'></input>
+                <input type='button' value='Apply' id='btnMiddleLeft' />
                 <br />
                 <br />
                 <div id="bottom-right" style='width:100%;'>
 
                 </div>
+				
             </div>  
             
             <div id="bottom-right-header2" style='width:100%; float:left'>
                 <br /><br />
                 <center>
-                <text x="333" y="25" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:16px;color:#274b6d;fill:#274b6d;" text-anchor="middle" class="highcharts-title" zIndex="4"><tspan x="333">Budget Comparison</tspan></text><br />
-                <text x="333" y="40" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e;fill:#4d759e;" text-anchor="middle" class="highcharts-subtitle" zIndex="4"><tspan x="333">contains comparison between budget</tspan></text>
+                Budget Comparison<br />
+                contains comparison between budget
                 </center>
-                <span style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e;fill:#4d759e;">First Budget:</span> <select id='budgetBottomRight1'>
+                <span style="font-family:'Lucida Grande', 'Lucida Sans Unicode', Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e;">First Budget:</span> <select id='budgetBottomRight1'>
                     <option>Budget v5</option>
                     <option>Budget v4</option>
                 </select>
-                <span style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e;fill:#4d759e;">Second Budget:</span> <select id='budgetBottomRight2'>
+                <span style="font-family:'Lucida Grande', 'Lucida Sans Unicode', Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e;">Second Budget:</span> <select id='budgetBottomRight2'>
                     <option>Budget v5</option>
                     <option>Budget v4</option>
                 </select>
-                <input type='button' value='Apply' id='btnBottomLeft'></input>
+                <input type='button' value='Apply' id='btnBottomLeft' />
                 <br />
                 <br />
                 <div id="bottom-right2" style='width:100%;'></div>
                 <br />
 
             </div>
-        </div>
-        <script type="text/javascript">        
-            gantt.config.readonly = true;
-            gantt.config.drag_progress = false;
-            gantt.config.scale_unit = "week";
-            gantt.init("gantt_here");
+			
+			<div id="bottom-most-header" style='width:100%; float:left'>
+                <br /><br />
+				
+                <center>
+                Budget With Gross & Nett<br />
+                </center>
 
-            // $("#gantt_here").dhx_gantt({
-            //     scale_unit:"week",
-            //     drag_progress:false,
-            //     readonly:true
-            // });
-        </script>
+                <br />
+                <br />
+                <div id="bottom-most" style='width:100%;'></div>
+                <br />
+
+            </div>
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			
+		</div>
+
         <script src="../js/js/maindashboard.js"></script>
+		<script>
+				
+		</script>
     </body>
 </html>

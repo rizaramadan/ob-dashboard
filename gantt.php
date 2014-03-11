@@ -8,38 +8,44 @@
 	 * @version    1.0
 	 */
 	include "dbcon.php";
+	include "Utils.php";
+	$project_id = getCleanParam($_GET,'project');
+	$year = getCleanParam($_GET,'year');
 
-	if (isset($_GET['project_id'])&&$_GET['project_id']!="") {
-		$project_id = " = '".$_GET['project_id']."'";
-	} else {
-		$project_id = " is not null ";
-	}
-
-	$result1 = pg_exec($dbconn, "select c_project_id, name, datecontract, em_pss_startcontract, (datecontract-em_pss_startcontract) as len, to_char(em_pss_startcontract,'DD-MM-YYYY') as custom, em_pss_progress
+	$result1 = pg_exec($dbconn, "select c_project_id, name, datecontract, em_pjt_startcontract,  to_char(datecontract,'DD-MM-YYYY') as len,(datecontract::date - em_pjt_startcontract::date) as duration, to_char(em_pjt_startcontract,'DD-MM-YYYY') as custom, em_pjt_progress
 			from c_project
-			where datecontract is not null and em_pss_startcontract is not null and c_project_id ".$project_id."
+			where datecontract is not null and em_pjt_startcontract is not null and c_project_id ".$project_id." order by em_pjt_startcontract
 			");
+	
+	$result21 = pg_exec($dbconn, "select 
+						em_pjt_phasegroup_id, c_project_id, pg.name, max(pp.datecontract), min(pp.em_pjt_startcontract),
+						to_char(max(pp.datecontract),'DD-MM-YYYY') as len, (max(datecontract)::date - min(em_pjt_startcontract)::date) as duration, 
+						to_char(min(em_pjt_startcontract),'DD-MM-YYYY') as custom, avg(em_pjt_progress) as em_pjt_progress
+						from pjt_phasegroup pg inner join c_projectphase pp on pg.pjt_phasegroup_id = pp.em_pjt_phasegroup_id
+						where datecontract is not null and em_pjt_startcontract is not null and c_project_id ".$project_id."
+						group by em_pjt_phasegroup_id ,c_project_id ,pg.name order by max(em_pjt_startcontract)");
 
-	$result2 = pg_exec($dbconn, "select c_projectphase_id, c_project_id, name, datecontract, em_pss_startcontract, (datecontract-em_pss_startcontract) as len, to_char(em_pss_startcontract,'DD-MM-YYYY') as custom, em_pss_progress
+	$result2 = pg_exec($dbconn, "select c_projectphase_id, em_pjt_phasegroup_id, c_project_id, name, datecontract, em_pjt_startcontract, to_char(datecontract,'DD-MM-YYYY') as len, (datecontract::date - em_pjt_startcontract::date) as duration, to_char(em_pjt_startcontract,'DD-MM-YYYY') as custom, em_pjt_progress
 			from c_projectphase
-			where datecontract is not null and em_pss_startcontract is not null
+			where datecontract is not null and em_pjt_startcontract is not null and c_project_id ".$project_id." order by em_pjt_startcontract 
 			");
 
-	$result3 = pg_exec($dbconn, "select c_projecttask_id, c_projectphase_id, name, datecontract, em_pss_startcontract, (datecontract-em_pss_startcontract) as len, to_char(em_pss_startcontract,'DD-MM-YYYY') as custom, em_pss_progress
-			from c_projecttask
-			where datecontract is not null and em_pss_startcontract is not null
+	$result3 = pg_exec($dbconn, "select c_projecttask_id, c_projecttask.c_projectphase_id, c_projecttask.name, c_projecttask.datecontract, c_projecttask.em_pjt_startcontract,  to_char(c_projecttask.datecontract,'DD-MM-YYYY') as len,
+		(c_projecttask.datecontract::date - c_projecttask.em_pjt_startcontract::date) as duration, to_char(c_projecttask.em_pjt_startcontract,'DD-MM-YYYY') as custom, c_projecttask.em_pjt_progress
+			from c_projecttask inner join c_projectphase on c_projecttask.c_projectphase_id = c_projectphase.c_projectphase_id
+			where c_projecttask.datecontract is not null and c_projecttask.em_pjt_startcontract is not null  and c_project_id ".$project_id." order by c_projecttask.	em_pjt_startcontract
 			");
 
 	$data = array();
 	$datalink = array();
 	while($row = pg_fetch_array($result1)) {
-		$em_pss_progress = $row['em_pss_progress']/100;
-		$data[] = (object)array("id"=>$row['c_project_id'], "text"=>$row['name'], "start_date"=>$row['custom'], "duration"=>substr($row['len'], 0, -5), "progress"=> $em_pss_progress, "open"=> true);
+		$em_pjt_progress = $row['em_pjt_progress']/100;
+		$data[] = (object)array("id"=>$row['c_project_id'], "text"=>$row['name'], "start_date"=>$row['custom'], "end_date"=>$row['len'], "duration"=> $row['duration'], "progress"=> $em_pjt_progress, "open"=> true);
 
 		/* datalink */
 		$linkphase = pg_exec($dbconn, "select c_projectphase_id
 				from c_projectphase
-				where datecontract is not null and em_pss_startcontract is not null and c_project_id = '".$row['c_project_id']."'");
+				where datecontract is not null and em_pjt_startcontract is not null and c_project_id = '".$row['c_project_id']."'");
 				
 		$lastphase = 0;
 		$count = 0;
@@ -54,15 +60,20 @@
 
 
 	}
+	
+	while($row = pg_fetch_array($result21)) {
+		$em_pjt_progress = $row['em_pjt_progress']/100;
+		$data[] = (object)array("id"=>$row['em_pjt_phasegroup_id'], "text"=>$row['name'], "start_date"=>$row['custom'], "end_date"=>$row['len'],"duration"=> $row['duration'], "parent"=>$row['c_project_id'], "progress"=> $em_pjt_progress, "open"=> true);
+	}
 
 	while($row = pg_fetch_array($result2)) {
-		$em_pss_progress = $row['em_pss_progress']/100;
-		$data[] = (object)array("id"=>$row['c_projectphase_id'], "text"=>$row['name'], "start_date"=>$row['custom'], "duration"=>substr($row['len'], 0, -5), "parent"=>$row['c_project_id'], "progress"=> $em_pss_progress, "open"=> true);
+		$em_pjt_progress = $row['em_pjt_progress']/100;
+		$data[] = (object)array("id"=>$row['c_projectphase_id'], "text"=>$row['name'], "start_date"=>$row['custom'], "end_date"=>$row['len'],"duration"=> $row['duration'], "parent"=>$row['em_pjt_phasegroup_id'], "progress"=> $em_pjt_progress, "open"=> true);
 	}
 
 	while($row = pg_fetch_array($result3)) {
-		$em_pss_progress = $row['em_pss_progress']/100;
-		$data[] = (object)array("id"=>$row['c_projecttask_id'], "text"=>$row['name'], "start_date"=>$row['custom'], "duration"=>substr($row['len'], 0, -5), "parent"=>$row['c_projectphase_id'], "progress"=> $em_pss_progress, "open"=> true);
+		$em_pjt_progress = $row['em_pjt_progress']/100;
+		$data[] = (object)array("id"=>$row['c_projecttask_id'], "text"=>$row['name'], "start_date"=>$row['custom'], "end_date"=>$row['len'],"duration"=> $row['duration'], "parent"=>$row['c_projectphase_id'], "progress"=> $em_pjt_progress, "open"=> true);
 	}
 
 	$obj = new stdClass;

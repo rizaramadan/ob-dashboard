@@ -9,8 +9,12 @@
 	 */
 	 
 	include "dbcon.php";
-
-	$result = pg_exec($dbconn, "select * from c_budget order by created desc");
+	include "Utils.php";
+		
+	$project_id = getCleanParam($_GET,'project');
+	$query = "select * from c_budget where c_budget_id in (select distinct c_budget_id from c_budgetline where c_project_id $project_id)  order by created desc";
+	//echo $query;
+	$result = pg_exec($dbconn, $query);
 	$data = array();
   	while($row = pg_fetch_array($result)) {
   		$data[] = $row;
