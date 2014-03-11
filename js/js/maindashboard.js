@@ -85,7 +85,7 @@
         /* retrieve data */
         /* ------------------------------------------------------------------------------- -------------------------------------------------------------------------------*/
 		
-        $.getJSON('http://localhost/ob/BudgetProgressPaymentplan.php?callback=?',function(result){
+        $.getJSON('http://localhost/ob/BudgetProgressPaymentplan.php?callback=?&year=' +globalyear,function(result){
             for (var i in result['databudget']){
                 topleft_budget.push(result['databudget'][i]);
             };
@@ -101,7 +101,7 @@
         });
 
 
-        $.getJSON("http://localhost/ob/BudgetCashflow.php?callback=?",function(result){
+        $.getJSON("http://localhost/ob/BudgetCashflow.php?callback=?&year=" +globalyear,function(result){
             for (var i in result['totalbudget']){
                 topright_totalbudget.push(result['totalbudget'][i]);
             };

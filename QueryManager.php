@@ -44,7 +44,7 @@ function getProjectProgressQuery($project_id, $year) {
 		to_char(pjt_progresshistory.created, 'dd') as tanggal,c_projectphase.c_project_id as project_id
 		from pjt_progresshistory join c_projectphase on pjt_progresshistory.c_projectphase_id = c_projectphase.c_projectphase_id
 		where c_projectphase.c_project_id ".$project_id."
-		and date_part('year',pjt_progresshistory.created) ".$year."
+		and date_part('year',pjt_progresshistory.created) ".$year." 
 		order by pjt_progresshistory.created";
 	return $retval;
 }
@@ -61,7 +61,7 @@ function getPaymentPlan($project_id, $year) {
 				from por_payment_schedule p
 				inner join c_order o on p.c_order_id = o.c_order_id
 			where o.c_project_id ".$project_id."
-			and date_part('year',duedate) ".$year."
+			and date_part('year',duedate) ".$year." and p.ad_client_id = '142F2095A9FE48ECB13CD19A06A0BD9C'
 			order by bulan";
 	return $retval;
 }
@@ -81,7 +81,7 @@ function getActualPaymentQuery($project_id) {
 		from c_invoiceline invl
 			inner join c_invoice inv on invl.c_invoice_id = inv.c_invoice_id
 			inner join c_projecttask pt on pt.m_product_id = (case invl.bom_parent_id when null then invl.m_product_id else invl.bom_parent_id end)
-		where  invl.c_project_id  ".$project_id."  and  inv.ispaid = 'Y' order by inv.dateinvoiced ";
+		where  invl.c_project_id  ".$project_id."  and  inv.ispaid = 'Y' inv.ad_client_id = '142F2095A9FE48ECB13CD19A06A0BD9C' order by inv.dateinvoiced ";
 	return $retval;
 	
 }
@@ -115,7 +115,7 @@ function getBudgetVsCostQuery($project_id, $budget_id) {
 			inner join c_budgetline cbl on cbl.em_bgt_c_projecttask_id = pt.c_projecttask_id
 			inner join c_budget cb on cbl.c_budget_id = cb.c_budget_id
 			 inner join c_project cp on cp.c_project_id = pp.c_project_id
-		where pp.c_project_id ".$project_id." and cb.c_budget_id ".$budget_id." order by budget_name, project_name, group_name desc, phase_name, task_name;";
+		where pp.c_project_id ".$project_id." and cb.c_budget_id ".$budget_id." cb.ad_client_id = '142F2095A9FE48ECB13CD19A06A0BD9C' order by budget_name, project_name, group_name desc, phase_name, task_name;";
 	return $retval;
 }
 

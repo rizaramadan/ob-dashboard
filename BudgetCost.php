@@ -159,7 +159,8 @@
 	$budget->Thn2015 = 0;
 	$budget->BALANCE = 0;
 	$dummy_budgets[] = $budget;
-	/* end loop 1 */
+	/* end loop 0 */
+	
 	if($dummy){
 		$data = $dummy_budgets;
 	} else {
