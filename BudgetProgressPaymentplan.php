@@ -15,11 +15,11 @@
 
 	$project_id = getCleanParam($_GET,'project');
 	$budget_id = getCleanParam($_GET,'budget');
-	$year = getCleanParam($_GET,'year');
-	$barCount = ($year == " is not null ") ? $barCount : 11;
-	$penguranganbulan = ($year == " is not null ") ? 0 : 12*($_GET['year']-$firstyear);
+	$year = " is not null ";
+	//$barCount = ($year == " is not null ") ? $barCount : 11;
+	//$penguranganbulan = ($year == " is not null ") ? 0 : 12*($_GET['year']-$firstyear);
 	$realtotalbudget = 500000000;
-	//echo (int)($firstyear);
+	
 	/*
 		Query untuk mengisi value dari x-Axis
 	*/
@@ -77,7 +77,7 @@
 				   $total += $row["amount"];
 				//}
 
-				$databudget[(int)$row['bulan']-1-$penguranganbulan] = (float)$total;
+				$databudget[(int)$row['bulan']-1] = (float)$total;
 			   $rowbefore = $row;
 			   $i = $i+1;
 			}
@@ -118,7 +118,7 @@
 	}
 	
 	while($row = pg_fetch_array($resultprogress)) {
-		$dataprogress[$row['bulan']-1-$penguranganbulan]  += (int) $row['amount'];
+		$dataprogress[$row['bulan']-1]  += (int) $row['amount'];
 	}
 	//print_r($dataprogress);
 	$lastProgressValue = 0;
@@ -140,11 +140,12 @@
 	for($i = 0;$i<=$barCount;$i++){
 		$datapayment[$i] = 0;
 	}
-	$totalValue = 0;
+	
+	$totalValue = $realtotalbudget;
 	while($row = pg_fetch_array($resultpayment)) {
-		$datapayment[$row['bulan']-1-$penguranganbulan] =  $row['amount'];
-		$totalValue += $row['amount'];
+		$datapayment[$row['bulan']-1] =  $row['amount'];
 	}
+	
 	$lastTotal = 0;
 	for($i = 0;$i<=$barCount;$i++){
 		if($datapayment[$i] == 0) {
@@ -157,14 +158,24 @@
 	if($totalValue == 0) {$totalValue = 1;}
 	//if($totalValue < $total) {$totalValue = $total;}
 	for($i = 0;$i<=$barCount;$i++){
-		$datapayment[$i] = $datapayment[$i] / $totalValue * 100;
+		$datapayment[$i] = $datapayment[$i] / $realtotalbudget * 100;
 	}
 	
-	$data['datax'] = $datax;
-	$data['databudget'] = $databudget;
-	// $data['databudget'] = round((float)$databudget, 2);
-	$data['progress'] = $dataprogress; 
-	$data['payment_plan'] = $datapayment;
+	if (isset($_GET['year'])&&$_GET['year']!=""){
+		$mulai = ($_GET['year']-$firstyear)*12;
+		$data['datax'] = array_slice($datax,$mulai,12);
+		$data['databudget'] = array_slice($databudget,$mulai,12);
+		$data['progress'] = array_slice($dataprogress,$mulai,12); 
+		$data['payment_plan'] = array_slice($datapayment,$mulai,12);
+	} else {
+		$data['datax'] = $datax;
+		$data['databudget'] = $databudget;
+		// $data['databudget'] = round((float)$databudget, 2);
+		$data['progress'] = $dataprogress; 
+		$data['payment_plan'] = $datapayment;
+	}
+	
+	
 
 	pg_free_result($result);
 	pg_free_result($resultprogress);

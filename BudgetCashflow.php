@@ -13,9 +13,9 @@
 
 	$project_id = getCleanParam($_GET,'project');
 	$budget_id = getCleanParam($_GET,'budget');
-	$year = getCleanParam($_GET,'year');
-	$barCount = ($year == " is not null ") ? $barCount : 11;
-	$penguranganbulan = ($year == " is not null ") ? 0 : 12*($_GET['year']-$firstyear);
+	$year = " is not null ";
+	//$barCount = ($year == " is not null ") ? $barCount : 11;
+	//$penguranganbulan = ($year == " is not null ") ? 0 : 12*($_GET['year']-$firstyear);
 	
 	//$budget_id = $_GET['budget'];
 
@@ -56,8 +56,8 @@
 	}
 
 	while($row = pg_fetch_array($result_budgetplan)) {
-		$databudgetplan[$row['bulan']-1-$penguranganbulan]  += (int) $row['amount'];
-		$datatotalbudget[$row['bulan']-1-$penguranganbulan]  += (int) $row['amount'];
+		$databudgetplan[$row['bulan']-1]  += (int) $row['amount'];
+		$datatotalbudget[$row['bulan']-1]  += (int) $row['amount'];
 	}
 	$lastBudgetPlanValue = 0;
 	for($i = 0;$i<=$barCount;$i++){
@@ -81,8 +81,8 @@
 	}
 	$rowbefore;
   	while($row = pg_fetch_array($result_paymentplan)) {
-  		$datapaymentPlan[$row['bulan']-1-$penguranganbulan]  = (int) $row['amount'];
-		$datapaymentTotal[$row['bulan']-1-$penguranganbulan]  = (int) $row['amount'];
+  		$datapaymentPlan[$row['bulan']-1]  = (int) $row['amount'];
+		$datapaymentTotal[$row['bulan']-1]  = (int) $row['amount'];
 	}
 	$lastPaymentPlanValue = 0;
 	for($i = 0;$i<=$barCount;$i++){
@@ -95,12 +95,20 @@
 	}
 
 
-
-	$data['budgetplan'] = $databudgetplan; 
-	$data['totalbudget'] = $datatotalbudget; 
-	$data['paymentplan'] = $datapaymentPlan; 
-	$data['totalpayment'] = $datapaymentTotal;
-	$data['datax'] = $datax;
+	if (isset($_GET['year'])&&$_GET['year']!=""){
+		$mulai = ($_GET['year']-$firstyear)*12;
+		$data['budgetplan'] = array_slice($databudgetplan,$mulai,12); 
+		$data['totalbudget'] = array_slice($datatotalbudget,$mulai,12);  
+		$data['paymentplan'] = array_slice($datapaymentPlan,$mulai,12); 
+		$data['totalpayment'] = array_slice($datapaymentTotal,$mulai,12); 
+		$data['datax'] = array_slice($datax,$mulai,12); 
+	} else {
+		$data['budgetplan'] = $databudgetplan; 
+		$data['totalbudget'] = $datatotalbudget; 
+		$data['paymentplan'] = $datapaymentPlan; 
+		$data['totalpayment'] = $datapaymentTotal;
+		$data['datax'] = $datax;
+	}
 
 	// free memory
 	pg_free_result($result_budgetplan);
