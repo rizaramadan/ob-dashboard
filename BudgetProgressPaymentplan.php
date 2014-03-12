@@ -104,7 +104,7 @@
 			$dummyBudget[$i] = $totalDummyBudget;
 		}
 		for($i = 0; $i < count($dummyBudget); ++$i) {
-			$dummyBudget[$i] = $dummyBudget[$i]/$totalDummyBudget*100;
+			$dummyBudget[$i] = round($dummyBudget[$i]/$totalDummyBudget*100,2);
 		}
 	}
 	
@@ -156,7 +156,7 @@
 			$dummyProgress[$i] = $temp;
 		}
 		for($i = 0; $i < count($dummyProgress); ++$i) {
-			$dummyProgress[$i] = $dummyProgress[$i]/$totalDummyBudget*100;
+			$dummyProgress[$i] = round($dummyProgress[$i]/$totalDummyBudget*100, 2);
 		}
 	}
 	
@@ -198,7 +198,7 @@
 			$dummyPaymentplan[$i] = $temp;
 		}
 		for($i = 0; $i < count($dummyPaymentplan); ++$i) {
-			$dummyPaymentplan[$i] = $dummyPaymentplan[$i]/$totalDummyBudget*100;
+			$dummyPaymentplan[$i] = round($dummyPaymentplan[$i]/$totalDummyBudget*100,2);
 		}
 		
 		$databudget = $dummyBudget;
@@ -210,7 +210,7 @@
 		$mulai = ($_GET['year']-$firstyear)*12;
 		$data['datax'] = array_slice($datax,$mulai,12);
 		$data['databudget'] = array_slice($databudget,$mulai,12);
-		if($mulai < 36) {$data['progress'] = array_slice($dataprogress,$mulai,12); }
+		if($mulai < count($dataprogress)) { $data['progress'] = array_slice($dataprogress,$mulai,12); }
 		$data['payment_plan'] = array_slice($datapayment,$mulai,12);
 	} else {
 		$data['datax'] = $datax;

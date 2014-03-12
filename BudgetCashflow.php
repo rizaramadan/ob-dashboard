@@ -66,8 +66,8 @@
 	if($dummmy) {
 		$dummyBudget = getDummyBudget($project_id);
 		for($i = 0; $i < count($dummyBudget); ++$i) {
-			$databudgetplan[$i] = $dummyBudget[$i];
-			$datatotalbudget[$i] = $dummyBudget[$i];
+			$databudgetplan[$i] = round($dummyBudget[$i],2);
+			$datatotalbudget[$i] = round($dummyBudget[$i],2);
 		}
 		
 	}
@@ -102,8 +102,8 @@
 		$temp = 0;
 		$dummyPaymentplan = getDummyPaymentPlan($project_id);
 		for($i = 0; $i < count($dummyPaymentplan); ++$i) {
-			$datapaymentPlan[$i]  = $dummyPaymentplan[$i];
-			$datapaymentTotal[$i]  = $dummyPaymentplan[$i];
+			$datapaymentPlan[$i]  = round($dummyPaymentplan[$i],2);
+			$datapaymentTotal[$i]  = round($dummyPaymentplan[$i],2);
 		}
 	}
 	
