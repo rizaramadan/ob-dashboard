@@ -32,11 +32,72 @@
 	}  
 	*/
 	
+	
+	function getTotalPhaseFromTask($array){
+		$total = 0;
+		foreach($array as $arr){
+			$total += $arr->TOTAL;
+		}
+		return $total;
+	}
+	
+	function get2010PhaseFromTask($array){
+		$total = 0;
+		foreach($array as $arr){
+			$total += $arr->Tahun_2010;
+		}
+		return $total;
+	}
+	
+	function get2011PhaseFromTask($array){
+		$total = 0;
+		foreach($array as $arr){
+			$total += $arr->Tahun_2011;
+		}
+		return $total;
+	}
+	
+	
+	function get2012PhaseFromTask($array){
+		$total = 0;
+		foreach($array as $arr){
+			$total += $arr->Tahun_2012;
+		}
+		return $total;
+	}
+	
+	
+	function get2013PhaseFromTask($array){
+		$total = 0;
+		foreach($array as $arr){
+			$total += $arr->Tahun_2013;
+		}
+		return $total;
+	}
+	
+	
+	function get2014PhaseFromTask($array){
+		$total = 0;
+		foreach($array as $arr){
+			$total += $arr->Tahun_2014;
+		}
+		return $total;
+	}
+	
+	
+	function get2015PhaseFromTask($array){
+		$total = 0;
+		foreach($array as $arr){
+			$total += $arr->Tahun_2015;
+		}
+		return $total;
+	}
+	
 	$dummy_budgets = array();
 	/* start loop 0 */
 	$budget = new stdClass;
 	$budget->BUDGET = 'Budget Version 1';
-	$budget->GROUP = "Hard Cost";
+	$budget->GROUP = "";
 	
 		$projects = array();
 		/* start loop 1 */
@@ -76,14 +137,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 2259.39;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 1578.84;
-			$phase->Tahun_2013 = 21;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // getTotalPhaseFromTask($tasks);
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // get2010PhaseFromTask($tasks);
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // get2011PhaseFromTask($tasks);
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // get2012PhaseFromTask($tasks);
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // get2013PhaseFromTask($tasks);
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // get2014PhaseFromTask($tasks);
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // get2015PhaseFromTask($tasks);
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 			
 			
@@ -108,14 +169,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 2778.313;
-			$phase->Tahun_2010 = 141.024;
-			$phase->Tahun_2011 = 1897.659289;
-			$phase->Tahun_2012 = 583.68;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 2778.313;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 141.024;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 1897.659289;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 583.68;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 
 			$phase = new stdClass;
@@ -173,14 +234,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 			
 			
@@ -239,14 +300,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 			
 			
@@ -353,14 +414,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 68.25;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 68.25;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 			
 			
@@ -419,14 +480,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 568.25;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 568.25;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 				
 			$phase = new stdClass;
@@ -509,14 +570,14 @@
 
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 100;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 100;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 
 			$phase = new stdClass;
@@ -538,14 +599,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 310;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 310;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
@@ -603,14 +664,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
@@ -632,14 +693,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
@@ -709,14 +770,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
@@ -774,14 +835,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
@@ -839,14 +900,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
@@ -904,14 +965,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
@@ -981,14 +1042,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 
 			$phase = new stdClass;
@@ -1022,14 +1083,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 
 			$phase = new stdClass;
@@ -1075,14 +1136,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 
 			$phase = new stdClass;
@@ -1116,14 +1177,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 
 			$phase = new stdClass;
@@ -1145,14 +1206,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 
 			$phase = new stdClass;
@@ -1186,14 +1247,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 
 			$phase = new stdClass;
@@ -1227,14 +1288,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 
 			$phase = new stdClass;
@@ -1424,14 +1485,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 
 			$phase = new stdClass;
@@ -1498,14 +1559,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 
 			$phase = new stdClass;
@@ -1539,27 +1600,27 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 			
 			/* end loop 2 */
 		
 		$project->PHASES = $phases;
-		$project->TOTAL = 1726774700;
-		$project->Tahun_2010 = 0;
-		$project->Tahun_2011 = 0;
-		$project->Tahun_2012 = 0;
-		$project->Tahun_2013 = 0;
-		$project->Tahun_2014 = 0;
-		$project->Tahun_2015 = 0;
-		$project->BALANCE = 0;
+		$project->TOTAL = getTotalPhaseFromTask($phases);//1726774700;
+		$project->Tahun_2010 = get2010PhaseFromTask($phases);//0;
+		$project->Tahun_2011 = get2011PhaseFromTask($phases);//0;
+		$project->Tahun_2012 = get2012PhaseFromTask($phases);//0;
+		$project->Tahun_2013 = get2013PhaseFromTask($phases);//0;
+		$project->Tahun_2014 = get2014PhaseFromTask($phases);//0;
+		$project->Tahun_2015 = get2015PhaseFromTask($phases);//0;
+		$project->BALANCE = $project->TOTAL - $project->Tahun_2010 - $project->Tahun_2011 - $project->Tahun_2012 - $project->Tahun_2013 - $project->Tahun_2014 - $project->Tahun_2015;//0;
 		$projects[] = $project;
 		
 		
@@ -1588,14 +1649,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
@@ -1617,14 +1678,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
@@ -1694,14 +1755,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
@@ -1807,14 +1868,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
@@ -1836,14 +1897,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
@@ -1877,14 +1938,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
@@ -1906,14 +1967,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
@@ -1935,14 +1996,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
@@ -2012,14 +2073,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
@@ -2041,14 +2102,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
@@ -2070,14 +2131,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
@@ -2111,14 +2172,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
@@ -2140,14 +2201,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
@@ -2169,14 +2230,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
@@ -2198,14 +2259,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 
 			$phase = new stdClass;
@@ -2311,14 +2372,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 
 			$phase = new stdClass;
@@ -2388,14 +2449,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 
 			$phase = new stdClass;
@@ -2417,14 +2478,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 
 			$phase = new stdClass;
@@ -2446,14 +2507,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 
 			$phase = new stdClass;
@@ -2475,14 +2536,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 
 			$phase = new stdClass;
@@ -2504,14 +2565,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 
 			$phase = new stdClass;
@@ -2533,14 +2594,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 
 			$phase = new stdClass;
@@ -2562,14 +2623,14 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 
 			$phase = new stdClass;
@@ -2615,38 +2676,39 @@
 				/* end loop 3 */
 				
 			$phase->TASKS = $tasks;
-			$phase->TOTAL = 0;
-			$phase->Tahun_2010 = 0;
-			$phase->Tahun_2011 = 0;
-			$phase->Tahun_2012 = 0;
-			$phase->Tahun_2013 = 0;
-			$phase->Tahun_2014 = 0;
-			$phase->Tahun_2015 = 0;
-			$phase->BALANCE = "No Budget Available";
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
 			/* end loop 2 */
 		
 		$project->PHASES = $phases;
-		$project->TOTAL = 0;
-		$project->Tahun_2010 = 0;
-		$project->Tahun_2011 = 0;
-		$project->Tahun_2012 = 0;
-		$project->Tahun_2013 = 0;
-		$project->Tahun_2014 = 0;
-		$project->Tahun_2015 = 0;
-		$project->BALANCE = 0;
+		$project->TOTAL = getTotalPhaseFromTask($phases);//getTotalPhaseFromTask($phases);
+		$project->Tahun_2010 = get2010PhaseFromTask($phases);//0;
+		$project->Tahun_2011 = get2011PhaseFromTask($phases);//0;
+		$project->Tahun_2012 = get2012PhaseFromTask($phases);//0;
+		$project->Tahun_2013 = get2013PhaseFromTask($phases);//0;
+		$project->Tahun_2014 = get2014PhaseFromTask($phases);//0;
+		$project->Tahun_2015 = get2015PhaseFromTask($phases);//0;
+		$project->BALANCE = $project->TOTAL - $project->Tahun_2010 - $project->Tahun_2011 - $project->Tahun_2012 - $project->Tahun_2013 - $project->Tahun_2014 - $project->Tahun_2015;//0;
 		$projects[] = $project;
 		/* end loop 1 */
 	
 	$budget->projects = $projects;
-	$budget->TOTAL = 0;
-	$budget->Tahun_2010 = 0;
-	$budget->Tahun_2011 = 0;
-	$budget->Tahun_2012 = 0;
-	$budget->Tahun_2013 = 0;
-	$budget->Tahun_2014 = 0;
-	$budget->Tahun_2015 = 0;
-	$budget->BALANCE = 0;
+	
+	$budget->TOTAL = getTotalPhaseFromTask($projects); 
+	$budget->Tahun_2010 = get2010PhaseFromTask($projects);
+	$budget->Tahun_2011 = get2011PhaseFromTask($projects);//0;
+	$budget->Tahun_2012 = get2012PhaseFromTask($projects);//0;
+	$budget->Tahun_2013 = get2013PhaseFromTask($projects);//0;
+	$budget->Tahun_2014 = get2014PhaseFromTask($projects);//0;
+	$budget->Tahun_2015 = get2015PhaseFromTask($projects);//0;
+	$budget->BALANCE = $budget->TOTAL - $budget->Tahun_2010 - $budget->Tahun_2011 - $budget->Tahun_2012 - $budget->Tahun_2013 - $budget->Tahun_2014 - $budget->Tahun_2015;//0;
 	
 	$dummy_budgets[] = $budget;
 	/* end loop 0 */
