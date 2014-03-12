@@ -71,7 +71,7 @@
 				$task->Tahun_2013 = 21;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -103,7 +103,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -132,7 +132,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -144,7 +144,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -156,7 +156,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -168,7 +168,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -198,7 +198,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -210,7 +210,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -222,7 +222,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -234,7 +234,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -264,7 +264,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -276,7 +276,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -288,7 +288,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -300,7 +300,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -312,7 +312,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -324,7 +324,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -336,7 +336,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -348,7 +348,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -378,7 +378,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -390,7 +390,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -402,7 +402,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -414,7 +414,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -443,7 +443,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -455,7 +455,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -467,7 +467,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -479,7 +479,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -491,7 +491,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -503,7 +503,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 
@@ -533,7 +533,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -562,7 +562,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -574,7 +574,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -586,7 +586,7 @@
 				$task->Tahun_2013 = 85;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -598,7 +598,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -627,7 +627,7 @@
 				$task->Tahun_2013 = 35;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -656,7 +656,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -668,7 +668,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -680,7 +680,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -692,7 +692,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -704,7 +704,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -733,7 +733,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -745,7 +745,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -757,7 +757,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -769,7 +769,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -798,7 +798,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -810,7 +810,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -822,7 +822,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -834,7 +834,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -863,7 +863,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -875,7 +875,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -887,7 +887,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -899,7 +899,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -928,7 +928,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -940,7 +940,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -952,7 +952,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -964,7 +964,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -976,7 +976,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -1005,7 +1005,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -1017,7 +1017,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -1046,7 +1046,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -1058,7 +1058,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -1070,7 +1070,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -1099,7 +1099,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -1111,7 +1111,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -1140,7 +1140,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -1169,7 +1169,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -1181,7 +1181,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -1210,7 +1210,7 @@
 				$task->Tahun_2013 = -48.904587;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -1222,7 +1222,7 @@
 				$task->Tahun_2013 = 194.990812;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -1251,7 +1251,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -1263,7 +1263,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -1275,7 +1275,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -1287,7 +1287,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -1299,7 +1299,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -1311,7 +1311,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -1323,7 +1323,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -1335,7 +1335,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -1347,7 +1347,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -1359,7 +1359,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -1371,7 +1371,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -1383,7 +1383,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -1395,7 +1395,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -1407,7 +1407,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -1419,7 +1419,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -1448,7 +1448,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				$task = new stdClass;
 				$task->TASK = "AMDAL";
@@ -1459,7 +1459,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				$task = new stdClass;
 				$task->TASK = "Jalan - PU - Dishub";
@@ -1470,7 +1470,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				$task = new stdClass;
 				$task->TASK = "Pajak Reklame - Construction";
@@ -1481,7 +1481,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -1493,7 +1493,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -1522,7 +1522,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -1534,7 +1534,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -1583,7 +1583,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -1612,7 +1612,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -1641,7 +1641,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -1653,7 +1653,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -1665,7 +1665,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -1677,7 +1677,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -1689,7 +1689,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -1718,7 +1718,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -1730,7 +1730,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -1742,7 +1742,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -1754,7 +1754,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -1766,7 +1766,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -1778,7 +1778,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -1790,7 +1790,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -1802,7 +1802,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -1831,7 +1831,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -1860,7 +1860,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -1872,7 +1872,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -1901,7 +1901,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -1930,7 +1930,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -1959,7 +1959,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -1971,7 +1971,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -1983,7 +1983,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -1995,7 +1995,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -2007,7 +2007,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -2036,7 +2036,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -2065,7 +2065,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -2094,7 +2094,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 
 				$task = new stdClass;
@@ -2106,7 +2106,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -2135,7 +2135,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -2164,7 +2164,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -2193,7 +2193,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -2222,7 +2222,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -2234,7 +2234,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -2246,7 +2246,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -2258,7 +2258,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -2270,7 +2270,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -2282,7 +2282,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -2294,7 +2294,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -2306,7 +2306,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -2335,7 +2335,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -2347,7 +2347,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -2359,7 +2359,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -2371,7 +2371,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -2383,7 +2383,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -2412,7 +2412,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -2441,7 +2441,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -2470,7 +2470,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -2499,7 +2499,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -2528,7 +2528,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -2557,7 +2557,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
@@ -2586,7 +2586,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -2598,7 +2598,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				
 				$task = new stdClass;
@@ -2610,7 +2610,7 @@
 				$task->Tahun_2013 = 0;
 				$task->Tahun_2014 = 0;
 				$task->Tahun_2015 = 0;
-				$task->BALANCE = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
 				
