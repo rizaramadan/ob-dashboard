@@ -156,7 +156,7 @@
 			$dummyProgress[$i] = $temp;
 		}
 		for($i = 0; $i < count($dummyProgress); ++$i) {
-			$dummyProgress[$i] = round($dummyProgress[$i]/$totalDummyBudget*100, 2);
+			$dummyProgress[$i] = round($dummyProgress[$i]/$totalDummyBudget*100, 2)*1.32;
 		}
 	}
 	
