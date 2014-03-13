@@ -174,19 +174,25 @@
 		 });
         /* retrieve data */
         
+		var colorTotalPaymentplan = "blue";
+		var colorPaymentplan = "#8080ff";
+		var colorTotalBudget = "#ed2b50";
+		var colorBudget= "#fd3b60";
+		var colorTotalProgress= "#81c64d";
+		
         /* func init */
         function topleft() {
             $('#top-left').highcharts({
                  colors: [
-                   '#4572A7', 
-                   '#B5CA92',
-                   '#DB843D', 
-                   '#AA4643', 
-                   '#89A54E', 
-                   '#80699B', 
-                   '#3D96AE', 
-                   '#92A8CD', 
-                   '#A47D7C' 
+                   colorTotalProgress,//'#4572A7', 
+                   colorTotalBudget,
+                   colorTotalPaymentplan//'#DB843D', 
+                   //'#AA4643', 
+                   //'#89A54E', 
+                   //'#80699B', 
+                   //'#3D96AE', 
+                   //'#92A8CD', 
+                   //'#A47D7C' 
                 ],
                 chart: {
                     zoomType: 'xy'
@@ -236,7 +242,7 @@
                 series: [{
                     name: 'Progress',
                     //color: '#AA4643',
-                    type: 'spline',
+                    type: 'column',
                     yAxis: 0,
                     index: 2,
                     data:topleft_progress,
@@ -246,7 +252,7 @@
         
                 }, {
                     name: 'Budget',
-                    type: 'column',
+                    type: 'spline',
                     dataLabels: { enabled: true },
                     //color: '#95D2F7',
                     yAxis: 0,
@@ -255,8 +261,7 @@
                     marker: {
                         enabled: false
                     },
-                    dashStyle: 'shortdot',
-                    tooltip: {
+                   tooltip: {
                         valueSuffix: ' %'
                     }
         
@@ -276,15 +281,15 @@
         function toprightGraph(){
             $('#top-right').highcharts({
                 colors: [
-                   '#4572A7', 
-                   '#80699B', 
-                   '#89A54E', 
-                   '#DB843D', 
-                   '#92A8CD', 
-                   '#3D96AE',
-                   '#AA4643', 
-                   '#A47D7C', 
-                   '#B5CA92'
+                   colorTotalBudget,//'#4572A7', 
+                   colorBudget,//'#80699B', 
+                   colorTotalPaymentplan,// '#89A54E', 
+                   colorPaymentplan//'#DB843D', 
+                   //'#92A8CD', 
+                   //'#3D96AE',
+                   //'#AA4643', 
+                   //'#A47D7C', 
+                   //'#B5CA92'
                 ],
                 plotOptions: {
                     column: {
