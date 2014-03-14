@@ -17,9 +17,6 @@
         var topright_totalpayment = new Array();
         var topright_paymentplan = new Array();
         var topright_x = new Array();
-		
-		
-		
 
         var budgetTopRight;
         var budgetMiddleLeft;
@@ -129,10 +126,10 @@
                       enabled: false
                   },
                 title: {
-                    text: 'Grafik Budget, Progress & Jadwal Pembayaran'
+                    text: 'Grafik Budget, Progress & Forecast Payment'
                 },
                 subtitle: {
-                    text: 'berisikan perbandingan data budget, progress proyek and jadwal pembayaran'
+                    text: 'Berisikan perbandingan data budget, progress proyek dan forecast payment'
                 },
                 xAxis: [{                    
                     categories: topleft_x
@@ -271,7 +268,7 @@
                     backgroundColor: '#dedede'
                 },                
                 series: [{
-                    name: 'Budget Bulanan Sampai Saat Ini',
+                    name: 'Month to Date Budget',
                     type: 'spline',
                     yAxis: 0,
                     index: 2,
@@ -286,7 +283,7 @@
                     }
         
                 }, {
-                    name: 'Budget Bulanan',
+                    name: 'Monthly Budget',
                     type: 'column',
                     dataLabels: {
                         enabled: true
@@ -301,7 +298,7 @@
                     }
         
                 }, {
-                    name: 'Pembayaran Bulanan Sampai Saat Ini',
+                    name: 'Month to Date Payment',
                     type: 'spline',
                     index: 3,
                     dashStyle: 'ShortDash',
@@ -314,7 +311,7 @@
                         valuePrefix: 'Rp. '
                     }
                 } , {
-                    name: 'Perkiraan Pembayaran',
+                    name: 'Forecast Payment',
                     type: 'column',
                     dataLabels: {
                         enabled: true
@@ -542,7 +539,7 @@
                         idField:'id',
                         treeField:'NAME',
                         columns:[[
-                            {field:'NAME',title:'BUDGET/PROJECT/PHASE/TASK',width:200},
+                            {field:'NAME',title:'BUDGET/PROJECT/PHASE/TASK',width:400},
                             {field:'TOTAL',title:'TOTAL',width:80},
                             {field:'Tahun_2010',title: '2010',width:80},
                             {field:'Tahun_2011',title: '2011',width:80},
