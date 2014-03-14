@@ -165,7 +165,7 @@
                     backgroundColor: '#dedede'
                 },
                 series: [{
-                    name: 'Progress',
+                    name: 'Actual Progress',
                     //color: '#AA4643',
                     type: 'column',
                     yAxis: 0,
@@ -539,14 +539,15 @@
                         idField:'id',
                         treeField:'NAME',
                         columns:[[
-                            {field:'NAME',title:'BUDGET/PROJECT/PHASE/TASK',width:400},
-                            {field:'TOTAL',title:'TOTAL',width:80},
-                            {field:'Tahun_2010',title: '2010',width:80},
-                            {field:'Tahun_2011',title: '2011',width:80},
-                            {field:'Tahun_2012',title: '2012',width:80},
-                            {field:'Tahun_2013',title: '2013',width:80},
-                            {field:'Tahun_2014',title: '2014',width:80},
-                            {field:'Tahun_2015',title: '2015',width:80}
+                            {field:'NAME',title:'BUDGET/PROJECT/PHASE/TASK',width:470},
+                            {field:'TOTAL',title:'TOTAL',width:100},
+                            {field:'BALANCE',title:'BALANCE',width:100},
+                            {field:'Tahun_2010',title: '2010',width:100},
+                            {field:'Tahun_2011',title: '2011',width:100},
+                            {field:'Tahun_2012',title: '2012',width:100},
+                            {field:'Tahun_2013',title: '2013',width:100},
+                            {field:'Tahun_2014',title: '2014',width:100},
+                            {field:'Tahun_2015',title: '2015',width:100}
                         ]]
                     });
 
