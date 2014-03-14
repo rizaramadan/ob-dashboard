@@ -153,25 +153,26 @@
 		var treegrid;
 		var data;
 		
-		$.getJSON("http://localhost/ob/BudgetCost.php?callback=?",function(result){
-			data = result;
-						
-			// specify options
-			var options = {
-			  'width': '100%',
-			  'height': '400px'
-			};  
-
-			// Instantiate our treegrid object.
-			var container = document.getElementById('bottom-right');
-			treegrid = new links.TreeGrid(container, options);
-
-			data = new links.DataTable(data);
-
-			// Draw our treegrid with the created data and options 
-			treegrid.draw(data);   
-			 
-		 });
+//		$.getJSON("http://localhost/ob/BudgetCost.php?callback=?",function(result){
+//			data = result;
+//						
+//			// specify options
+//			var options = {
+//			  'width': '100%',
+//			  'height': '400px'
+//			};  
+//
+//			// Instantiate our treegrid object.
+//			var container = document.getElementById('bottom-right');
+//			treegrid = new links.TreeGrid(container, options);
+//
+//			data = new links.DataTable(data);
+//
+//			// Draw our treegrid with the created data and options 
+//			treegrid.draw(data);   
+//			 
+//		 });
+		refreshBudgetCost();
         /* retrieve data */
         
 		var colorTotalPaymentplan = "blue";
@@ -579,6 +580,7 @@
 			///---------------------------------------------------------------------------------------------------------------------------------------------
 			/// FUNCTIONS SECTION
 			///---------------------------------------------------------------------------------------------------------------------------------------------
+
 			function refreshBudgetProgressPaymentplan() {
 				topleft_progress.length = 0;
                 topleft_budget.length = 0;
@@ -606,57 +608,54 @@
 			
 			
 			function refreshBudgetCost() {
-				//rows_mid.length = 0;
-                /*$.getJSON('http://localhost/ob/BudgetCost.php?callback=?','budget='+budgetMiddleLeft+'&project=' +globalproject_id, function(result) {
-                    //rows_mid = result;
-					//alert(result);
-					alert("bro");
-					// Instantiate our treegrid object.
-					//var container = document.getElementById('bottom-right');
-					//container.innerHTML = rows_mid;
-					$('#bottom-right').html(result);
-                }); */
-				/*
-				$.ajax({
-					url: "http://localhost/ob/BudgetCost2.php",
-					data: {
-						budget: budgetMiddleLeft,
-						project: globalproject_id
-					},
-					type: "GET",
-					dataType: "html",
-					success: function (data) {
-						$('#bottom-right').html(data);
-					},
-					error: function (xhr, status) {
-						alert("Sorry, there was a problem!");
-					},
-					complete: function (xhr, status) {
-						//$('#showresults').slideDown('slow')
-					}
-				});
-				*/
-				
 				$.getJSON("http://localhost/ob/BudgetCost.php?callback=?",function(result){
-				data = result;
-							
-				// specify options
-				var options = {
-				  'width': '100%',
-				  'height': '400px'
-				};  
+					/**
+					 * <table title="Folder Browser" class="easyui-treegrid" style="width:700px;height:250px"
+			data-options="
+				url: 'treegrid_data1.json',
+				method: 'get',
+				rownumbers: true,
+				idField: 'id',
+				treeField: 'name'
+			">
+		<thead>
+			<tr>
+				<th data-options="field:'name'" width="220">Name</th>
+				<th data-options="field:'size'" width="100" align="right">Size</th>
+				<th data-options="field:'date'" width="150">Modified Date</th>
+			</tr>
+		</thead>
+	</table>
+					 */
+					data = result;
 
-				// Instantiate our treegrid object.
-				var container = document.getElementById('bottom-right');
-				treegrid = new links.TreeGrid(container, options);
 
-				data = new links.DataTable(data);
+					var table = '<table title="Folder Browser" class="easyui-treegrid" style="width:700px;height:250px"';
+					table +=  'data-options="'+
+								"url: 'treegrid_data1.json'," +
+								"method: 'get'," +
+								"rownumbers: true," +
+								"idField: 'id'," +
+								"treeField: 'name' "+
+							'">';
+					table += '	<thead> <tr> '+
+								'<th data-options="field:\'name\'" width="220">Name</th>' +
+								'<th data-options="field:\'size\'" width="100" align="right">Size</th>'+
+								'<th data-options="field:\'date\'" width="150">Modified Date</th>'+
+							'</tr></thead></table> ' ;
+					
+					
 
-				// Draw our treegrid with the created data and options 
-				treegrid.draw(data);   
-				 
-			 });
-				
+					// Instantiate our treegrid object.
+					var container = document.getElementById('bottom-right');
+					treegrid = new links.TreeGrid(container, options);
+
+					data = new links.DataTable(data);
+
+					// Draw our treegrid with the created data and options 
+					treegrid.draw(data);   
+
+				 });
 			}
 			
 			function refreshBudgetCashflow() {
@@ -750,21 +749,15 @@
 
 				var table = new google.visualization.Table(document.getElementById('bottom-most'));
 				table.draw(data, {showRowNumber: true});*/
-				$.ajax({
-					url: "http://localhost/ob/BudgetGrossNett.php",
-					type: "GET",
-					dataType: "html",
-					success: function (data) {
-						$('#bottom-most').html(data);
-					},
-					error: function (xhr, status) {
-						alert("recheck the ajax calling");
-					},
-					complete: function (xhr, status) {
-						//$('#showresults').slideDown('slow')
-					}
+	//print_r($rawData);
+				$.getJSON("http://localhost/ob/BudgetGrossNett.php?callback=?",function(result) {    
+					var table = '<table border="1" cellpadding="10" cellspacing="0" style="width:100%" class="budgetcost">';
+					table+= '<tr><th>Name</th><th>Budget</th><th>Gross Floor Area</th><th>Budget per Gross</th><th>Rent Floor Area</th><th>Budget per Nett</th></tr>';
+					table+='<tr><td>'+result.name+'</td><td>'+result.total+'</td><td>'+result.gross+'</td><td>'+result.totalPerGross+'</td><td>'+result.nett+'</td><td>'+result.totalPerNett+'</td></tr>';
+					table+='</table>';
+					
+					$('#bottom-most').html(table);
 				});
-				
 			}
 			
 			function refreshGantt() {

@@ -42,6 +42,7 @@
 	$table.='<tr><td>Budget Version 1</td><td>555,910</td><td>92,163</td><td>58,152</td></tr>';
 	$table.='</table>';
 	
+	$data = array("name"=>'Budget Version 1', 'total'=>555910, 'gross'=>92163, 'nett'=>58152, 'totalPerGross' => round(555910/92163,2), 'totalPerNett' => round(555910/58152,2));
 	
 
 	// free memory
@@ -49,6 +50,6 @@
 	// close connection
 	pg_close($dbconn);
 
-	//echo $_GET['callback'] . '(' . json_encode($data) . ')';
-	echo $table;
+	echo $_GET['callback'] . '(' . json_encode($data) . ')';
+	//echo $table;
 ?>
