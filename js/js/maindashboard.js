@@ -604,58 +604,29 @@
                 });
 				
 			}
-			
-			
-			
+
+
 			function refreshBudgetCost() {
-				$.getJSON("http://localhost/ob/BudgetCost.php?callback=?",function(result){
-					/**
-					 * <table title="Folder Browser" class="easyui-treegrid" style="width:700px;height:250px"
-			data-options="
-				url: 'treegrid_data1.json',
-				method: 'get',
-				rownumbers: true,
-				idField: 'id',
-				treeField: 'name'
-			">
-		<thead>
-			<tr>
-				<th data-options="field:'name'" width="220">Name</th>
-				<th data-options="field:'size'" width="100" align="right">Size</th>
-				<th data-options="field:'date'" width="150">Modified Date</th>
-			</tr>
-		</thead>
-	</table>
-					 */
-					data = result;
 
+                $.getJSON("http://localhost/ob/BudgetCost.php?callback=?",function(result){
 
-					var table = '<table title="Folder Browser" class="easyui-treegrid" style="width:700px;height:250px"';
-					table +=  'data-options="'+
-								"url: 'treegrid_data1.json'," +
-								"method: 'get'," +
-								"rownumbers: true," +
-								"idField: 'id'," +
-								"treeField: 'name' "+
-							'">';
-					table += '	<thead> <tr> '+
-								'<th data-options="field:\'name\'" width="220">Name</th>' +
-								'<th data-options="field:\'size\'" width="100" align="right">Size</th>'+
-								'<th data-options="field:\'date\'" width="150">Modified Date</th>'+
-							'</tr></thead></table> ' ;
-					
-					
+                    $('#bottom-right').treegrid({
+                        url:"http://localhost/ob/BudgetCost.php?callback=?",
+                        idField:'id',
+                        treeField:'NAME',
+                        columns:[[
+                            {field:'NAME',title:'BUDGET/PROJECT/PHASE/TASK',width:200},
+                            {field:'TOTAL',title:'TOTAL',width:80},
+                            {field:'Tahun_2010',title: '2010',width:80},
+                            {field:'Tahun_2011',title: '2011',width:80},
+                            {field:'Tahun_2012',title: '2012',width:80},
+                            {field:'Tahun_2013',title: '2013',width:80},
+                            {field:'Tahun_2014',title: '2014',width:80},
+                            {field:'Tahun_2015',title: '2015',width:80}
+                        ]]
+                    });
 
-					// Instantiate our treegrid object.
-					var container = document.getElementById('bottom-right');
-					treegrid = new links.TreeGrid(container, options);
-
-					data = new links.DataTable(data);
-
-					// Draw our treegrid with the created data and options 
-					treegrid.draw(data);   
-
-				 });
+                 });
 			}
 			
 			function refreshBudgetCashflow() {

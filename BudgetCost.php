@@ -57,7 +57,6 @@
 		return $total;
 	}
 	
-	
 	function get2012PhaseFromTask($array){
 		$total = 0;
 		foreach($array as $arr){
@@ -65,7 +64,6 @@
 		}
 		return $total;
 	}
-	
 	
 	function get2013PhaseFromTask($array){
 		$total = 0;
@@ -75,7 +73,6 @@
 		return $total;
 	}
 	
-	
 	function get2014PhaseFromTask($array){
 		$total = 0;
 		foreach($array as $arr){
@@ -83,7 +80,6 @@
 		}
 		return $total;
 	}
-	
 	
 	function get2015PhaseFromTask($array){
 		$total = 0;
@@ -96,23 +92,27 @@
 	$dummy_budgets = array();
 	/* start loop 0 */
 	$budget = new stdClass;
-	$budget->BUDGET = 'Budget Version 1';
+    $budget->id="1";
+	$budget->NAME = 'Budget Version 1';
 	$budget->GROUP = "";
 	
 		$projects = array();
 		/* start loop 1 */
 		$project = new stdClass;
-		$project->PROJECT = "CIBIS9";
-		
+		$project->NAME = "CIBIS9";
+        $project->id = "2";
+
 			$phases = array();
 			/* start loop 2 */
 			$phase = new stdClass;
-			$phase->PHASE = "Feasibility Study";
-			
+            $phase->id="21";
+			$phase->NAME = "Feasibility Study";
+
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Appraisal Work";
+                $task->id="211";
+				$task->NAME = "Appraisal Work";
 				$task->TOTAL = 1729.39;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -124,7 +124,8 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Feasibility Study";
+                $task->id="212";
+				$task->NAME = "Feasibility Study";
 				$task->TOTAL = 530;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -135,8 +136,8 @@
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
-				
-			$phase->TASKS = $tasks;
+
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // getTotalPhaseFromTask($tasks);
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // get2010PhaseFromTask($tasks);
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // get2011PhaseFromTask($tasks);
@@ -146,17 +147,19 @@
 			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // get2015PhaseFromTask($tasks);
 			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
-			
-			
-			
-			
+
+
+
+
 			$phase = new stdClass;
-			$phase->PHASE = "Master Planning";
-			
+            $phase->id="22";
+			$phase->NAME = "Master Planning";
+
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Concept and Schematic";
+                $task->id="221";
+				$task->NAME = "Concept and Schematic";
 				$task->TOTAL = 2778.313;
 				$task->Tahun_2010 = 141.024;
 				$task->Tahun_2011 = 1897.659289;
@@ -167,8 +170,8 @@
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
-				
-			$phase->TASKS = $tasks;
+
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 2778.313;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 141.024;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 1897.659289;
@@ -180,12 +183,14 @@
 			$phases[] = $phase;
 
 			$phase = new stdClass;
-			$phase->PHASE = "Design Development";
-			
+            $phase->id="23";
+			$phase->NAME = "Design Development";
+
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Consept Design";
+                $task->id="231";
+				$task->NAME = "Consept Design";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -197,7 +202,8 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Planning Development Stage";
+                $task->id="232";
+				$task->NAME = "Planning Development Stage";
 				$task->TOTAL = 2120;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -209,7 +215,8 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Tender Document Stage";
+                $task->id="233";
+				$task->NAME = "Tender Document Stage";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -221,7 +228,8 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Construction Stage";
+                $task->id="234";
+				$task->NAME = "Construction Stage";
 				$task->TOTAL = 1000;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -232,8 +240,8 @@
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
-				
-			$phase->TASKS = $tasks;
+
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -243,15 +251,17 @@
 			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
 			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
-			
-			
+
+
 			$phase = new stdClass;
-			$phase->PHASE = "Infrastructure";
-			
+            $phase->id = 24;
+			$phase->NAME = "Infrastructure";
+
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Concept Design";
+                $task->id = 241;
+				$task->NAME = "Concept Design";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -261,9 +271,10 @@
 				$task->Tahun_2015 = 0;
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
-				
+
 				$task = new stdClass;
-				$task->TASK = "Planning Development Stage";
+                $task->id = 242;
+				$task->NAME = "Planning Development Stage";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -273,9 +284,10 @@
 				$task->Tahun_2015 = 0;
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
-				
+
 				$task = new stdClass;
-				$task->TASK = "Tender Document Stage";
+				$task->NAME = "Tender Document Stage";
+                $task->id = 243;
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -285,9 +297,10 @@
 				$task->Tahun_2015 = 0;
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
-				
+
 				$task = new stdClass;
-				$task->TASK = "Construction Stage";
+                $task->id = 242;
+				$task->NAME = "Construction Stage";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -298,8 +311,8 @@
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
-				
-			$phase->TASKS = $tasks;
+
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -309,15 +322,17 @@
 			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
 			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
-			
-			
+
+
 			$phase = new stdClass;
-			$phase->PHASE = "Facade";
-			
+            $phase->id='25';
+			$phase->NAME = "Facade";
+
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Schematic Design Stage";
+                $task->id = 251;
+				$task->NAME = "Schematic Design Stage";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -327,9 +342,10 @@
 				$task->Tahun_2015 = 0;
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
-				
+
 				$task = new stdClass;
-				$task->TASK = "Design Development Stage";
+                $task->id = 252;
+				$task->NAME = "Design Development Stage";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -339,9 +355,10 @@
 				$task->Tahun_2015 = 0;
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
-				
+
 				$task = new stdClass;
-				$task->TASK = "Tender Document Stage";
+                $task->id = 253;
+				$task->NAME = "Tender Document Stage";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -351,9 +368,10 @@
 				$task->Tahun_2015 = 0;
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
-				
+
 				$task = new stdClass;
-				$task->TASK = "Tender Stage";
+                $task->id = 254;
+				$task->NAME = "Tender Stage";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -363,9 +381,10 @@
 				$task->Tahun_2015 = 0;
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
-				
+
 				$task = new stdClass;
-				$task->TASK = "Performance Mock-Up Stage";
+                $task->id = 255;
+				$task->NAME = "Performance Mock-Up Stage";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -375,9 +394,10 @@
 				$task->Tahun_2015 = 0;
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
-				
+
 				$task = new stdClass;
-				$task->TASK = "Shop Drawing & Engineering Review Stage";
+                $task->id = 256;
+				$task->NAME = "Shop Drawing & Engineering Review Stage";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -387,9 +407,10 @@
 				$task->Tahun_2015 = 0;
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
-				
+
 				$task = new stdClass;
-				$task->TASK = "Fabrication and Installation Stage";
+                $task->id = 257;
+				$task->NAME = "Fabrication and Installation Stage";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -399,9 +420,10 @@
 				$task->Tahun_2015 = 0;
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
-				
+
 				$task = new stdClass;
-				$task->TASK = "Hand Over Stage";
+                $task->id = 258;
+				$task->NAME = "Hand Over Stage";
 				$task->TOTAL = 68.25;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -412,8 +434,8 @@
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
-				
-			$phase->TASKS = $tasks;
+
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 68.25;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -423,15 +445,17 @@
 			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
 			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
-			
-			
+
+
 			$phase = new stdClass;
-			$phase->PHASE = "Structure and Civil Engineering";
-			
+            $phase->id="26";
+			$phase->NAME = "Structure and Civil Engineering";
+
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Concept Design";
+                $task->id="261";
+				$task->NAME = "Concept Design";
 				$task->TOTAL = 68.25;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 30.75;
@@ -441,9 +465,10 @@
 				$task->Tahun_2015 = 0;
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
-				
+
 				$task = new stdClass;
-				$task->TASK = "Planning Development Stage";
+                $task->id="262";
+				$task->NAME = "Planning Development Stage";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -453,9 +478,10 @@
 				$task->Tahun_2015 = 0;
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
-				
+
 				$task = new stdClass;
-				$task->TASK = "Tender Document Stage";
+                $task->id="263";
+				$task->NAME = "Tender Document Stage";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -465,9 +491,10 @@
 				$task->Tahun_2015 = 0;
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
-				
+
 				$task = new stdClass;
-				$task->TASK = "Construction Stage";
+                $task->id="264";
+				$task->NAME = "Construction Stage";
 				$task->TOTAL = 500;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -478,8 +505,8 @@
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
-				
-			$phase->TASKS = $tasks;
+
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 568.25;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -489,14 +516,16 @@
 			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
 			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
-				
+
 			$phase = new stdClass;
-			$phase->PHASE = "Mechanical,  Electrical and Plumbing";
-			
+            $phase->id = '27';
+			$phase->NAME = "Mechanical,  Electrical and Plumbing";
+
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Design Concept";
+                $task->id="271";
+				$task->NAME = "Design Concept";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -506,9 +535,10 @@
 				$task->Tahun_2015 = 0;
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
-				
+
 				$task = new stdClass;
-				$task->TASK = "Design Schematic";
+                $task->id="272";
+				$task->NAME = "Design Schematic";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -518,9 +548,10 @@
 				$task->Tahun_2015 = 0;
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
-				
+
 				$task = new stdClass;
-				$task->TASK = "Design Development";
+                $task->id="273";
+				$task->NAME = "Design Development";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -530,9 +561,10 @@
 				$task->Tahun_2015 = 0;
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
-				
+
 				$task = new stdClass;
-				$task->TASK = "Detail Design % Document ";
+                $task->id="274";
+				$task->NAME = "Detail Design % Document ";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -542,9 +574,10 @@
 				$task->Tahun_2015 = 0;
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
-				
+
 				$task = new stdClass;
-				$task->TASK = "Tender Phase";
+                $task->id="275";
+				$task->NAME = "Tender Phase";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -554,9 +587,10 @@
 				$task->Tahun_2015 = 0;
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
-				
+
 				$task = new stdClass;
-				$task->TASK = "Construction Stage";
+                $task->id="276";
+				$task->NAME = "Construction Stage";
 				$task->TOTAL = 100;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -568,8 +602,8 @@
 				$tasks[] = $task;
 				/* end loop 3 */
 
-				
-			$phase->TASKS = $tasks;
+
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 100;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -581,12 +615,14 @@
 			$phases[] = $phase;
 
 			$phase = new stdClass;
-			$phase->PHASE = "Maket/Model";
-			
+            $phase->id="28";
+			$phase->NAME = "Maket/Model";
+
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Maket/Model";
+                $task->id = "281";
+				$task->NAME = "Maket/Model";
 				$task->TOTAL = 310;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -597,8 +633,8 @@
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
-				
-			$phase->TASKS = $tasks;
+
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 310;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -608,14 +644,16 @@
 			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
 			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
-			
+
 			$phase = new stdClass;
-			$phase->PHASE = "Soil Test";
-			
+            $phase->id='29';
+			$phase->NAME = "Soil Test";
+
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Factual Investigation";
+                $task->id="291";
+				$task->NAME = "Factual Investigation";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -627,7 +665,8 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "SSRA Study";
+                $task->id="292";
+				$task->NAME = "SSRA Study";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -639,7 +678,8 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Geotechnical Design Report";
+                $task->id="293";
+				$task->NAME = "Geotechnical Design Report";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -651,7 +691,8 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "TPKB Permission Approval";
+                $task->id="294";
+				$task->NAME = "TPKB Permission Approval";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -662,8 +703,8 @@
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
-				
-			$phase->TASKS = $tasks;
+
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -673,14 +714,16 @@
 			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
 			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
-			
+
 			$phase = new stdClass;
-			$phase->PHASE = "Survey-Topography";
-			
+            $phase->id = '30';
+			$phase->NAME = "Survey-Topography";
+
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Topography Survey";
+                $task->id="301";
+				$task->NAME = "Topography Survey";
 				$task->TOTAL = 122.96;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -691,8 +734,8 @@
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
-				
-			$phase->TASKS = $tasks;
+
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -702,14 +745,16 @@
 			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
 			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
-			
+
 			$phase = new stdClass;
-			$phase->PHASE = "Quantity Surveyor";
-			
+            $phase->id = '31';
+			$phase->NAME = "Quantity Surveyor";
+
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Project Concept Stage";
+                $task->id="311";
+				$task->NAME = "Project Concept Stage";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 73.71;
@@ -721,7 +766,8 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Documentation Stage";
+                $task->id="312";
+				$task->NAME = "Documentation Stage";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -733,7 +779,8 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Tender Phase and Contract Award";
+                $task->id="313";
+				$task->NAME = "Tender Phase and Contract Award";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -745,7 +792,8 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Monthly Construction Phase";
+                $task->id="313";
+				$task->NAME = "Monthly Construction Phase";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -757,7 +805,8 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Final Account";
+                $task->id="313";
+				$task->NAME = "Final Account";
 				$task->TOTAL = 350;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -768,8 +817,8 @@
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
-				
-			$phase->TASKS = $tasks;
+
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -779,14 +828,16 @@
 			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
 			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
-			
+
 			$phase = new stdClass;
-			$phase->PHASE = "Interior";
-			
+            $phase->id = '32';
+			$phase->NAME = "Interior";
+
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Concept Design";
+                $task->id='321';
+				$task->NAME = "Concept Design";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -798,7 +849,8 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Planning Development Stage";
+                $task->id='322';
+				$task->NAME = "Planning Development Stage";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -810,7 +862,8 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Tender Document Stage";
+				$task->NAME = "Tender Document Stage";
+                $task->id='323';
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -822,7 +875,8 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Construction Stage";
+                $task->id='324';
+				$task->NAME = "Construction Stage";
 				$task->TOTAL = 275;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -833,8 +887,8 @@
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
-				
-			$phase->TASKS = $tasks;
+
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -844,14 +898,16 @@
 			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
 			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
-			
+
 			$phase = new stdClass;
-			$phase->PHASE = "Special Lighting";
-			
+            $phase->id ='33';
+			$phase->NAME = "Special Lighting";
+
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Design Concept";
+                $task->id = '331';
+				$task->NAME = "Design Concept";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -863,7 +919,8 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Design Development";
+                $task->id = '332';
+				$task->NAME = "Design Development";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -875,7 +932,8 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Tender Documentation";
+                $task->id = '333';
+				$task->NAME = "Tender Documentation";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -887,7 +945,8 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Construction Administration";
+                $task->id = '334';
+				$task->NAME = "Construction Administration";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -898,8 +957,8 @@
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
-				
-			$phase->TASKS = $tasks;
+
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -909,14 +968,16 @@
 			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
 			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
-			
+
 			$phase = new stdClass;
-			$phase->PHASE = "Interior";
-			
+            $phase->id = "34";
+			$phase->NAME = "Interior";
+
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Design Concept";
+                $task->id="341";
+				$task->NAME = "Design Concept";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -928,7 +989,8 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Design Development";
+                $task->id="342";
+				$task->NAME = "Design Development";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -940,7 +1002,8 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Tender Documentation";
+                $task->id="343";
+				$task->NAME = "Tender Documentation";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -952,7 +1015,8 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Construction Administration";
+                $task->id="344";
+				$task->NAME = "Construction Administration";
 				$task->TOTAL = 2000;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -963,8 +1027,8 @@
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
-				
-			$phase->TASKS = $tasks;
+
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -974,14 +1038,16 @@
 			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
 			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
-			
+
 			$phase = new stdClass;
-			$phase->PHASE = "Green Consultant";
-			
+            $phase->id="35";
+			$phase->NAME = "Green Consultant";
+
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Schematic Design";
+                $task->id='351';
+				$task->NAME = "Schematic Design";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -993,7 +1059,8 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Design Development";
+                $task->id='352';
+				$task->NAME = "Design Development";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1005,7 +1072,8 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Tender Documentation";
+                $task->id='352';
+				$task->NAME = "Tender Documentation";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1017,7 +1085,8 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Construction Period";
+                $task->id='353';
+				$task->NAME = "Construction Period";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1029,7 +1098,8 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "LEED Construction Submission";
+                $task->id='354';
+				$task->NAME = "LEED Construction Submission";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1040,8 +1110,8 @@
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
-				
-			$phase->TASKS = $tasks;
+
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -1053,12 +1123,14 @@
 			$phases[] = $phase;
 
 			$phase = new stdClass;
-			$phase->PHASE = "Amdal";
-			
+            $phase->id="36";
+			$phase->NAME = "Amdal";
+
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Completion document for Andal, RKL and RPL";
+                $task->id='361';
+				$task->NAME = "Completion document for Andal, RKL and RPL";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1068,9 +1140,10 @@
 				$task->Tahun_2015 = 0;
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
-				
+
 				$task = new stdClass;
-				$task->TASK = "Completion document legalization for Andal, RKL and RPL";
+                $task->id='362';
+				$task->NAME = "Completion document legalization for Andal, RKL and RPL";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1081,8 +1154,8 @@
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
-				
-			$phase->TASKS = $tasks;
+
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -1094,12 +1167,14 @@
 			$phases[] = $phase;
 
 			$phase = new stdClass;
-			$phase->PHASE = "Security and Risk";
-			
+            $phase->id="37";
+			$phase->NAME = "Security and Risk";
+
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Design Schematic";
+                $task->id='371';
+				$task->NAME = "Design Schematic";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1109,9 +1184,10 @@
 				$task->Tahun_2015 = 0;
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
-				
+
 				$task = new stdClass;
-				$task->TASK = "Tender Documentation";
+                $task->id='373';
+				$task->NAME = "Tender Documentation";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1121,9 +1197,9 @@
 				$task->Tahun_2015 = 0;
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
-				
+
 				$task = new stdClass;
-				$task->TASK = "Detail Design Documentation";
+				$task->NAME = "Detail Design Documentation";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1134,8 +1210,8 @@
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
-				
-			$phase->TASKS = $tasks;
+
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -1147,12 +1223,12 @@
 			$phases[] = $phase;
 
 			$phase = new stdClass;
-			$phase->PHASE = "Utility Connection Fee";
-			
+			$phase->NAME = "Utility Connection Fee";
+
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "PLN Connection Fee";
+				$task->NAME = "PLN Connection Fee";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1164,7 +1240,7 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Telkom Connection Fee";
+				$task->NAME = "Telkom Connection Fee";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1175,8 +1251,8 @@
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
-				
-			$phase->TASKS = $tasks;
+
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -1188,12 +1264,12 @@
 			$phases[] = $phase;
 
 			$phase = new stdClass;
-			$phase->PHASE = "Dirwas";
-			
+			$phase->NAME = "Dirwas";
+
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Dirwas";
+				$task->NAME = "Dirwas";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1204,8 +1280,8 @@
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
-				
-			$phase->TASKS = $tasks;
+
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -1217,12 +1293,12 @@
 			$phases[] = $phase;
 
 			$phase = new stdClass;
-			$phase->PHASE = "Construction Management";
-			
+			$phase->NAME = "Construction Management";
+
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Construction Stage";
+				$task->NAME = "Construction Stage";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1234,7 +1310,7 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Maintainance Stage";
+				$task->NAME = "Maintainance Stage";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1245,8 +1321,8 @@
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
-				
-			$phase->TASKS = $tasks;
+
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -1258,12 +1334,12 @@
 			$phases[] = $phase;
 
 			$phase = new stdClass;
-			$phase->PHASE = "Project Management";
-			
+			$phase->NAME = "Project Management";
+
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Personel";
+				$task->NAME = "Personel";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1275,7 +1351,7 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Operational Overhead";
+				$task->NAME = "Operational Overhead";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1286,8 +1362,8 @@
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
-				
-			$phase->TASKS = $tasks;
+
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -1299,12 +1375,12 @@
 			$phases[] = $phase;
 
 			$phase = new stdClass;
-			$phase->PHASE = "Permit and Fee";
-			
+			$phase->NAME = "Permit and Fee";
+
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Lulus TPAK";
+				$task->NAME = "Lulus TPAK";
 				$task->TOTAL = 5400;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1316,7 +1392,7 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Revisi BLAD";
+				$task->NAME = "Revisi BLAD";
 				$task->TOTAL = 700;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1328,7 +1404,7 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "SIPPT";
+				$task->NAME = "SIPPT";
 				$task->TOTAL = 500;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1340,7 +1416,7 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Pelampauan KLB";
+				$task->NAME = "Pelampauan KLB";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1352,7 +1428,7 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Test Pile";
+				$task->NAME = "Test Pile";
 				$task->TOTAL = 700;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1364,7 +1440,7 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Blok Plan";
+				$task->NAME = "Blok Plan";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1376,7 +1452,7 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "IP Struktur";
+				$task->NAME = "IP Struktur";
 				$task->TOTAL = 800;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1388,7 +1464,7 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "IMB Definitif";
+				$task->NAME = "IMB Definitif";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1400,7 +1476,7 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Revisi Blaad,  KDB 30 %  dan KLB 3,5";
+				$task->NAME = "Revisi Blaad,  KDB 30 %  dan KLB 3,5";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1412,7 +1488,7 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Pemecah Sertipikat";
+				$task->NAME = "Pemecah Sertipikat";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1424,7 +1500,7 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "KRK";
+				$task->NAME = "KRK";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1436,7 +1512,7 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "SLF";
+				$task->NAME = "SLF";
 				$task->TOTAL = 400;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1448,7 +1524,7 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "KKOP";
+				$task->NAME = "KKOP";
 				$task->TOTAL = 16.5;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1460,7 +1536,7 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Biaya Notaris";
+				$task->NAME = "Biaya Notaris";
 				$task->TOTAL = 1856;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1472,7 +1548,7 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Izin lain-lain";
+				$task->NAME = "Izin lain-lain";
 				$task->TOTAL = 7004;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1483,8 +1559,8 @@
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
-				
-			$phase->TASKS = $tasks;
+
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -1496,12 +1572,12 @@
 			$phases[] = $phase;
 
 			$phase = new stdClass;
-			$phase->PHASE = "Retribution Cost";
-			
+			$phase->NAME = "Retribution Cost";
+
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "IMB";
+				$task->NAME = "IMB";
 				$task->TOTAL = 500;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1512,7 +1588,7 @@
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				$task = new stdClass;
-				$task->TASK = "AMDAL";
+				$task->NAME = "AMDAL";
 				$task->TOTAL = 1000;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1523,7 +1599,7 @@
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				$task = new stdClass;
-				$task->TASK = "Jalan - PU - Dishub";
+				$task->NAME = "Jalan - PU - Dishub";
 				$task->TOTAL = 300;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1534,7 +1610,7 @@
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				$task = new stdClass;
-				$task->TASK = "Pajak Reklame - Construction";
+				$task->NAME = "Pajak Reklame - Construction";
 				$task->TOTAL = 50;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1544,9 +1620,9 @@
 				$task->Tahun_2015 = 0;
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
-				
+
 				$task = new stdClass;
-				$task->TASK = "NAME/BRANDING/LOGO/COPYRIGHT";
+				$task->NAME = "NAME/BRANDING/LOGO/COPYRIGHT";
 				$task->TOTAL = 249;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1557,8 +1633,8 @@
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
-				
-			$phase->TASKS = $tasks;
+
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -1570,12 +1646,12 @@
 			$phases[] = $phase;
 
 			$phase = new stdClass;
-			$phase->PHASE = "Traffic Study";
-			
+			$phase->NAME = "Traffic Study";
+
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Draft Traffic Study Report";
+				$task->NAME = "Draft Traffic Study Report";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1585,9 +1661,9 @@
 				$task->Tahun_2015 = 0;
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
-				
+
 				$task = new stdClass;
-				$task->TASK = "Final Traffic Study Report";
+				$task->NAME = "Final Traffic Study Report";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1598,8 +1674,8 @@
 				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
 				$tasks[] = $task;
 				/* end loop 3 */
-				
-			$phase->TASKS = $tasks;
+
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -1609,10 +1685,10 @@
 			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
 			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
 			$phases[] = $phase;
-			
+
 			/* end loop 2 */
-		
-		$project->PHASES = $phases;
+
+		$project->children = $phases;
 		$project->TOTAL = getTotalPhaseFromTask($phases);//1726774700;
 		$project->Tahun_2010 = get2010PhaseFromTask($phases);//0;
 		$project->Tahun_2011 = get2011PhaseFromTask($phases);//0;
@@ -1622,21 +1698,21 @@
 		$project->Tahun_2015 = get2015PhaseFromTask($phases);//0;
 		$project->BALANCE = $project->TOTAL - $project->Tahun_2010 - $project->Tahun_2011 - $project->Tahun_2012 - $project->Tahun_2013 - $project->Tahun_2014 - $project->Tahun_2015;//0;
 		$projects[] = $project;
-		
-		
+
+
 		$project = new stdClass;
-		$project->PROJECT = "Estate";
+		$project->NAME = "Estate";
 		
 			$phases = array();
 			/* start loop 2 */
 
 			$phase = new stdClass;
-			$phase->PHASE = "Foundation";
+			$phase->NAME = "Foundation";
 			
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Bored Piles";
+				$task->NAME = "Bored Piles";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1648,7 +1724,7 @@
 				$tasks[] = $task;
 				/* end loop 3 */
 				
-			$phase->TASKS = $tasks;
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -1660,12 +1736,12 @@
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
-			$phase->PHASE = "Bulk Excavation";
+			$phase->NAME = "Bulk Excavation";
 			
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Excavations and Site Clearance";
+				$task->NAME = "Excavations and Site Clearance";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1677,7 +1753,7 @@
 				$tasks[] = $task;
 				/* end loop 3 */
 				
-			$phase->TASKS = $tasks;
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -1689,12 +1765,12 @@
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
-			$phase->PHASE = "Structural Work";
+			$phase->NAME = "Structural Work";
 			
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Backfilling to make up level";
+				$task->NAME = "Backfilling to make up level";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1706,7 +1782,7 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Foundations";
+				$task->NAME = "Foundations";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1718,7 +1794,7 @@
 				$tasks[] = $task;
 				
 				$task = new stdClass;
-				$task->TASK = "Basement Structure";
+				$task->NAME = "Basement Structure";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1730,7 +1806,7 @@
 				$tasks[] = $task;
 				
 				$task = new stdClass;
-				$task->TASK = "Tender Document Stage";
+				$task->NAME = "Tender Document Stage";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1742,120 +1818,7 @@
 				$tasks[] = $task;
 				
 				$task = new stdClass;
-				$task->TASK = "Tower Structure";
-				$task->TOTAL = 0;
-				$task->Tahun_2010 = 0;
-				$task->Tahun_2011 = 0;
-				$task->Tahun_2012 = 0;
-				$task->Tahun_2013 = 0;
-				$task->Tahun_2014 = 0;
-				$task->Tahun_2015 = 0;
-				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
-				$tasks[] = $task;
-				/* end loop 3 */
-				
-			$phase->TASKS = $tasks;
-			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
-			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
-			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
-			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
-			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
-			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
-			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
-			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
-			$phases[] = $phase;
-			
-			$phase = new stdClass;
-			$phase->PHASE = "Architectural Works";
-			
-				$tasks = array();
-				/* start loop 3 */
-				$task = new stdClass;
-				$task->TASK = "External Wall and Finishes (brick wall, cement render, painting, etc)";
-				$task->TOTAL = 0;
-				$task->Tahun_2010 = 0;
-				$task->Tahun_2011 = 0;
-				$task->Tahun_2012 = 0;
-				$task->Tahun_2013 = 0;
-				$task->Tahun_2014 = 0;
-				$task->Tahun_2015 = 0;
-				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
-				$tasks[] = $task;
-				
-				$task = new stdClass;
-				$task->TASK = "Window and Doors";
-				$task->TOTAL = 0;
-				$task->Tahun_2010 = 0;
-				$task->Tahun_2011 = 0;
-				$task->Tahun_2012 = 0;
-				$task->Tahun_2013 = 0;
-				$task->Tahun_2014 = 0;
-				$task->Tahun_2015 = 0;
-				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
-				$tasks[] = $task;
-				
-				$task = new stdClass;
-				$task->TASK = "Internal Wall and Partitions";
-				$task->TOTAL = 0;
-				$task->Tahun_2010 = 0;
-				$task->Tahun_2011 = 0;
-				$task->Tahun_2012 = 0;
-				$task->Tahun_2013 = 0;
-				$task->Tahun_2014 = 0;
-				$task->Tahun_2015 = 0;
-				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
-				$tasks[] = $task;
-				
-				$task = new stdClass;
-				$task->TASK = "Wall FInishes";
-				$task->TOTAL = 0;
-				$task->Tahun_2010 = 0;
-				$task->Tahun_2011 = 0;
-				$task->Tahun_2012 = 0;
-				$task->Tahun_2013 = 0;
-				$task->Tahun_2014 = 0;
-				$task->Tahun_2015 = 0;
-				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
-				$tasks[] = $task;
-				
-				$task = new stdClass;
-				$task->TASK = "External Walls and Finishing";
-				$task->TOTAL = 0;
-				$task->Tahun_2010 = 0;
-				$task->Tahun_2011 = 0;
-				$task->Tahun_2012 = 0;
-				$task->Tahun_2013 = 0;
-				$task->Tahun_2014 = 0;
-				$task->Tahun_2015 = 0;
-				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
-				$tasks[] = $task;
-				
-				$task = new stdClass;
-				$task->TASK = "Floor Finishes";
-				$task->TOTAL = 0;
-				$task->Tahun_2010 = 0;
-				$task->Tahun_2011 = 0;
-				$task->Tahun_2012 = 0;
-				$task->Tahun_2013 = 0;
-				$task->Tahun_2014 = 0;
-				$task->Tahun_2015 = 0;
-				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
-				$tasks[] = $task;
-				
-				$task = new stdClass;
-				$task->TASK = "Ceiling Finishes";
-				$task->TOTAL = 0;
-				$task->Tahun_2010 = 0;
-				$task->Tahun_2011 = 0;
-				$task->Tahun_2012 = 0;
-				$task->Tahun_2013 = 0;
-				$task->Tahun_2014 = 0;
-				$task->Tahun_2015 = 0;
-				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
-				$tasks[] = $task;
-				
-				$task = new stdClass;
-				$task->TASK = "Sanitary Appliances";
+				$task->NAME = "Tower Structure";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1867,7 +1830,7 @@
 				$tasks[] = $task;
 				/* end loop 3 */
 				
-			$phase->TASKS = $tasks;
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -1879,12 +1842,96 @@
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
-			$phase->PHASE = "Facade";
+			$phase->NAME = "Architectural Works";
 			
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Façade (Glass, Frame, Sun Shade, ACP)";
+				$task->NAME = "External Wall and Finishes (brick wall, cement render, painting, etc)";
+				$task->TOTAL = 0;
+				$task->Tahun_2010 = 0;
+				$task->Tahun_2011 = 0;
+				$task->Tahun_2012 = 0;
+				$task->Tahun_2013 = 0;
+				$task->Tahun_2014 = 0;
+				$task->Tahun_2015 = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
+				$tasks[] = $task;
+				
+				$task = new stdClass;
+				$task->NAME = "Window and Doors";
+				$task->TOTAL = 0;
+				$task->Tahun_2010 = 0;
+				$task->Tahun_2011 = 0;
+				$task->Tahun_2012 = 0;
+				$task->Tahun_2013 = 0;
+				$task->Tahun_2014 = 0;
+				$task->Tahun_2015 = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
+				$tasks[] = $task;
+				
+				$task = new stdClass;
+				$task->NAME = "Internal Wall and Partitions";
+				$task->TOTAL = 0;
+				$task->Tahun_2010 = 0;
+				$task->Tahun_2011 = 0;
+				$task->Tahun_2012 = 0;
+				$task->Tahun_2013 = 0;
+				$task->Tahun_2014 = 0;
+				$task->Tahun_2015 = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
+				$tasks[] = $task;
+				
+				$task = new stdClass;
+				$task->NAME = "Wall FInishes";
+				$task->TOTAL = 0;
+				$task->Tahun_2010 = 0;
+				$task->Tahun_2011 = 0;
+				$task->Tahun_2012 = 0;
+				$task->Tahun_2013 = 0;
+				$task->Tahun_2014 = 0;
+				$task->Tahun_2015 = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
+				$tasks[] = $task;
+				
+				$task = new stdClass;
+				$task->NAME = "External Walls and Finishing";
+				$task->TOTAL = 0;
+				$task->Tahun_2010 = 0;
+				$task->Tahun_2011 = 0;
+				$task->Tahun_2012 = 0;
+				$task->Tahun_2013 = 0;
+				$task->Tahun_2014 = 0;
+				$task->Tahun_2015 = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
+				$tasks[] = $task;
+				
+				$task = new stdClass;
+				$task->NAME = "Floor Finishes";
+				$task->TOTAL = 0;
+				$task->Tahun_2010 = 0;
+				$task->Tahun_2011 = 0;
+				$task->Tahun_2012 = 0;
+				$task->Tahun_2013 = 0;
+				$task->Tahun_2014 = 0;
+				$task->Tahun_2015 = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
+				$tasks[] = $task;
+				
+				$task = new stdClass;
+				$task->NAME = "Ceiling Finishes";
+				$task->TOTAL = 0;
+				$task->Tahun_2010 = 0;
+				$task->Tahun_2011 = 0;
+				$task->Tahun_2012 = 0;
+				$task->Tahun_2013 = 0;
+				$task->Tahun_2014 = 0;
+				$task->Tahun_2015 = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
+				$tasks[] = $task;
+				
+				$task = new stdClass;
+				$task->NAME = "Sanitary Appliances";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1896,7 +1943,7 @@
 				$tasks[] = $task;
 				/* end loop 3 */
 				
-			$phase->TASKS = $tasks;
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -1908,12 +1955,41 @@
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
-			$phase->PHASE = "Stone Work";
+			$phase->NAME = "Facade";
 			
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Wall Stone Works (Granit and Marble";
+				$task->NAME = "Façade (Glass, Frame, Sun Shade, ACP)";
+				$task->TOTAL = 0;
+				$task->Tahun_2010 = 0;
+				$task->Tahun_2011 = 0;
+				$task->Tahun_2012 = 0;
+				$task->Tahun_2013 = 0;
+				$task->Tahun_2014 = 0;
+				$task->Tahun_2015 = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
+				$tasks[] = $task;
+				/* end loop 3 */
+				
+			$phase->children = $tasks;
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
+			$phases[] = $phase;
+			
+			$phase = new stdClass;
+			$phase->NAME = "Stone Work";
+			
+				$tasks = array();
+				/* start loop 3 */
+				$task = new stdClass;
+				$task->NAME = "Wall Stone Works (Granit and Marble";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1925,7 +2001,7 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Floor Stone Works (Granit and Marble";
+				$task->NAME = "Floor Stone Works (Granit and Marble";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1937,7 +2013,7 @@
 				$tasks[] = $task;
 				/* end loop 3 */
 				
-			$phase->TASKS = $tasks;
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -1949,12 +2025,12 @@
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
-			$phase->PHASE = "Furniture and Equipment";
+			$phase->NAME = "Furniture and Equipment";
 			
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Fittings, Furnitures and Equipment (FF&E).";
+				$task->NAME = "Fittings, Furnitures and Equipment (FF&E).";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1966,7 +2042,7 @@
 				$tasks[] = $task;
 				/* end loop 3 */
 				
-			$phase->TASKS = $tasks;
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -1978,12 +2054,12 @@
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
-			$phase->PHASE = "Signage";
+			$phase->NAME = "Signage";
 			
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Signage, Graphic,s, and Functon Equipment";
+				$task->NAME = "Signage, Graphic,s, and Functon Equipment";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -1995,7 +2071,7 @@
 				$tasks[] = $task;
 				/* end loop 3 */
 				
-			$phase->TASKS = $tasks;
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -2007,12 +2083,12 @@
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
-			$phase->PHASE = "MEP";
+			$phase->NAME = "MEP";
 			
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Plumbing Installations";
+				$task->NAME = "Plumbing Installations";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -2024,7 +2100,7 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Fire Protection and Detection";
+				$task->NAME = "Fire Protection and Detection";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -2036,7 +2112,7 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Electrical Installation";
+				$task->NAME = "Electrical Installation";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -2048,7 +2124,7 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Minor Bulding MEP";
+				$task->NAME = "Minor Bulding MEP";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -2060,7 +2136,7 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "External MEP";
+				$task->NAME = "External MEP";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -2072,7 +2148,7 @@
 				$tasks[] = $task;
 				/* end loop 3 */
 				
-			$phase->TASKS = $tasks;
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -2084,12 +2160,12 @@
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
-			$phase->PHASE = "Special Lighting";
+			$phase->NAME = "Special Lighting";
 			
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Special Lighting";
+				$task->NAME = "Special Lighting";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -2101,7 +2177,7 @@
 				$tasks[] = $task;
 				/* end loop 3 */
 				
-			$phase->TASKS = $tasks;
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -2113,12 +2189,12 @@
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
-			$phase->PHASE = "MVAC";
+			$phase->NAME = "MVAC";
 			
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Air COnditioning and Ventilation";
+				$task->NAME = "Air COnditioning and Ventilation";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -2130,7 +2206,7 @@
 				$tasks[] = $task;
 				/* end loop 3 */
 				
-			$phase->TASKS = $tasks;
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -2142,12 +2218,12 @@
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
-			$phase->PHASE = "Electronic and Secutiry System";
+			$phase->NAME = "Electronic and Secutiry System";
 			
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Communication and Security Installation";
+				$task->NAME = "Communication and Security Installation";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -2159,7 +2235,7 @@
 				$tasks[] = $task;
 
 				$task = new stdClass;
-				$task->TASK = "Vertical Transportation Installation";
+				$task->NAME = "Vertical Transportation Installation";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -2171,7 +2247,7 @@
 				$tasks[] = $task;
 				/* end loop 3 */
 				
-			$phase->TASKS = $tasks;
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -2183,12 +2259,12 @@
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
-			$phase->PHASE = "Elevator and Escalator";
+			$phase->NAME = "Elevator and Escalator";
 			
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Elevator and Escalator";
+				$task->NAME = "Elevator and Escalator";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -2200,7 +2276,7 @@
 				$tasks[] = $task;
 				/* end loop 3 */
 				
-			$phase->TASKS = $tasks;
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -2212,12 +2288,12 @@
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
-			$phase->PHASE = "Gondola System";
+			$phase->NAME = "Gondola System";
 			
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Gondola";
+				$task->NAME = "Gondola";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -2229,7 +2305,7 @@
 				$tasks[] = $task;
 				/* end loop 3 */
 				
-			$phase->TASKS = $tasks;
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -2241,12 +2317,12 @@
 			$phases[] = $phase;
 			
 			$phase = new stdClass;
-			$phase->PHASE = "Genset Installation";
+			$phase->NAME = "Genset Installation";
 			
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Stanby power generator installations (8000 kVA).";
+				$task->NAME = "Stanby power generator installations (8000 kVA).";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -2258,120 +2334,7 @@
 				$tasks[] = $task;
 				/* end loop 3 */
 				
-			$phase->TASKS = $tasks;
-			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
-			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
-			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
-			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
-			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
-			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
-			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
-			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
-			$phases[] = $phase;
-
-			$phase = new stdClass;
-			$phase->PHASE = "Utility";
-			
-				$tasks = array();
-				/* start loop 3 */
-				$task = new stdClass;
-				$task->TASK = "PLN Electrical Supply";
-				$task->TOTAL = 0;
-				$task->Tahun_2010 = 0;
-				$task->Tahun_2011 = 0;
-				$task->Tahun_2012 = 0;
-				$task->Tahun_2013 = 0;
-				$task->Tahun_2014 = 0;
-				$task->Tahun_2015 = 0;
-				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
-				$tasks[] = $task;
-				
-				$task = new stdClass;
-				$task->TASK = "PDAM Water Supply";
-				$task->TOTAL = 0;
-				$task->Tahun_2010 = 0;
-				$task->Tahun_2011 = 0;
-				$task->Tahun_2012 = 0;
-				$task->Tahun_2013 = 0;
-				$task->Tahun_2014 = 0;
-				$task->Tahun_2015 = 0;
-				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
-				$tasks[] = $task;
-				
-				$task = new stdClass;
-				$task->TASK = "Deep Well Installation";
-				$task->TOTAL = 0;
-				$task->Tahun_2010 = 0;
-				$task->Tahun_2011 = 0;
-				$task->Tahun_2012 = 0;
-				$task->Tahun_2013 = 0;
-				$task->Tahun_2014 = 0;
-				$task->Tahun_2015 = 0;
-				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
-				$tasks[] = $task;
-				
-				$task = new stdClass;
-				$task->TASK = "Water Treatment Plant";
-				$task->TOTAL = 0;
-				$task->Tahun_2010 = 0;
-				$task->Tahun_2011 = 0;
-				$task->Tahun_2012 = 0;
-				$task->Tahun_2013 = 0;
-				$task->Tahun_2014 = 0;
-				$task->Tahun_2015 = 0;
-				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
-				$tasks[] = $task;
-				
-				$task = new stdClass;
-				$task->TASK = "Sewage Treatment Plant";
-				$task->TOTAL = 0;
-				$task->Tahun_2010 = 0;
-				$task->Tahun_2011 = 0;
-				$task->Tahun_2012 = 0;
-				$task->Tahun_2013 = 0;
-				$task->Tahun_2014 = 0;
-				$task->Tahun_2015 = 0;
-				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
-				$tasks[] = $task;
-				
-				$task = new stdClass;
-				$task->TASK = "Drainage Outfall";
-				$task->TOTAL = 0;
-				$task->Tahun_2010 = 0;
-				$task->Tahun_2011 = 0;
-				$task->Tahun_2012 = 0;
-				$task->Tahun_2013 = 0;
-				$task->Tahun_2014 = 0;
-				$task->Tahun_2015 = 0;
-				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
-				$tasks[] = $task;
-				
-				$task = new stdClass;
-				$task->TASK = "TELKOM Telephone Lines";
-				$task->TOTAL = 0;
-				$task->Tahun_2010 = 0;
-				$task->Tahun_2011 = 0;
-				$task->Tahun_2012 = 0;
-				$task->Tahun_2013 = 0;
-				$task->Tahun_2014 = 0;
-				$task->Tahun_2015 = 0;
-				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
-				$tasks[] = $task;
-				
-				$task = new stdClass;
-				$task->TASK = "Builder's work in connection with utilities.";
-				$task->TOTAL = 0;
-				$task->Tahun_2010 = 0;
-				$task->Tahun_2011 = 0;
-				$task->Tahun_2012 = 0;
-				$task->Tahun_2013 = 0;
-				$task->Tahun_2014 = 0;
-				$task->Tahun_2015 = 0;
-				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
-				$tasks[] = $task;
-				/* end loop 3 */
-				
-			$phase->TASKS = $tasks;
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -2383,12 +2346,12 @@
 			$phases[] = $phase;
 
 			$phase = new stdClass;
-			$phase->PHASE = "Infrastructure";
+			$phase->NAME = "Utility";
 			
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Minor Building (F & B and Miscelaneous Minor Building)";
+				$task->NAME = "PLN Electrical Supply";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -2400,7 +2363,7 @@
 				$tasks[] = $task;
 				
 				$task = new stdClass;
-				$task->TASK = "Covered Way";
+				$task->NAME = "PDAM Water Supply";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -2412,7 +2375,7 @@
 				$tasks[] = $task;
 				
 				$task = new stdClass;
-				$task->TASK = "Hardscaping";
+				$task->NAME = "Deep Well Installation";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -2424,7 +2387,7 @@
 				$tasks[] = $task;
 				
 				$task = new stdClass;
-				$task->TASK = "Stormwater drainage";
+				$task->NAME = "Water Treatment Plant";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -2436,7 +2399,43 @@
 				$tasks[] = $task;
 				
 				$task = new stdClass;
-				$task->TASK = "Elevated Road";
+				$task->NAME = "Sewage Treatment Plant";
+				$task->TOTAL = 0;
+				$task->Tahun_2010 = 0;
+				$task->Tahun_2011 = 0;
+				$task->Tahun_2012 = 0;
+				$task->Tahun_2013 = 0;
+				$task->Tahun_2014 = 0;
+				$task->Tahun_2015 = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
+				$tasks[] = $task;
+				
+				$task = new stdClass;
+				$task->NAME = "Drainage Outfall";
+				$task->TOTAL = 0;
+				$task->Tahun_2010 = 0;
+				$task->Tahun_2011 = 0;
+				$task->Tahun_2012 = 0;
+				$task->Tahun_2013 = 0;
+				$task->Tahun_2014 = 0;
+				$task->Tahun_2015 = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
+				$tasks[] = $task;
+				
+				$task = new stdClass;
+				$task->NAME = "TELKOM Telephone Lines";
+				$task->TOTAL = 0;
+				$task->Tahun_2010 = 0;
+				$task->Tahun_2011 = 0;
+				$task->Tahun_2012 = 0;
+				$task->Tahun_2013 = 0;
+				$task->Tahun_2014 = 0;
+				$task->Tahun_2015 = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
+				$tasks[] = $task;
+				
+				$task = new stdClass;
+				$task->NAME = "Builder's work in connection with utilities.";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -2448,7 +2447,7 @@
 				$tasks[] = $task;
 				/* end loop 3 */
 				
-			$phase->TASKS = $tasks;
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -2460,12 +2459,60 @@
 			$phases[] = $phase;
 
 			$phase = new stdClass;
-			$phase->PHASE = "Landscaping";
+			$phase->NAME = "Infrastructure";
 			
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Softscaping/Landscaping";
+				$task->NAME = "Minor Building (F & B and Miscelaneous Minor Building)";
+				$task->TOTAL = 0;
+				$task->Tahun_2010 = 0;
+				$task->Tahun_2011 = 0;
+				$task->Tahun_2012 = 0;
+				$task->Tahun_2013 = 0;
+				$task->Tahun_2014 = 0;
+				$task->Tahun_2015 = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
+				$tasks[] = $task;
+				
+				$task = new stdClass;
+				$task->NAME = "Covered Way";
+				$task->TOTAL = 0;
+				$task->Tahun_2010 = 0;
+				$task->Tahun_2011 = 0;
+				$task->Tahun_2012 = 0;
+				$task->Tahun_2013 = 0;
+				$task->Tahun_2014 = 0;
+				$task->Tahun_2015 = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
+				$tasks[] = $task;
+				
+				$task = new stdClass;
+				$task->NAME = "Hardscaping";
+				$task->TOTAL = 0;
+				$task->Tahun_2010 = 0;
+				$task->Tahun_2011 = 0;
+				$task->Tahun_2012 = 0;
+				$task->Tahun_2013 = 0;
+				$task->Tahun_2014 = 0;
+				$task->Tahun_2015 = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
+				$tasks[] = $task;
+				
+				$task = new stdClass;
+				$task->NAME = "Stormwater drainage";
+				$task->TOTAL = 0;
+				$task->Tahun_2010 = 0;
+				$task->Tahun_2011 = 0;
+				$task->Tahun_2012 = 0;
+				$task->Tahun_2013 = 0;
+				$task->Tahun_2014 = 0;
+				$task->Tahun_2015 = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
+				$tasks[] = $task;
+				
+				$task = new stdClass;
+				$task->NAME = "Elevated Road";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -2477,7 +2524,7 @@
 				$tasks[] = $task;
 				/* end loop 3 */
 				
-			$phase->TASKS = $tasks;
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -2489,12 +2536,12 @@
 			$phases[] = $phase;
 
 			$phase = new stdClass;
-			$phase->PHASE = "BWIC and Main Contractors Attendance";
+			$phase->NAME = "Landscaping";
 			
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "BWIC and Main Contractors Attendance";
+				$task->NAME = "Softscaping/Landscaping";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -2506,7 +2553,7 @@
 				$tasks[] = $task;
 				/* end loop 3 */
 				
-			$phase->TASKS = $tasks;
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -2518,12 +2565,12 @@
 			$phases[] = $phase;
 
 			$phase = new stdClass;
-			$phase->PHASE = "Preliminaries";
+			$phase->NAME = "BWIC and Main Contractors Attendance";
 			
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Preliminaries 6%";
+				$task->NAME = "BWIC and Main Contractors Attendance";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -2535,7 +2582,7 @@
 				$tasks[] = $task;
 				/* end loop 3 */
 				
-			$phase->TASKS = $tasks;
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -2547,12 +2594,12 @@
 			$phases[] = $phase;
 
 			$phase = new stdClass;
-			$phase->PHASE = "Insurance";
+			$phase->NAME = "Preliminaries";
 			
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Insurance 0.1%";
+				$task->NAME = "Preliminaries 6%";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -2564,7 +2611,7 @@
 				$tasks[] = $task;
 				/* end loop 3 */
 				
-			$phase->TASKS = $tasks;
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -2576,12 +2623,12 @@
 			$phases[] = $phase;
 
 			$phase = new stdClass;
-			$phase->PHASE = "Contingency";
+			$phase->NAME = "Insurance";
 			
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Contingency";
+				$task->NAME = "Insurance 0.1%";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -2593,7 +2640,7 @@
 				$tasks[] = $task;
 				/* end loop 3 */
 				
-			$phase->TASKS = $tasks;
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -2605,12 +2652,12 @@
 			$phases[] = $phase;
 
 			$phase = new stdClass;
-			$phase->PHASE = "PPN";
+			$phase->NAME = "Contingency";
 			
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "PPN 10%";
+				$task->NAME = "Contingency";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -2622,7 +2669,7 @@
 				$tasks[] = $task;
 				/* end loop 3 */
 				
-			$phase->TASKS = $tasks;
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -2634,36 +2681,12 @@
 			$phases[] = $phase;
 
 			$phase = new stdClass;
-			$phase->PHASE = "Cost of Fund";
+			$phase->NAME = "PPN";
 			
 				$tasks = array();
 				/* start loop 3 */
 				$task = new stdClass;
-				$task->TASK = "Bank Interest";
-				$task->TOTAL = 0;
-				$task->Tahun_2010 = 0;
-				$task->Tahun_2011 = 0;
-				$task->Tahun_2012 = 0;
-				$task->Tahun_2013 = 0;
-				$task->Tahun_2014 = 0;
-				$task->Tahun_2015 = 0;
-				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
-				$tasks[] = $task;
-				
-				$task = new stdClass;
-				$task->TASK = "Bank Provision";
-				$task->TOTAL = 0;
-				$task->Tahun_2010 = 0;
-				$task->Tahun_2011 = 0;
-				$task->Tahun_2012 = 0;
-				$task->Tahun_2013 = 0;
-				$task->Tahun_2014 = 0;
-				$task->Tahun_2015 = 0;
-				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
-				$tasks[] = $task;
-				
-				$task = new stdClass;
-				$task->TASK = "Financial Advisor";
+				$task->NAME = "PPN 10%";
 				$task->TOTAL = 0;
 				$task->Tahun_2010 = 0;
 				$task->Tahun_2011 = 0;
@@ -2675,7 +2698,60 @@
 				$tasks[] = $task;
 				/* end loop 3 */
 				
-			$phase->TASKS = $tasks;
+			$phase->children = $tasks;
+			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
+			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2012 = get2012PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2013 = get2013PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2014 = get2014PhaseFromTask($tasks); // 0;
+			$phase->Tahun_2015 = get2015PhaseFromTask($tasks); // 0;
+			$phase->BALANCE = $phase->TOTAL - $phase->Tahun_2010 - $phase->Tahun_2011 - $phase->Tahun_2012 - $phase->Tahun_2013 - $phase->Tahun_2014 - $phase->Tahun_2015;//"No Budget Available";
+			$phases[] = $phase;
+
+			$phase = new stdClass;
+			$phase->NAME = "Cost of Fund";
+			
+				$tasks = array();
+				/* start loop 3 */
+				$task = new stdClass;
+				$task->NAME = "Bank Interest";
+				$task->TOTAL = 0;
+				$task->Tahun_2010 = 0;
+				$task->Tahun_2011 = 0;
+				$task->Tahun_2012 = 0;
+				$task->Tahun_2013 = 0;
+				$task->Tahun_2014 = 0;
+				$task->Tahun_2015 = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
+				$tasks[] = $task;
+				
+				$task = new stdClass;
+				$task->NAME = "Bank Provision";
+				$task->TOTAL = 0;
+				$task->Tahun_2010 = 0;
+				$task->Tahun_2011 = 0;
+				$task->Tahun_2012 = 0;
+				$task->Tahun_2013 = 0;
+				$task->Tahun_2014 = 0;
+				$task->Tahun_2015 = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
+				$tasks[] = $task;
+				
+				$task = new stdClass;
+				$task->NAME = "Financial Advisor";
+				$task->TOTAL = 0;
+				$task->Tahun_2010 = 0;
+				$task->Tahun_2011 = 0;
+				$task->Tahun_2012 = 0;
+				$task->Tahun_2013 = 0;
+				$task->Tahun_2014 = 0;
+				$task->Tahun_2015 = 0;
+				$task->BALANCE = $task->TOTAL - $task->Tahun_2010 - $task->Tahun_2011 - $task->Tahun_2012 - $task->Tahun_2013 - $task->Tahun_2014 - $task->Tahun_2015;
+				$tasks[] = $task;
+				/* end loop 3 */
+				
+			$phase->children = $tasks;
 			$phase->TOTAL = getTotalPhaseFromTask($tasks); // 0;
 			$phase->Tahun_2010 = get2010PhaseFromTask($tasks); // 0;
 			$phase->Tahun_2011 = get2011PhaseFromTask($tasks); // 0;
@@ -2699,9 +2775,9 @@
 		$projects[] = $project;
 		/* end loop 1 */
 	
-	$budget->projects = $projects;
+	$budget->children = $projects;
 	
-	$budget->TOTAL = getTotalPhaseFromTask($projects); 
+	$budget->TOTAL = getTotalPhaseFromTask($projects);
 	$budget->Tahun_2010 = get2010PhaseFromTask($projects);
 	$budget->Tahun_2011 = get2011PhaseFromTask($projects);//0;
 	$budget->Tahun_2012 = get2012PhaseFromTask($projects);//0;
@@ -2724,5 +2800,6 @@
 	// close connection
 	pg_close($dbconn);
 	
-	echo $_GET['callback'] . '(' . json_encode($data) . ')';
+	echo $_GET['callback'] . '(' . json_encode($data,JSON_PRETTY_PRINT) . ')';
+    //echo $_GET['callback'] . '<pre>(' . json_encode($data,JSON_PRETTY_PRINT) . ')</pre>';
 ?>
