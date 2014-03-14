@@ -27,61 +27,6 @@
         var budgetBottomRight2;
         /* var init */
       
-				/*alert("bro");
-				data10 = [
-				{
-				  "firstname": "John",
-				  "lastname": "Smith",
-				  "age": 15,
-				  "class": "B10",
-				  "courses": [
-					{
-					  "course": "physics", 
-					  "grade": "B", 
-					  "tests": [
-						{"test": "test 1", "grade": "A"},
-						{"test": "test 2", "grade": "B"},
-						{"test": "final exam", "grade": "B"}
-					  ]
-					},
-					{"course": "maths", "grade": "C"},
-					{"course": "economy", "grade": "B"}
-				  ]
-				},
-				{
-				  "firstname": "Susan",
-				  "lastname": "Brown",
-				  "age": 16,
-				  "class": "B10"
-				},
-				{
-				  "firstname": "David",
-				  "lastname": "Harris",
-				  "age": 14,
-				  "class": "B10",
-				  "courses": [
-					{"course": "economy", "grade": "A"},
-					{"course": "maths", "grade": "D"}
-				  ]           
-				}
-				];
-
-				// specify options
-				var options10 = {
-				'width': '500px',
-				'height': '400px'
-				};  
-
-				// Instantiate our treegrid object.
-				var container10 = document.getElementById('bottom-right');
-				treegrid = new links.TreeGrid(container10, options10);
-
-				data10 = new links.DataTable(data10);
-
-				// Draw our treegrid with the created data and options 
-				treegrid.draw(data10); */
-	  
-	  
         /* retrieve data */
         /* ------------------------------------------------------------------------------- -------------------------------------------------------------------------------*/
 		
@@ -153,25 +98,7 @@
 		var treegrid;
 		var data;
 		
-//		$.getJSON("http://localhost/ob/BudgetCost.php?callback=?",function(result){
-//			data = result;
-//						
-//			// specify options
-//			var options = {
-//			  'width': '100%',
-//			  'height': '400px'
-//			};  
-//
-//			// Instantiate our treegrid object.
-//			var container = document.getElementById('bottom-right');
-//			treegrid = new links.TreeGrid(container, options);
-//
-//			data = new links.DataTable(data);
-//
-//			// Draw our treegrid with the created data and options 
-//			treegrid.draw(data);   
-//			 
-//		 });
+
 		refreshBudgetCost();
         /* retrieve data */
         
@@ -344,7 +271,7 @@
                     backgroundColor: '#dedede'
                 },                
                 series: [{
-                    name: 'Total Budget',
+                    name: 'Budget Bulanan Sampai Saat Ini',
                     type: 'spline',
                     yAxis: 0,
                     index: 2,
@@ -359,7 +286,7 @@
                     }
         
                 }, {
-                    name: 'Rencana Budget',
+                    name: 'Budget Bulanan',
                     type: 'column',
                     dataLabels: {
                         enabled: true
@@ -374,7 +301,7 @@
                     }
         
                 }, {
-                    name: 'Total Pembayaran',
+                    name: 'Pembayaran Bulanan Sampai Saat Ini',
                     type: 'spline',
                     index: 3,
                     dashStyle: 'ShortDash',
@@ -387,7 +314,7 @@
                         valuePrefix: 'Rp. '
                     }
                 } , {
-                    name: 'Jadwal Pembayaran',
+                    name: 'Perkiraan Pembayaran',
                     type: 'column',
                     dataLabels: {
                         enabled: true
@@ -659,25 +586,7 @@
 			
 			function refreshBudgetComparison() {
 				rows_bottom.length = 0;
-				/*$.getJSON("http://localhost/ob/BudgetComparison.php?callback=?","budget1="+budgetBottomRight1+"&budget2="+budgetBottomRight2,function(result){
-					 for (var i in result){
-						var rows2 = [];
-						rows2[0] = result[i][0];
-						rows2[1] = result[i][1];
-						rows2[2] = result[i][2];
-						rows2[3] = result[i][3];
-						rows_bottom.push(rows2);
-					 };
-					var data = new google.visualization.DataTable();
-					data.addColumn('string', 'Phase');
-					data.addColumn('number', result[i][4]);
-					data.addColumn('number', result[i][5]);
-					data.addColumn('number', 'Variance');
-					data.addRows(rows_bottom);
 
-					var table = new google.visualization.Table(document.getElementById('bottom-right2'));
-					table.draw(data, {showRowNumber: true});
-				});*/
 				$.ajax({
 					url: "http://localhost/ob/BudgetComparison.php",
 					data: {
@@ -700,27 +609,7 @@
 			}
 			
 			function refreshBudgetGrossNett() {
-				/*rows_bottommost.length = 0;
-				$.getJSON("http://localhost/ob/BudgetGrossNett.php?callback=?",function(result){
-					for (var i in result){
-					   var rows2 = [];
-					   rows2[0] = result[i][0];
-					   rows2[1] = result[i][1];
-					   rows2[2] = result[i][2];
-					   rows2[3] = result[i][3];
-					   rows_bottommost.push(rows2);
-					};
-				});
-				var data = new google.visualization.DataTable();
-				data.addColumn('string', 'Name');
-				data.addColumn('number', 'Amount');
-				data.addColumn('number', 'Gross');
-				data.addColumn('number', 'Nett');
-				data.addRows(rows_bottommost);
 
-				var table = new google.visualization.Table(document.getElementById('bottom-most'));
-				table.draw(data, {showRowNumber: true});*/
-	//print_r($rawData);
 				$.getJSON("http://localhost/ob/BudgetGrossNett.php?callback=?",function(result) {    
 					var table = '<table border="1" cellpadding="10" cellspacing="0" style="width:100%" class="budgetcost">';
 					table+= '<tr><th>Name</th><th>Budget</th><th>Gross Floor Area</th><th>Budget per Gross</th><th>Rent Floor Area</th><th>Budget per Nett</th></tr>';
