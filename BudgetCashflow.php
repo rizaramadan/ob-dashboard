@@ -58,18 +58,20 @@
 		$databudgetplan[$i] = 0;
 		$datatotalbudget[$i] = 0;
 	}
+	
 
 	while($row = pg_fetch_array($result_budgetplan)) {
 		switch ($currency) {
 			case 'usd':
 				$databudgetplan[$row['bulan']-1]  += (int) $row['amount_usd'];
+				$datatotalbudget[$row['bulan']-1]  += (int) $row['amount_usd'];
 				break;
 			default:
 				$databudgetplan[$row['bulan']-1]  += (int) $row['amount'];
+				$datatotalbudget[$row['bulan']-1]  += (int) $row['amount'];
 				break;
 		}
 		
-		$datatotalbudget[$row['bulan']-1]  += (int) $row['amount'];
 	}
 	
 	if($dummmy) {
@@ -103,8 +105,17 @@
 	}
 	$rowbefore;
   	while($row = pg_fetch_array($result_paymentplan)) {
-  		$datapaymentPlan[$row['bulan']-1]  = (int) $row['amount'];
-		$datapaymentTotal[$row['bulan']-1]  = (int) $row['amount'];
+		  switch ($currency) {
+			  case 'usd':
+				  $datapaymentPlan[$row['bulan']-1]  = (int) $row['amount_usd'];
+				  $datapaymentTotal[$row['bulan']-1]  = (int) $row['amount_usd'];
+				  break;
+			  default:
+				  $datapaymentPlan[$row['bulan']-1]  = (int) $row['amount'];
+				  $datapaymentTotal[$row['bulan']-1]  = (int) $row['amount'];
+				  break;
+		  }
+		
 	}
 	
 	if($dummmy) {
