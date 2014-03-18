@@ -652,6 +652,7 @@
 			}
 			
 			function refreshBudgetSelectionOption() {
+               // alert(globalproject_id);
 				$.getJSON("http://localhost/ob/getbudget.php?callback=?","&project="+globalproject_id,function(j) {
 					var options = '';
 					for (var i = 0; i < j.length; i++) {
@@ -674,6 +675,7 @@
 					budgetMiddleLeft = $("#budgetMiddleLeft" ).val();
 					budgetBottomRight1 = $("#budgetBottomRight1" ).val();
 					budgetBottomRight2 = $("#budgetBottomRight2" ).val();
+
 					//alert("a. budget bottom right1 :"+budgetBottomRight1+", right 2:"+budgetBottomRight2);
 				});
 			}

@@ -142,7 +142,8 @@ function getBudgetVsCostQuery($project_id, $budget_id) {
 			 inner join c_project cp on cp.c_project_id = pp.c_project_id
 			where pp.c_project_id ".$project_id." and cb.c_budget_id ".$budget_id." and cb.ad_client_id = '142F2095A9FE48ECB13CD19A06A0BD9C' order by budget_name, project_name, group_name desc, phase_name, task_name) as foo
 			group by budget_name, c_budget_id, project_name, c_project_id, group_name, em_pjt_phasegroup_id, phase_name, c_projectphase_id, task_name, project_task, amount, amount_usd";		
-	return $retval;
+	//print_r($retval); exit;
+    //return $retval;
 }
 
 
@@ -166,7 +167,8 @@ function getBudgetComparison($budget1,$budget2,$project_id){
 			 inner join c_project cp on cp.c_project_id = pp.c_project_id
 			where pp.c_project_id ".$project_id." and cb.ad_client_id = '142F2095A9FE48ECB13CD19A06A0BD9C' order by budget_name, project_name, group_name desc, phase_name, task_name) as foo
 			group by budget_name, c_budget_id, project_name, c_project_id, group_name, em_pjt_phasegroup_id, phase_name, c_projectphase_id, task_name, project_task, amount, amount_usd";
-	return $retval;
+	//print_r($retval); exit;
+    return $retval;
 }
 
 function getBudgetBuildingQuery() {
