@@ -30,6 +30,7 @@ function getBudgetQuery ($project_id, $budget_id, $year) {
 	return $retval;
 }
 
+
 /**
  * Query untuk mengisi value dari projects progress (progress)
  * @global int $firstyear
@@ -195,3 +196,103 @@ function getTotalBudget($dbconn, $budget_id, $project_id) {
 	$row = pg_fetch_array($result);
 	return $row['total'];
 }
+
+/**
+ * ambil quer
+ * @param type $project_id
+ * @param type $budget_id
+ */
+function getRealBudget($dbconn, $project_id, $budget_id, $currency = NULL) {
+	global $firstyear, $barCount;
+	$query = "select (date_part('year',p.startdate) -  ".$firstyear.")  * 12 + date_part('month',p.startdate) as bulan,	sum(amount/1000000) as amount, sum(amount*cb.em_bgt_kurs)/1000 as amount_usd
+			  from c_budgetline bl inner join c_period p on bl.c_period_id = p.c_period_id inner join c_budget cb on cb.c_budget_id = bl.c_budget_id
+			  where bl.c_project_id ".$project_id." and bl.c_budget_id ".$budget_id." group by bulan order by bulan ";
+	$result = pg_exec($dbconn, $query);
+	$data = array();
+	while($row = pg_fetch_array($result)) {
+		$index = $row['bulan'];
+		while(count($data) < $index) {
+			array_push($data, 0);
+		}
+		if($currency == 'usd') {
+			array_push($data, $row['amount_usd']);
+		} else {
+			array_push($data, $row['amount']);
+		}
+	}
+	while(count($data) <= $barCount) {
+		array_push($data, 0);
+	}
+	pg_free_result($result);
+	return $data;
+}
+
+/**
+ * ambil quer
+ * @param type $project_id
+ * @param type $budget_id
+ */
+function getProgressInvoiceBased($dbconn, $project_id) {
+	global $firstyear, $barCount;
+	$query = "select 	sum((invl.priceactual*invl.qtyinvoiced)/1000000) as amount,(date_part('year',inv.dateinvoiced) - ".$firstyear.") * 12 + date_part('month',inv.dateinvoiced) as bulan
+				from c_invoiceline invl
+					inner join c_invoice inv on invl.c_invoice_id = inv.c_invoice_id
+					inner join c_projecttask pt on pt.m_product_id = (case invl.bom_parent_id when null then invl.m_product_id else invl.m_product_id end)
+				where  invl.c_project_id  ".$project_id."  and  inv.ispaid = 'Y' and inv.ad_client_id = '142F2095A9FE48ECB13CD19A06A0BD9C' 
+				group by bulan order by bulan ;";
+	$result = pg_exec($dbconn, $query);
+	$data = array();
+	while($row = pg_fetch_array($result)) {
+		$index = $row['bulan'];
+		while(count($data) < $index) {
+			array_push($data, 0);
+		}
+		array_push($data, $row['amount']);
+	}
+	while(count($data) <= $barCount) {
+		array_push($data, 0);
+	}
+	pg_free_result($result);
+	return $data;
+}
+
+/**
+ * ambil quer
+ * @param type $project_id
+ * @param type $budget_id
+ */
+function getRealPaymentPlan($dbconn, $project_id, $currency = NULL) {
+	global $firstyear, $barCount;
+	$query = "select sum(((o.grandtotal*p.percentage/100)/1000000)) as amount, ((date_part('year',duedate) - ".$firstyear." ) * 12 + date_part('month',duedate))::integer as bulan, sum(c_currency_convert(amount, '303','100',duedate, null, '*')/1000) as amount_usd
+				from por_payment_schedule p
+				inner join c_order o on p.c_order_id = o.c_order_id
+			where o.c_project_id ".$project_id."
+			and true and p.ad_client_id = '142F2095A9FE48ECB13CD19A06A0BD9C'
+			group by bulan order by bulan";
+	$result = pg_exec($dbconn, $query);
+	$data = array();
+	while($row = pg_fetch_array($result)) {
+		$index = $row['bulan'];
+		while(count($data) < $index) {
+			array_push($data, 0);
+		}
+		if($currency == 'usd') {
+			array_push($data, $row['amount_usd']);
+		} else {
+			array_push($data, $row['amount']);
+		}
+	}
+	while(count($data) <= $barCount) {
+		array_push($data, 0);
+	}
+	pg_free_result($result);
+	return $data;
+}
+
+
+
+
+$dbconn = pg_connect("host=localhost dbname=openbravo user=tad password=tad") or die('Could not connect: ' . pg_last_error());
+//print_r(getRealBudget($dbconn, " is not null ", " is not null "));
+//print_r(getDummyBudget(""));
+	

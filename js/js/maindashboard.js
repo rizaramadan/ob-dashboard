@@ -11,6 +11,7 @@
         var budgetTopLeft;
 		var rows_mid;
 		var globalyear = new Date().getFullYear();
+		var currency;
 
         var topright_totalbudget = new Array();
         var topright_budgetplan = new Array();
@@ -203,7 +204,13 @@
             });
         }
 
-        function toprightGraph(){
+        function toprightGraph(currency){
+			var prefix = "Rp. ";
+			var currInfo = "Rupiah";
+			if(currency === 'usd') {
+				prefix = "$ ";
+				currInfo = "USD";
+			}
             $('#top-right').highcharts({
                 colors: [
                    colorTotalBudget,//'#4572A7', 
@@ -240,14 +247,14 @@
                 yAxis: [{ // Primary yAxis
                     labels: {
                         formatter: function() {
-                            return 'Rp. ' + this.value ;
+                            return prefix + this.value ;
                         },
                         style: {
                             color: '#89A54E'
                         }
                     },
                     title: {
-                        text: 'Rupiah',
+                        text: currInfo,
                         style: {
                             color: '#89A54E'
                         }
@@ -279,7 +286,7 @@
                     data: topright_totalbudget,
                     tooltip: {
                         //valueSuffix: ' Billion',
-                        valuePrefix: 'Rp. '
+                        valuePrefix: prefix
                     }
         
                 }, {
@@ -294,7 +301,7 @@
                     
                     tooltip: {
                         //valueSuffix: ' Billion',
-                        valuePrefix: 'Rp. '
+                        valuePrefix: prefix
                     }
         
                 }, {
@@ -308,7 +315,7 @@
                     data: topright_totalpayment,
                     tooltip: {
                         //valueSuffix: ' Billion',
-                        valuePrefix: 'Rp. '
+                        valuePrefix: prefix
                     }
                 } , {
                     name: 'Forecast Payment',
@@ -324,7 +331,7 @@
                     },
                     tooltip: {
                         //valueSuffix: ' Billion',
-                        valuePrefix: 'Rp. '
+                        valuePrefix: prefix
                     }
         
                 }]
@@ -335,7 +342,7 @@
             /* call */
             $(function () {
                 topleft();
-                toprightGraph();
+                toprightGraph("");
 				refreshBudgetCost();
 				refreshBudgetGrossNett();
 				refreshBudgetComparison();
@@ -565,7 +572,7 @@
                 topright_totalpayment.length = 0;
                 topright_paymentplan.length = 0;
                 topright_x.length = 0;
-                var currency = $("#currency").val();
+                currency = $("#currency").val();
 
 
                 $.getJSON("http://localhost/ob/BudgetCashflow.php?callback=?",'budget='+budgetTopRight+'&year=' +globalyear+'&currency='+currency,function(result){
@@ -584,7 +591,7 @@
                     for (var i in result['datax']){
                         topright_x.push(result['datax'][i]);
                     };
-                    toprightGraph();
+                    toprightGraph(currency);
                 });
 				
 			}
