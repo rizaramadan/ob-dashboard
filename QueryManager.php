@@ -57,7 +57,7 @@ function getProjectProgressQuery($project_id, $year) {
 function getPaymentPlan($project_id, $year) {
 	global $firstyear;
 	$retval="
-		select ((o.grandtotal*p.percentage/100)/1000000) as amount, ((date_part('year',duedate) -  ".$firstyear.") * 12 + date_part('month',duedate))::integer as bulan 
+		select ((o.grandtotal*p.percentage/100)/1000000) as amount, ((date_part('year',duedate) -  ".$firstyear.") * 12 + date_part('month',duedate))::integer as bulan, c_currency_convert(amount, '303','100',duedate, null, '*') as amount_usd
 				from por_payment_schedule p
 				inner join c_order o on p.c_order_id = o.c_order_id
 			where o.c_project_id ".$project_id."

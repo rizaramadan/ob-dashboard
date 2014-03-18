@@ -12,7 +12,7 @@
  	include "QueryManager.php";
  	include "Utils.php";
  	include "dummy.php";
-	$dummy = true;
+	$dummy = false;
 
 
 	$project_id = getCleanParam($_GET,'project');

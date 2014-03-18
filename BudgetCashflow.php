@@ -12,11 +12,12 @@
  	include "Utils.php";
  	include "dummy.php";
 	
-	$dummmy = true;
+	$dummmy = false;
 
 	$project_id = getCleanParam($_GET,'project');
 	$budget_id = getCleanParam($_GET,'budget');
 	$year = " is not null ";
+	$currency = $_GET['currency'];
 	//$barCount = ($year == " is not null ") ? $barCount : 11;
 	//$penguranganbulan = ($year == " is not null ") ? 0 : 12*($_GET['year']-$firstyear);
 	
@@ -57,10 +58,20 @@
 		$databudgetplan[$i] = 0;
 		$datatotalbudget[$i] = 0;
 	}
+	
 
 	while($row = pg_fetch_array($result_budgetplan)) {
-		$databudgetplan[$row['bulan']-1]  += (int) $row['amount'];
-		$datatotalbudget[$row['bulan']-1]  += (int) $row['amount'];
+		switch ($currency) {
+			case 'usd':
+				$databudgetplan[$row['bulan']-1]  += (int) $row['amount_usd'];
+				$datatotalbudget[$row['bulan']-1]  += (int) $row['amount_usd'];
+				break;
+			default:
+				$databudgetplan[$row['bulan']-1]  += (int) $row['amount'];
+				$datatotalbudget[$row['bulan']-1]  += (int) $row['amount'];
+				break;
+		}
+		
 	}
 	
 	if($dummmy) {
@@ -94,8 +105,17 @@
 	}
 	$rowbefore;
   	while($row = pg_fetch_array($result_paymentplan)) {
-  		$datapaymentPlan[$row['bulan']-1]  = (int) $row['amount'];
-		$datapaymentTotal[$row['bulan']-1]  = (int) $row['amount'];
+		  switch ($currency) {
+			  case 'usd':
+				  $datapaymentPlan[$row['bulan']-1]  = (int) $row['amount_usd'];
+				  $datapaymentTotal[$row['bulan']-1]  = (int) $row['amount_usd'];
+				  break;
+			  default:
+				  $datapaymentPlan[$row['bulan']-1]  = (int) $row['amount'];
+				  $datapaymentTotal[$row['bulan']-1]  = (int) $row['amount'];
+				  break;
+		  }
+		
 	}
 	
 	if($dummmy) {
