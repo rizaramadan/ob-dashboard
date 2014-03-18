@@ -97,7 +97,6 @@
 		
 
 		refreshBudgetCost();
-        refreshBudgetComparison();
         /* retrieve data */
         
 		var colorTotalPaymentplan = "blue";
@@ -339,6 +338,7 @@
                 toprightGraph();
 				refreshBudgetCost();
 				refreshBudgetGrossNett();
+				refreshBudgetComparison();
             });
             /* call */
 
@@ -534,35 +534,8 @@
 				
 			}
 
-            function refreshBudgetCost() {
-                $.getJSON("http://localhost/ob/BudgetCost3.php?callback=?",'budget='+budgetMiddleLeft+'&project=' +globalproject_id,function(result){
-                    var table = '<table border="1" cellpadding="10" cellspacing="0" style="width:100%" class="budgetcost">';
-                        table += '<tr><th>BUDGET/PROJECT/PHASE/TASK</th><th>Total</th><th>Balance</th><th>Tahun_2010</th><th>Tahun_2011</th><th>Tahun_2012</th><th>Tahun_2013</th><th>Tahun_2014</th><th>Tahun_2015</th></tr>';
 
-                        for (var i in result) {
-                            if(i <= 5)
-                            table += '<tr><td>'+result[i].task_name+'</td><td>'+result[i].total+'</td><td>'+result[i].amount+'</td><td>'+result[i].thn2010+'</td><td>'+result[i].thn2011+'</td><td>'+result[i].thn2012+'</td><td>'+result[i].thn2013+'</td><td>'+result[i].thn2014+'</td><td>'+result[i].thn2015+'</td></tr>';    
-                        };                    
-                        table += '</table>';
-                        $('#bottom-right').html(table);            
-                 });
-            }
-
-            function refreshBudgetComparison() {
-                $.getJSON("http://localhost/ob/BudgetComparison2.php?callback=?",'budget1='+budgetBottomRight1+'&budget2='+budgetBottomRight2+'&project=' +globalproject_id,function(result){
-                        var table = '<table border="1" cellpadding="10" cellspacing="0" style="width:100%" class="budgetcost">';
-                        table += '<tr><th>Project</th><th>Group</th><th>Phase</th><th>Task</th><th>First Budget</th><th>Second Budget</th></tr>';
-
-                        for (var i in result) {
-                            if(i <= 5)
-                            table += '<tr><td>'+result[i].project_name+'</td><td>'+result[i].group_name+'</td><td>'+result[i].phase_name+'</td><td>'+result[i].task_name+'</td><td>'+result[i].budget1+'</td><td>'+result[i].budget2+'</td></tr>';    
-                        };                    
-                        table += '</table>';
-                        $('#bottom-right2').html(table);            
-                });
-            }
-
-			function refreshBudgetCost_() {
+			function refreshBudgetCost() {
 
                 $.getJSON("http://localhost/ob/BudgetCost.php?callback=?",function(result){
 
@@ -585,7 +558,6 @@
 
                  });
 			}
-
 			
 			function refreshBudgetCashflow() {
 				topright_totalbudget.length = 0;
@@ -617,7 +589,7 @@
 				
 			}
 			
-			function refreshBudgetComparison_() {
+			function refreshBudgetComparison() {
 				rows_bottom.length = 0;
 
 				$.ajax({
@@ -695,13 +667,13 @@
 					$("select#optBudgetTopRight").html(options);
 					$("select#budgetMiddleLeft").html(options);
 					$("select#budgetBottomRight1").html(options);
-                    $("select#budgetBottomRight2").html(options);
 					var options = '';
 					if(j.length > 1) {
 						for (var i = 0; i < j.length; i++) {
 							options += '<option value="' + j[i].c_budget_id + '">' + j[i].name + '</option>';
 						}
 					}
+					$("select#budgetBottomRight2").html(options);
 					
 					budgetTopLeft = $("#optBudgetTopLeft" ).val();
 					budgetTopRight = $("#optBudgetTopRight" ).val();
