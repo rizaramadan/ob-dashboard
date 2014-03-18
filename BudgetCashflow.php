@@ -12,11 +12,12 @@
  	include "Utils.php";
  	include "dummy.php";
 	
-	$dummmy = true;
+	$dummmy = false;
 
 	$project_id = getCleanParam($_GET,'project');
 	$budget_id = getCleanParam($_GET,'budget');
 	$year = " is not null ";
+	$currency = $_GET['currency'];
 	//$barCount = ($year == " is not null ") ? $barCount : 11;
 	//$penguranganbulan = ($year == " is not null ") ? 0 : 12*($_GET['year']-$firstyear);
 	
@@ -59,7 +60,15 @@
 	}
 
 	while($row = pg_fetch_array($result_budgetplan)) {
-		$databudgetplan[$row['bulan']-1]  += (int) $row['amount'];
+		switch ($currency) {
+			case 'usd':
+				$databudgetplan[$row['bulan']-1]  += (int) $row['amount_usd'];
+				break;
+			default:
+				$databudgetplan[$row['bulan']-1]  += (int) $row['amount'];
+				break;
+		}
+		
 		$datatotalbudget[$row['bulan']-1]  += (int) $row['amount'];
 	}
 	

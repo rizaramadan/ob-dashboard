@@ -43,7 +43,7 @@
         });
 
 
-        $.getJSON("http://localhost/ob/BudgetCashflow.php?callback=?&year=" +globalyear,function(result){
+        $.getJSON("http://localhost/ob/BudgetCashflow.php?callback=?&currency=&year=" +globalyear,function(result){
             for (var i in result['totalbudget']){
                 topright_totalbudget.push(result['totalbudget'][i]);
             };
@@ -364,6 +364,10 @@
                 globalyear = $(this).val();
 				refreshBudgetSelectionOption();
             });
+            
+            $("#currency").change(function(){
+                refreshBudgetCashflow();
+            });
             /* select */
             
             /* button select budget of graph budget progress payment*/
@@ -589,8 +593,10 @@
                 topright_totalpayment.length = 0;
                 topright_paymentplan.length = 0;
                 topright_x.length = 0;
+                var currency = $("#currency").val();
 
-                $.getJSON("http://localhost/ob/BudgetCashflow.php?callback=?",'budget='+budgetTopRight+'&year=' +globalyear,function(result){
+
+                $.getJSON("http://localhost/ob/BudgetCashflow.php?callback=?",'budget='+budgetTopRight+'&year=' +globalyear+'&currency='+currency,function(result){
                     for (var i in result['totalbudget']){
                         topright_totalbudget.push(result['totalbudget'][i]);
                     };
