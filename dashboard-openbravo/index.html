@@ -1,87 +1,52 @@
 <html>
     <head>
-        <script src="../js/js/jquery.js"></script>
-        <script src="../js/js/highcharts.js"></script>
-        <script src="../js/js/highcharts-more.js"></script>
-        <script src="../js/js/modules/exporting.js"></script>
+        <title> Project Budget Payment Dashboard </title>
+
+        <script type="text/javascript" src="../js/js/jquery.js"></script>
+        <script type="text/javascript" src="../js/js/highcharts.js"></script>
+        <script type="text/javascript" src="../js/js/highcharts-more.js"></script>
+        <script type="text/javascript" src="../js/js/modules/exporting.js"></script>
         <script type="text/javascript" src="../js/treegrid/treegrid.js"></script>
         <script type="text/javascript" src="../js/jquery-easyui-1.3.5/jquery.easyui.min.js"></script>
         <script type="text/javascript" src="../js/js/jquery.formatCurrency-1.4.0.min.js"></script>
         <script type="text/javascript" src="../js/js/jquery.formatCurrency-1.4.0.pack.js"></script>
         <script type="text/javascript" src="../js/js/jquery.formatCurrency.all.js"></script>
+        <script type='text/javascript' src='https://www.google.com/jsapi'></script>
+        <script type="text/javascript" src="../js/codebase/dhtmlxgantt.js"  charset="utf-8"></script>
+        <script type="text/javascript" src="../js/codebase/ext/dhtmlxgantt_quick_info.js"  charset="utf-8"></script>
+
         <link rel="stylesheet" type="text/css" href="../js/treegrid/treegrid.css">
         <link rel="stylesheet" type="text/css" href="../js/jquery-easyui-1.3.5/themes/default/easyui.css">
         <link rel="stylesheet" href="../js/codebase/dhtmlxgantt.css" type="text/css" media="screen" title="no title" >
-        <script type='text/javascript' src='https://www.google.com/jsapi'></script>
-        <title> Project Budget Payment Dashboard </title>
-        <style>
-            table.budgetcost th { 
-                font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica,
-                    sans-serif;
-                color: #6D929B;
-                border-right: 1px solid #C1DAD7;
-                border-bottom: 1px solid #C1DAD7;
-                border-top: 1px solid #C1DAD7;
-                letter-spacing: 2px;
-                text-transform: uppercase;
-                text-align: left;
-                padding: 6px 6px 6px 12px;
-                background: #CAE8EA url(images/bg_header.jpg) no-repeat;
-            }
+        <link rel="stylesheet" type="text/css" href="../css/custom.css">
 
-            table.budgetcost th.nobg {
-                border-top: 0;
-                border-left: 0;
-                border-right: 1px solid #C1DAD7;
-                background: none;
-            }
-
-            table.budgetcost td {
-                font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica,
-                    sans-serif;
-                border-right: 1px solid #C1DAD7;
-                border-bottom: 1px solid #C1DAD7;
-                background: #fff;
-                padding: 6px 6px 6px 12px;
-                color: #6D929B;
-            }
-
-
-            table.budgetcost td.alt {
-                background: #F5FAFA;
-                color: #B4AA9D;
-            }
-
-        </style>
     </head>
 
     <!--body cellspacing='5'-->
-    <body >
-        <script src="../js/codebase/dhtmlxgantt.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../js/codebase/ext/dhtmlxgantt_quick_info.js" type="text/javascript" charset="utf-8"></script>
-
-        <!--TODO: grafik dibikin pertahun, ada pilihan tahun -->
-
-
-        <!-- SCRIPT -->
-        <script type="text/javascript">
-        </script>
-        <!--span style="font-family:'Lucida Grande', 'Lucida Sans Unicode', Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e;fill:#4d759e; float:left">Project : <select id='globalproject'></select><input type='button' value='Apply' id='btnGlobalProject'></input></span-->
-        <span style="font-family:'Lucida Grande', 'Lucida Sans Unicode', Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e; float:left">Project : <select id='globalproject'></select> <input type='button' value='Apply' id='btnGlobalProject' /></span>
-        <span style="font-family:'Lucida Grande', 'Lucida Sans Unicode', Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e; float:left">Year : <select id='globalyear'></select>
-            Currency: <select name="" id="currency">
+    <body>
+        <div id="navbar">
+            <div class="dropdown">
+                <label>Project :</label>
+                <select id='globalproject'></select>
+                <input class="std_btn" type='button' value='Apply' id='btnGlobalProject' />
+            </div>
+            <span class="dropdown">
+                <label>Year : </label>
+                <select id='globalyear'></select>
+                <label>Currency:</label>
+                <select name="" id="currency">
                 <option value="idr">IDR</option>
                 <option value="usd">USD</option>
             </select>
-            <input type='button' value='Apply' id='btnGlobalYear' /></span>
-
+            <input class="std_btn" type='button' value='Apply' id='btnGlobalYear' /></span>
+        </div>
         <br/> <br/>
         <hr/>
 
         <div id="top" style='height:48%;'>
             <!-- TOP LEFT -->
             <span style="font-family:'Lucida Grande', 'Lucida Sans Unicode', Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e; float:left">Pilih Budget : <select id='optBudgetTopLeft'>        </select>
-                <input type='button' value='Apply' id='btnTopLeftBudget' /></span> 
+                <input class="std_btn" type='button' value='Apply' id='btnTopLeftBudget' /></span>
 
             <br /><br />
 
@@ -94,7 +59,7 @@
 
             <!-- TOP RIGHT -->
             <span style="font-family:'Lucida Grande', 'Lucida Sans Unicode', Verdana, Arial, Helvetica, sans-serif;font-size:12px;color:#4d759e; float:left">Pilih Budget : <select id='optBudgetTopRight'></select>
-                <input type='button' value='Apply' id='btnTopRight' /></span> 
+                <input class="std_btn" type='button' value='Apply' id='btnTopRight' /></span>
             <div id="top-right" style='width:100%; float:right'></div>
             <!-- TOP RIGHT -->
 
@@ -125,7 +90,7 @@
                     <option>Budget v5</option>
                     <option>Budget v4</option>
                 </select>
-                <input type='button' value='Apply' id='btnMiddleLeft' />
+                <input class="std_btn" type='button' value='Apply' id='btnMiddleLeft' />
                 <br />
                 <br />
                 <div id="bottom-right" style="width:1300px;height:300px">
@@ -152,7 +117,7 @@
                     <option>Budget v5</option>
                     <option>Budget v4</option>
                 </select>
-                <input type='button' value='Apply' id='btnBottomLeft' />
+                <input class="std_btn" type='button' value='Apply' id='btnBottomLeft' />
                 <br />
                 <br />
                 <div id="bottom-right2" style='width:1300px;height:400px;'></div>

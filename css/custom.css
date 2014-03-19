@@ -1,0 +1,76 @@
+body{
+    margin: 0;
+}
+select{
+    -moz-box-sizing: border-box;
+    background-clip: padding-box;
+    box-shadow: none;
+    color: #4F4F44;
+    font-size: 0.8125rem;
+    line-height: 1.84615;
+    border: 1px solid #C3C3C3;
+    border-radius: 5px;
+    padding: 6px;
+}
+
+.std_btn{
+    border-radius: 5px;
+    padding: 6px;
+    border: 1px solid #C3C3C3;
+    font-size: 0.8125rem;
+    line-height: 1.84615;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+table.budgetcost th {
+    font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica,
+    sans-serif;
+    color: #6D929B;
+    border-right: 1px solid #C1DAD7;
+    border-bottom: 1px solid #C1DAD7;
+    border-top: 1px solid #C1DAD7;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 6px 6px 6px 12px;
+    background-color: #CAE8EA;
+}
+
+table.budgetcost th.nobg {
+    border-top: 0;
+    border-left: 0;
+    border-right: 1px solid #C1DAD7;
+    background: none;
+}
+
+table.budgetcost td {
+    font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica,
+    sans-serif;
+    border-right: 1px solid #C1DAD7;
+    border-bottom: 1px solid #C1DAD7;
+    background: #fff;
+    padding: 6px 6px 6px 12px;
+    color: #6D929B;
+}
+
+
+table.budgetcost td.alt {
+    background: #F5FAFA;
+    color: #B4AA9D;
+}
+
+#navbar{
+    background: none repeat scroll 0 0 #F7F7F7;
+    border-bottom: 1px solid #BCBCBC;
+    height: 30px;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+.dropdown{
+    font-family:'Lucida Grande', 'Lucida Sans Unicode', Verdana, Arial, Helvetica, sans-serif;
+    font-size:12px;
+    float:left
+}
