@@ -3,8 +3,9 @@
 	/**
 	 * File yang berfungsi untuk menyediakan data bagi graph of budget and cashflow
 	 *
-	 * @author     Helmi Agustian <helmi.agustian@wiradipa.com>
-	 * @version    1.1
+	 * @author     Helmi Agustian <helmi.agustian@wiradipa.com> untuk versi 1.1
+	 * 
+	 * @version    2.1
 	 */
 	 
 	include "dbcon.php";
@@ -38,16 +39,8 @@
 		/*
 			Query untuk mengisi value dari budget plan
 		*/
-	$result_budgetplan = pg_exec($dbconn, getBudgetQuery($project_id, $budget_id, $year));
-	var_dump(pg_fetch_all($result_budgetplan));exit;
 
 
-	$result_paymentplan = pg_exec($dbconn, getPaymentPlan($project_id, $year));
-
-
-	$data = array();
-	$databudgetplan = array();
-	$datatotalbudget = array();
 	$datax = array();
 	$pembagi = 1;
 
@@ -55,33 +48,15 @@
 		$datax[] = $row["name"];
 	}
 
-	for($i = 0;$i<=$barCount;$i++){
-		$databudgetplan[$i] = 0;
-		$datatotalbudget[$i] = 0;
-	}
-	
-
-	while($row = pg_fetch_array($result_budgetplan)) {
-		switch ($currency) {
-			case 'usd':
-				$databudgetplan[$row['bulan']-1]  += (int) $row['amount_usd'];
-				$datatotalbudget[$row['bulan']-1]  += (int) $row['amount_usd'];
-				break;
-			default:
-				$databudgetplan[$row['bulan']-1]  += (int) $row['amount'];
-				$datatotalbudget[$row['bulan']-1]  += (int) $row['amount'];
-				break;
-		}
-		
-	}
-	
 	if($dummmy) {
-		$dummyBudget = getDummyBudget($project_id);
-		for($i = 0; $i < count($dummyBudget); ++$i) {
-			$databudgetplan[$i] = round($dummyBudget[$i],2);
-			$datatotalbudget[$i] = round($dummyBudget[$i],2);
-		}
-		
+		$dataBudget = getDummyBudget($budget_id);
+	} else {
+		$dataBudget = getRealBudget($dbconn, $project_id,$budget_id,$currency);
+	}
+	
+	for($i = 0; $i < count($dataBudget); ++$i) {
+		$databudgetplan[$i] = round($dataBudget[$i],2);
+		$datatotalbudget[$i] = round($dataBudget[$i],2);
 	}
 	
 	$lastBudgetPlanValue = 0;
@@ -100,32 +75,17 @@
 	*/
 	$datapaymentPlan = array();
 	$datapaymentTotal = array();
-	for($i = 0;$i<=$barCount;$i++){
-		$datapaymentPlan[$i] = 0;
-		$datapaymentTotal[$i] = 0;
-	}
-	$rowbefore;
-  	while($row = pg_fetch_array($result_paymentplan)) {
-		  switch ($currency) {
-			  case 'usd':
-				  $datapaymentPlan[$row['bulan']-1]  = (int) $row['amount_usd'];
-				  $datapaymentTotal[$row['bulan']-1]  = (int) $row['amount_usd'];
-				  break;
-			  default:
-				  $datapaymentPlan[$row['bulan']-1]  = (int) $row['amount'];
-				  $datapaymentTotal[$row['bulan']-1]  = (int) $row['amount'];
-				  break;
-		  }
-		
+	
+	$temp = 0;
+	if($dummmy) {
+		$dataPaymentPlan = getDummyPaymentPlan($project_id);
+	} else {
+		$dataPaymentPlan = getRealPaymentPlan($dbconn, $project_id,$currency);
 	}
 	
-	if($dummmy) {
-		$temp = 0;
-		$dummyPaymentplan = getDummyPaymentPlan($project_id);
-		for($i = 0; $i < count($dummyPaymentplan); ++$i) {
-			$datapaymentPlan[$i]  = round($dummyPaymentplan[$i],2);
-			$datapaymentTotal[$i]  = round($dummyPaymentplan[$i],2);
-		}
+	for($i = 0; $i < count($dataPaymentPlan); ++$i) {
+		$datapaymentPlan[$i]  = round($dataPaymentPlan[$i],2);
+		$datapaymentTotal[$i]  = round($dataPaymentPlan[$i],2);
 	}
 	
 	
@@ -156,7 +116,6 @@
 	}
 
 	// free memory
-	pg_free_result($result_budgetplan);
 	// close connection
 	pg_close($dbconn);
 	
