@@ -544,7 +544,7 @@
 
 			function refreshBudgetCost() {
 
-                $.getJSON("http://localhost/ob/BudgetCost.php?callback=?",function(result){
+               // $.getJSON("http://localhost/ob/BudgetCost.php?callback=?",function(result){
 
                     $('#bottom-right').treegrid({
                         url:"http://localhost/ob/BudgetCost.php?callback=?",
@@ -563,9 +563,9 @@
                         ]]
                     });
 
-                 });
-			}
-			
+                // });
+            }
+
 			function refreshBudgetCashflow() {
 				topright_totalbudget.length = 0;
                 topright_budgetplan.length = 0;
@@ -597,27 +597,41 @@
 			}
 			
 			function refreshBudgetComparison() {
-				rows_bottom.length = 0;
 
-				$.ajax({
-					url: "http://localhost/ob/BudgetComparison.php",
-					data: {
-						budget1: budgetBottomRight1,
-						budget2: budgetBottomRight2,
-						project: globalproject_id
-					},
-					type: "GET",
-					dataType: "html",
-					success: function (data) {
-						$('#bottom-right2').html(data);
-					},
-					error: function (xhr, status) {
-						alert("Sorry, there was a problem!");
-					},
-					complete: function (xhr, status) {
-						//$('#showresults').slideDown('slow')
-					}
-				});
+				rows_bottom.length = 0;
+                 $('#bottom-right2').treegrid({
+                        url:"http://localhost/ob/BudgetComparison.php?callback2=?&budget1="+budgetBottomRight1+"&budget2="+budgetBottomRight2+"&project="+globalproject_id,
+                        idField:'id',
+                        treeField:'name',
+                        columns:[[
+                            {field:'name',title:'BUDGET/PROJECT/PHASE/TASK',width:470},
+                            {field:'budget_1',title:'BUDGET 1',width:100},
+                            {field:'budget_2',title:'BUDGET 2',width:100}
+                        ]]
+                    });
+
+
+                   /* $.ajax({
+                        url: "http://localhost/ob/BudgetComparison.php",
+                        data: {
+                            budget1: budgetBottomRight1,
+                            budget2: budgetBottomRight2,
+                            project: globalproject_id
+                        },
+                        type: "GET",
+                        dataType: "html",
+                        success: function (data) {
+                            $('#bottom-right2').html(data);
+                        },
+                        error: function (xhr, status) {
+                            alert("Sorry, there was a problem!");
+                        },
+                        complete: function (xhr, status) {
+                            //$('#showresults').slideDown('slow')
+                        }
+                    });*/
+
+
 			}
 			
 			function refreshBudgetGrossNett() {

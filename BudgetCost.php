@@ -149,8 +149,6 @@
 			$phases[] = $phase;
 
 
-
-
 			$phase = new stdClass;
             $phase->id="22";
 			$phase->NAME = "Master Planning";

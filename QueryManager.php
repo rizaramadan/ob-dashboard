@@ -144,7 +144,7 @@ function getBudgetVsCostQuery($project_id, $budget_id) {
 			where pp.c_project_id ".$project_id." and cb.c_budget_id ".$budget_id." and cb.ad_client_id = '142F2095A9FE48ECB13CD19A06A0BD9C' order by budget_name, project_name, group_name desc, phase_name, task_name) as foo
 			group by budget_name, c_budget_id, project_name, c_project_id, group_name, em_pjt_phasegroup_id, phase_name, c_projectphase_id, task_name, project_task, amount, amount_usd";		
 	//print_r($retval); exit;
-    //return $retval;
+    return $retval;
 }
 
 
@@ -154,7 +154,7 @@ function getBudgetComparison($budget1,$budget2,$project_id){
 			sum(case when c_budget_id ".$budget2." then amountbudget else 0 end) as budget2
 		from ( select cb.name as budget_name, cbl.c_budget_id, 
 			cp.name as project_name,pp.c_project_id,	
-			cp.name as group_name, pp.em_pjt_phasegroup_id, 
+			pg.name as group_name, pp.em_pjt_phasegroup_id,
 			pp.name as phase_name, pp.c_projectphase_id,	
 			pt.name as task_name, pt.c_projecttask_id as project_task, 
 			(invl.priceactual*invl.qtyinvoiced)/1000000 as amount,c_currency_convert(invl.priceactual*invl.qtyinvoiced, '303','100',inv.dateinvoiced, null, '*') as amount_usd, 
@@ -163,6 +163,7 @@ function getBudgetComparison($budget1,$budget2,$project_id){
 			left outer join c_invoiceline invl on pt.m_product_id = (case invl.bom_parent_id when null then invl.m_product_id else invl.bom_parent_id end)
 			left outer join c_invoice inv on invl.c_invoice_id = inv.c_invoice_id
 			inner join c_projectphase pp on pt.c_projectphase_id = pp.c_projectphase_id
+			left outer join pjt_phasegroup pg on pp.em_pjt_phasegroup_id = pg.pjt_phasegroup_id
 			inner join c_budgetline cbl on cbl.em_bgt_c_projecttask_id = pt.c_projecttask_id
 			inner join c_budget cb on cbl.c_budget_id = cb.c_budget_id
 			 inner join c_project cp on cp.c_project_id = pp.c_project_id
@@ -290,9 +291,7 @@ function getRealPaymentPlan($dbconn, $project_id, $currency = NULL) {
 }
 
 
-
-
-$dbconn = pg_connect("host=localhost dbname=openbravo user=tad password=tad") or die('Could not connect: ' . pg_last_error());
+$dbconn = pg_connect("host=localhost dbname=openbravo user=postgres password=postgres") or die('Could not connect: ' . pg_last_error());
 //print_r(getRealBudget($dbconn, " is not null ", " is not null "));
 //print_r(getDummyBudget(""));
 	
