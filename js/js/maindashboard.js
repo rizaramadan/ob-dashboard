@@ -545,9 +545,6 @@
 
 
 			function refreshBudgetCost() {
-
-               // $.getJSON("http://localhost/ob/BudgetCost.php?callback=?",function(result){
-
                     $('#bottom-right').treegrid({
                         url:"http://localhost/ob/BudgetCost.php?callback=?",
                         idField:'id',
@@ -568,7 +565,7 @@
                             $(fields.join(', ')).formatCurrency({region: region});
                         },
                         columns:[[
-                            {field:'NAME',title:'BUDGET/PROJECT/PHASE/TASK',width:470},
+                            {field:'NAME',title:'BUDGET > PROJECT > PHASE > TASK',width:470},
                             {field:'TOTAL',title:'TOTAL',width:100},
                             {field:'BALANCE',title:'BALANCE',width:100},
                             {field:'Tahun_2010',title: '2010',width:100},
@@ -579,10 +576,6 @@
                             {field:'Tahun_2015',title: '2015',width:100}
                         ]]
                     });
-                    
-                    
-
-                // });
             }
 
 			function refreshBudgetCashflow() {
@@ -617,15 +610,16 @@
 			
 			function refreshBudgetComparison() {
 
+                currency = $("#currency").val();
 				rows_bottom.length = 0;
                  $('#bottom-right2').treegrid({
-                        url:"http://localhost/ob/BudgetComparison.php?callback2=?&budget1="+budgetBottomRight1+"&budget2="+budgetBottomRight2+"&project="+globalproject_id,
+                        url:"http://localhost/ob/BudgetComparison.php?callback2=?&budget1="+budgetBottomRight1+"&budget2="+budgetBottomRight2+"&project="+globalproject_id+"&currency="+currency,
                         idField:'id',
                         treeField:'name',
                         columns:[[
-                            {field:'name',title:'BUDGET/PROJECT/PHASE/TASK',width:470},
-                            {field:'budget_1',title:'BUDGET 1',width:100},
-                            {field:'budget_2',title:'BUDGET 2',width:100}
+                            {field:'name',title:'BUDGET > PROJECT > GROUP > PHASE >TASK',width:800},
+                            {field:'budget_1',title:'BUDGET 1',width:200},
+                            {field:'budget_2',title:'BUDGET 2',width:200}
                         ]]
                     });
 
@@ -649,13 +643,13 @@
                             //$('#showresults').slideDown('slow')
                         }
                     });*/
-				$.ajax({
+				/*$.ajax({
 					url: "http://localhost/ob/BudgetComparison.php",
 					data: {
 						budget1: budgetBottomRight1,
 						budget2: budgetBottomRight2,
 						project: globalproject_id,
-                                                currency: $("#currency").val()
+                        currency: $("#currency").val()
 					},
 					type: "GET",
 					dataType: "html",
@@ -668,7 +662,7 @@
 					complete: function (xhr, status) {
 						//$('#showresults').slideDown('slow')
 					}
-				});
+				});*/
 
 
 			}

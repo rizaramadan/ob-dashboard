@@ -18,6 +18,7 @@
 	
 	
 	$result = pg_exec($dbconn,  getBudgetVsCostQuery($project_id, $budget_id));
+
   	$numrows = pg_numrows($result); 
 	
 	/* real data

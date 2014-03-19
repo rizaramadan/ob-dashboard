@@ -27,8 +27,16 @@ $table = "<table border='1' cellpadding='10' cellspacing='0' style='width:100%' 
 
 while ($row = pg_fetch_array($result)) {
 	$amount = round($row['amount'], 2);
-	$totalPerGross = round($amount / $row['gross'], 2);
-	$totalPerNet = round($amount / intval($row['nett']), 2);
+    if($row['gross']<=0 && $row['nett']<=0){
+        //$row['gross']=1;
+        //$row['nett']=1;
+        $totalPerGross = round($amount, 2);
+        $totalPerNet = round($amount, 2);
+    }else{
+        $totalPerGross = round($amount / $row['gross'], 2);
+        $totalPerNet = round($amount / intval($row['nett']), 2);
+    }
+
 	$table .= "<tr>"
 			. "	<td>{$row['budgetname']}</td>"
 			. "	<td>{$amount}</td>"
