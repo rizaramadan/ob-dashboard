@@ -127,7 +127,10 @@
                       enabled: false
                   },
                 title: {
-                    text: 'Grafik Budget, Progress & Forecast Payment'
+                    text: 'Grafik Budget, Progress & Forecast Payment',
+                    style:{
+                        fontSize: '24px'
+                    }
                 },
                 subtitle: {
                     text: 'Berisikan perbandingan data budget, progress proyek dan forecast payment'
@@ -236,7 +239,10 @@
                       enabled: false
                   },
                 title: {
-                    text: 'Grafik Budget dan Aliran Dana'
+                    text: 'Grafik Budget & Aliran Dana',
+                    style:{
+                        fontSize: '24px'
+                    }
                 },
                 subtitle: {
                     text: 'menampilkan data aliran budget dan aliran dana '
