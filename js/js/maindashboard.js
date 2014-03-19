@@ -375,6 +375,7 @@
             $("#currency").change(function(){
                 refreshBudgetCashflow();
                 refreshBudgetComparison();
+                refreshBudgetCost();
             });
             /* select */
             
@@ -562,7 +563,7 @@
                                 ".datagrid-body .datagrid-cell.datagrid-cell-c2-Tahun_2014", 
                                 ".datagrid-body .datagrid-cell.datagrid-cell-c2-Tahun_2015"
                             ];
-                            var region = $("#currency").val() == "idr" ? "id-ID": null;
+                            var region = $("#currency").val() == "idr" ? "id-ID": "en-US";
 
                             $(fields.join(', ')).formatCurrency({region: region});
                         },
