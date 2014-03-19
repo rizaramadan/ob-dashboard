@@ -367,6 +367,7 @@
             
             $("#currency").change(function(){
                 refreshBudgetCashflow();
+                refreshBudgetComparison();
             });
             /* select */
             
@@ -597,7 +598,8 @@
 					data: {
 						budget1: budgetBottomRight1,
 						budget2: budgetBottomRight2,
-						project: globalproject_id
+						project: globalproject_id,
+                                                currency: $("#currency").val()
 					},
 					type: "GET",
 					dataType: "html",
@@ -615,13 +617,13 @@
 			
 			function refreshBudgetGrossNett() {
 
-				$.getJSON("http://localhost/ob/BudgetGrossNett.php?callback=?",function(result) {    
-					var table = '<table border="1" cellpadding="10" cellspacing="0" style="width:100%" class="budgetcost">';
-					table+= '<tr><th>Name</th><th>Budget</th><th>Gross Floor Area</th><th>Budget per Gross</th><th>Rent Floor Area</th><th>Budget per Nett</th></tr>';
-					table+='<tr><td>'+result.name+'</td><td>'+result.total+'</td><td>'+result.gross+'</td><td>'+result.totalPerGross+'</td><td>'+result.nett+'</td><td>'+result.totalPerNett+'</td></tr>';
-					table+='</table>';
+				$.get("http://localhost/ob/BudgetGrossNett.php",function(result) {    
+//					var table = '<table border="1" cellpadding="10" cellspacing="0" style="width:100%" class="budgetcost">';
+//					table+= '<tr><th>Name</th><th>Budget</th><th>Gross Floor Area</th><th>Budget per Gross</th><th>Rent Floor Area</th><th>Budget per Nett</th></tr>';
+//					table+='<tr><td>'+result.name+'</td><td>'+result.total+'</td><td>'+result.gross+'</td><td>'+result.totalPerGross+'</td><td>'+result.nett+'</td><td>'+result.totalPerNett+'</td></tr>';
+//					table+='</table>';
 					
-					$('#bottom-most').html(table);
+					$('#bottom-most').html(result);
 				});
 			}
 			

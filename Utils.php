@@ -34,3 +34,14 @@ function getBudgetValue($dbconn, $budgetId, $projectId, $phaseId, $taskId) {
 	if(!isset($row['amount'])) { return '0';}
 	return $row['amount'];
 }
+
+
+function getBudgetValueUSD($dbconn, $budgetId, $projectId, $phaseId, $taskId) {
+	$query = "select c_currency_convert(amount, '303','100',c_period.startdate, null, '*') as amount_usd from c_budgetline cbl
+				where  c_budget_id  $budgetId and c_project_id = '$projectId' and em_bgt_c_projectphase_id = '$phaseId' and em_bgt_c_projecttask_id = '$taskId' ";
+	$result = pg_exec($dbconn,  $query);
+	$row = pg_fetch_array($result);
+	if(!isset($row)) { return '0';}
+	if(!isset($row['amount'])) { return '0';}
+	return $row['amount'];
+}

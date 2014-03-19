@@ -39,6 +39,7 @@
 			Query untuk mengisi value dari budget plan
 		*/
 	$result_budgetplan = pg_exec($dbconn, getBudgetQuery($project_id, $budget_id, $year));
+	var_dump(pg_fetch_all($result_budgetplan));exit;
 
 
 	$result_paymentplan = pg_exec($dbconn, getPaymentPlan($project_id, $year));

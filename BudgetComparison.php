@@ -27,6 +27,9 @@
 	
 	$project_id = getCleanParam($_GET,'project');
 	$budget_id = getCleanParam($_GET,'budget');
+	
+	$currency = $_GET['currency'];
+	
 
 	
 	$result = pg_exec($dbconn,  getBudgetVsCostQuery($project_id, $budget_id));
@@ -80,8 +83,18 @@
 		
 		$table.="<td>".$rawData[$i]['task_name']."</td>";
 		
-		$firstBudget = getBudgetValue($dbconn, $budget1, $rawData[$i]['c_project_id'], $rawData[$i]['c_projectphase_id'], $rawData[$i]['project_task']);
-		$secondBudget = getBudgetValue($dbconn, $budget2, $rawData[$i]['c_project_id'], $rawData[$i]['c_projectphase_id'], $rawData[$i]['project_task']);
+		switch ($currency) {
+			case 'usd':
+					$firstBudget = getBudgetValueUSD($dbconn, $budget1, $rawData[$i]['c_project_id'], $rawData[$i]['c_projectphase_id'], $rawData[$i]['project_task']);
+							$secondBudget = getBudgetValueUSD($dbconn, $budget2, $rawData[$i]['c_project_id'], $rawData[$i]['c_projectphase_id'], $rawData[$i]['project_task']);
+				break;
+			default:
+				$firstBudget = getBudgetValue($dbconn, $budget1, $rawData[$i]['c_project_id'], $rawData[$i]['c_projectphase_id'], $rawData[$i]['project_task']);
+							$secondBudget = getBudgetValue($dbconn, $budget2, $rawData[$i]['c_project_id'], $rawData[$i]['c_projectphase_id'], $rawData[$i]['project_task']);
+				break;
+		}
+		
+		
 		
 		$table.="<td>".$firstBudget."</td>";
 		$table.="<td>".$secondBudget."</td>";
