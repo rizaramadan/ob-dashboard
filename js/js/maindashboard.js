@@ -374,6 +374,8 @@
             
             $("#currency").change(function(){
                 refreshBudgetCashflow();
+                refreshBudgetComparison();
+                refreshBudgetCost();
             });
             /* select */
             
@@ -550,6 +552,21 @@
                         url:"http://localhost/ob/BudgetCost.php?callback=?",
                         idField:'id',
                         treeField:'NAME',
+                        onLoadSuccess: function(row, data) {
+                            var fields = [
+                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-TOTAL", 
+                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-BALANCE", 
+                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-Tahun_2010", 
+                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-Tahun_2011", 
+                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-Tahun_2012", 
+                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-Tahun_2013", 
+                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-Tahun_2014", 
+                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-Tahun_2015"
+                            ];
+                            var region = $("#currency").val() == "idr" ? "id-ID": "en-US";
+
+                            $(fields.join(', ')).formatCurrency({region: region});
+                        },
                         columns:[[
                             {field:'NAME',title:'BUDGET/PROJECT/PHASE/TASK',width:470},
                             {field:'TOTAL',title:'TOTAL',width:100},
@@ -562,6 +579,8 @@
                             {field:'Tahun_2015',title: '2015',width:100}
                         ]]
                     });
+                    
+                    
 
                 // });
             }
@@ -630,19 +649,39 @@
                             //$('#showresults').slideDown('slow')
                         }
                     });*/
+				$.ajax({
+					url: "http://localhost/ob/BudgetComparison.php",
+					data: {
+						budget1: budgetBottomRight1,
+						budget2: budgetBottomRight2,
+						project: globalproject_id,
+                                                currency: $("#currency").val()
+					},
+					type: "GET",
+					dataType: "html",
+					success: function (data) {
+						$('#bottom-right2').html(data);
+					},
+					error: function (xhr, status) {
+						alert("Sorry, there was a problem!");
+					},
+					complete: function (xhr, status) {
+						//$('#showresults').slideDown('slow')
+					}
+				});
 
 
 			}
 			
 			function refreshBudgetGrossNett() {
 
-				$.getJSON("http://localhost/ob/BudgetGrossNett.php?callback=?",function(result) {    
-					var table = '<table border="1" cellpadding="10" cellspacing="0" style="width:100%" class="budgetcost">';
-					table+= '<tr><th>Name</th><th>Budget</th><th>Gross Floor Area</th><th>Budget per Gross</th><th>Rent Floor Area</th><th>Budget per Nett</th></tr>';
-					table+='<tr><td>'+result.name+'</td><td>'+result.total+'</td><td>'+result.gross+'</td><td>'+result.totalPerGross+'</td><td>'+result.nett+'</td><td>'+result.totalPerNett+'</td></tr>';
-					table+='</table>';
+				$.get("http://localhost/ob/BudgetGrossNett.php",function(result) {    
+//					var table = '<table border="1" cellpadding="10" cellspacing="0" style="width:100%" class="budgetcost">';
+//					table+= '<tr><th>Name</th><th>Budget</th><th>Gross Floor Area</th><th>Budget per Gross</th><th>Rent Floor Area</th><th>Budget per Nett</th></tr>';
+//					table+='<tr><td>'+result.name+'</td><td>'+result.total+'</td><td>'+result.gross+'</td><td>'+result.totalPerGross+'</td><td>'+result.nett+'</td><td>'+result.totalPerNett+'</td></tr>';
+//					table+='</table>';
 					
-					$('#bottom-most').html(table);
+					$('#bottom-most').html(result);
 				});
 			}
 			
