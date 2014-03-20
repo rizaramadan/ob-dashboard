@@ -175,8 +175,10 @@ function getBudgetComparison($budget1,$budget2,$project_id){
 
 function getBudgetBuildingQuery() {
 	$retval = "select b.name as budgetname, (select sum(amount) from c_budgetline where c_budget_id = b.c_budget_id)/1000000 as amount, 
+		(select sum(amount/em_bgt_kurs) from c_budgetline where c_budget_id = b.c_budget_id)/1000000 as amount_usd,
 		b.em_bgt_constructionarea as gross,
-		b.em_bgt_rentarea as nett
+		b.em_bgt_rentarea as nett,
+		b.em_bgt_kurs as kurs
 		from c_budget b
 		group by b.name, b.c_budget_id, b.em_bgt_constructionarea, b.em_bgt_rentarea;";
 	return $retval;

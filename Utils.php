@@ -1,8 +1,8 @@
 <?php
 
 function getCleanParam($arr, $key) {
-	if(isset($arr[$key]) && strlen($arr[$key]) > 2 && $arr[$key] != 'undefined') {
-		return " = '".$arr[$key]."' ";
+	if (isset($arr[$key]) && strlen($arr[$key]) > 2 && $arr[$key] != 'undefined') {
+		return " = '" . $arr[$key] . "' ";
 	}
 	return " is not null ";
 }
@@ -18,30 +18,41 @@ function getActualYearAmount($dbconn, $budgetId, $projectId, $phaseId, $taskId, 
 		inner join c_budget cb on cbl.c_budget_id = cb.c_budget_id
 		 inner join c_project cp on cp.c_project_id = pp.c_project_id
 	where cbl.c_budget_id = '$budgetId' and pp.c_project_id = '$projectId' and pp.c_projectphase_id = '$phaseId' and pt.c_projecttask_id = '$taskId' and date_part('year', inv.dateinvoiced ) = '$year';";
-	$result = pg_exec($dbconn,  $query);
+	$result = pg_exec($dbconn, $query);
 	$row = pg_fetch_array($result);
-	if(!isset($row)) { return '0';}
-	if(!isset($row['amount'])) { return '0';}
+	if (!isset($row)) {
+		return '0';
+	}
+	if (!isset($row['amount'])) {
+		return '0';
+	}
 	return $row['amount'];
 }
 
 function getBudgetValue($dbconn, $budgetId, $projectId, $phaseId, $taskId) {
 	$query = "select amount from c_budgetline cbl
 				where  c_budget_id  $budgetId and c_project_id = '$projectId' and em_bgt_c_projectphase_id = '$phaseId' and em_bgt_c_projecttask_id = '$taskId' ";
-	$result = pg_exec($dbconn,  $query);
+	$result = pg_exec($dbconn, $query);
 	$row = pg_fetch_array($result);
-	if(!isset($row)) { return '0';}
-	if(!isset($row['amount'])) { return '0';}
+	if (!isset($row)) {
+		return '0';
+	}
+	if (!isset($row['amount'])) {
+		return '0';
+	}
 	return $row['amount'];
 }
-
 
 function getBudgetValueUSD($dbconn, $budgetId, $projectId, $phaseId, $taskId) {
 	$query = "select c_currency_convert(amount, '303','100',c_period.startdate, null, '*') as amount_usd from c_budgetline cbl
 				where  c_budget_id  $budgetId and c_project_id = '$projectId' and em_bgt_c_projectphase_id = '$phaseId' and em_bgt_c_projecttask_id = '$taskId' ";
-	$result = pg_exec($dbconn,  $query);
+	$result = pg_exec($dbconn, $query);
 	$row = pg_fetch_array($result);
-	if(!isset($row)) { return '0';}
-	if(!isset($row['amount'])) { return '0';}
+	if (!isset($row)) {
+		return '0';
+	}
+	if (!isset($row['amount'])) {
+		return '0';
+	}
 	return $row['amount'];
 }
