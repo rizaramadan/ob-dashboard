@@ -34,11 +34,12 @@
                 <label for="globalyear">Year : </label>
                 <select id='globalyear'></select>
                 <label for="currency">Currency:</label>
-                <select name="" id="currency">
-                <option value="idr">IDR</option>
-                <option value="usd">USD</option>
-            </select>
-            <input class="std_btn" type='button' value='Apply' id='btnGlobalYear' /></span>
+                <select id="currency" 
+                        onchange='$("#tbl-perbandingan").datagrid("reload", {currency: this.value})'>
+                    <option value="idr">IDR</option>
+                    <option value="usd">USD</option>
+                </select>
+                <input class="std_btn" type='button' value='Apply' id='btnGlobalYear' /></span>
         </div><br/><br/><br/>
 
         <div id="top">
@@ -129,25 +130,38 @@
                     <h2 style="margin-top: 40px;">Budget Dengan Construction Area & Rent Area</h2>
                     <span>Menunjukkan Perbandingan Budget dengan Area</span>
                 </center>
-
-
                 <br />
-                <br />
-                <div id="bottom-most" style='width:100%;'></div>
+                <table class="easyui-datagrid" id="tbl-perbandingan" style="width:760px; margin: 0 auto;"
+                       data-options="url:'http://localhost/ob/BudgetGrossNett.php', fitColumns:true, singleSelect:true">
+                    <thead>
+                        <tr>
+                            <th data-options="field:'name', width: '100'">Budget Name</th>
+                            <th data-options="field:'total', width: '100', align:'right'">
+                                Budget
+                            </th>
+                            <th data-options="field:'gross', width: '100', align:'right'">Gross Floor Area</th>
+                            <th data-options="field:'totalPerGross', width: '100', align:'right'">Budget Per Gross</th>
+                            <th data-options="field:'nett', width: '100', align:'right'">Rent Floor Area</th>
+                            <th data-options="field:'totalPerNett',width: '100', align:'right'">Budget Per Nett</th>
+                        </tr>
+                    </thead>
+                </table>
                 <br />
 
             </div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
 
         </div>
 
         <script src="../js/js/maindashboard.js"></script>
         <script>
+                            $(function() {
+                                $gridPerbandingan = $("#tbl-perbandingan");
+                                $("#currency").change(function() {
+                                    $gridPerbandingan.datagrid('reload', {currency: $(this).val()});
+                                });
 
+
+                            });
         </script>
     </body>
 </html>
