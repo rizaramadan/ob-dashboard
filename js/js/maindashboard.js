@@ -649,27 +649,6 @@
                             //$('#showresults').slideDown('slow')
                         }
                     });*/
-				/*$.ajax({
-					url: "http://localhost/ob/BudgetComparison.php",
-					data: {
-						budget1: budgetBottomRight1,
-						budget2: budgetBottomRight2,
-						project: globalproject_id,
-                        currency: $("#currency").val()
-					},
-					type: "GET",
-					dataType: "html",
-					success: function (data) {
-						$('#bottom-right2').html(data);
-					},
-					error: function (xhr, status) {
-						alert("Sorry, there was a problem!");
-					},
-					complete: function (xhr, status) {
-						//$('#showresults').slideDown('slow')
-					}
-				});*/
-
 
 			}
 			

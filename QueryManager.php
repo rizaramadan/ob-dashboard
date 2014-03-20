@@ -290,11 +290,6 @@ function getRealPaymentPlan($dbconn, $project_id, $currency = NULL) {
 	return $data;
 }
 
-
-
-
-//$dbconn = pg_connect("host=localhost dbname=openbravo user=tad password=tad") or die('Could not connect: ' . pg_last_error());
 $dbconn = pg_connect("host=localhost dbname=openbravo user=postgres password=postgres") or die('Could not connect: ' . pg_last_error());
-//print_r(getRealBudget($dbconn, " is not null ", " is not null "));
-//print_r(getDummyBudget(""));
+
 	

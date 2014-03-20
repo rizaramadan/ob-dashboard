@@ -74,7 +74,7 @@ table.budgetcost td.alt {
     position: fixed;
     width: 100%;
     z-index: 1000;
-    opacity: 0.95;       
+    opacity: 0.95;
 }
 
 div#navbar:hover{
