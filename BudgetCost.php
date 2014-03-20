@@ -2920,6 +2920,6 @@
 	// close connection
 	pg_close($dbconn);
 	
-	echo $_GET['callback'] . '(' . json_encode($data,JSON_PRETTY_PRINT) . ')';
+	echo $_GET['callback'] . '(' . json_encode($data) . ')';
     //echo $_GET['callback'] . '<pre>(' . json_encode($data,JSON_PRETTY_PRINT) . ')</pre>';
 ?>
