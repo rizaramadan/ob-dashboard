@@ -164,7 +164,7 @@ $dum_budget->children = $dum_projects;
 $dummy_budgets[] = $dum_budget;
 
 //echo $_GET['callback2'] . '<pre>(' . json_encode($dummy_budgets,JSON_PRETTY_PRINT) . ')</pre>';
-echo $_GET['callback2'] . '(' . json_encode($dummy_budgets,JSON_PRETTY_PRINT) . ')';
+echo $_GET['callback2'] . '(' . json_encode($dummy_budgets) . ')';
 
 // free memory
 pg_free_result($result);
