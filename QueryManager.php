@@ -132,10 +132,11 @@ function getBudgetVsCostQuery($project_id, $budget_id) {
 			cp.name as group_name, pp.em_pjt_phasegroup_id, 
 			pp.name as phase_name, pp.c_projectphase_id,	
 			pt.name as task_name, pt.c_projecttask_id as project_task, 
-			(invl.priceactual*invl.qtyinvoiced)/1000000 as amount,c_currency_convert(invl.priceactual*invl.qtyinvoiced, '303','100',inv.dateinvoiced, null, '*') as amount_usd, 
+			(invl.priceactual*invl.qtyinvoiced)/1000000 as amount,
+			c_currency_convert(invl.priceactual*invl.qtyinvoiced, '303','100',inv.dateinvoiced, null, '*') as amount_usd, 
 			(cbl.amount/1000000) as amountbudget, date_part('year', inv.dateinvoiced ) as actualyear
 			from c_projecttask pt 
-			left outer join c_invoiceline invl on pt.m_product_id = (case invl.bom_parent_id when null then invl.m_product_id else invl.bom_parent_id end)
+			left outer join c_invoiceline invl on pt.m_product_id = (case when invl.bom_parent_id is null then invl.m_product_id else invl.bom_parent_id end)
 			left outer join c_invoice inv on invl.c_invoice_id = inv.c_invoice_id
 			inner join c_projectphase pp on pt.c_projectphase_id = pp.c_projectphase_id
 			inner join c_budgetline cbl on cbl.em_bgt_c_projecttask_id = pt.c_projecttask_id
@@ -143,7 +144,6 @@ function getBudgetVsCostQuery($project_id, $budget_id) {
 			 inner join c_project cp on cp.c_project_id = pp.c_project_id
 			where pp.c_project_id ".$project_id." and cb.c_budget_id ".$budget_id." and cb.ad_client_id = '142F2095A9FE48ECB13CD19A06A0BD9C' order by budget_name, project_name, group_name desc, phase_name, task_name) as foo
 			group by budget_name, c_budget_id, project_name, c_project_id, group_name, em_pjt_phasegroup_id, phase_name, c_projectphase_id, task_name, project_task, amount, amount_usd";		
-	//print_r($retval); exit;
     return $retval;
 }
 
