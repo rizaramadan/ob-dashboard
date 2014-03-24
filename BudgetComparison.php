@@ -19,7 +19,6 @@
 	$budget_id = getCleanParam($_GET,'budget');
 	
 	$result = pg_exec($dbconn,  getBudgetComparison($budget1,$budget2,$project_id));
-	var_dump(pg_fetch_all($result));exit;
 
   	$numrows = pg_numrows($result); 
 
