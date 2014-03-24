@@ -1,4 +1,5 @@
 <?php
+
 /**
  * File yang berfungsi untuk menyediakan data bagi budget vs cost table
  *
@@ -12,10 +13,11 @@ include "Utils.php";
 
 $project_id = getCleanParam($_GET, 'project');
 $budget_id = getCleanParam($_GET, 'budget');
+$currency = isset($_GET['currency']) ? $_GET['currency'] : "idr";
 $dummy = true;
 
+$result = pg_exec($dbconn, getBudgetVsCostQuery($project_id, $budget_id, $currency));
 
-$result = pg_exec($dbconn, getBudgetVsCostQuery($project_id, $budget_id));
 
 $data = array();
 while ($row = pg_fetch_assoc($result)) {
@@ -37,7 +39,7 @@ foreach ($data as $budget_name => $projects) {
 	foreach ($projects as $project_name => $phases) {
 		$project = &$budget["children"][$j];
 		$project = array(
-			"id" => strval($i) . strval($j) ,
+			"id" => strval($i) . strval($j),
 			"NAME" => $project_name,
 			"BALANCE" => 0
 		);
@@ -52,7 +54,7 @@ foreach ($data as $budget_name => $projects) {
 			$l = 0;
 			foreach ($tasks as $task_name => $task) {
 				$phase["children"][$l] = array(
-					"id" => strval($i) . strval($j) . strval($k). strval($l),
+					"id" => strval($i) . strval($j) . strval($k) . strval($l),
 					"NAME" => $task_name,
 					"TOTAL" => $task['total'],
 					"Tahun_2010" => $task['thn2010'],
@@ -61,35 +63,39 @@ foreach ($data as $budget_name => $projects) {
 					"Tahun_2013" => $task['thn2013'],
 					"Tahun_2014" => $task['thn2014'],
 					"Tahun_2015" => $task['thn2015'],
-					"BALANCE" => 0
+					"BALANCE" => $task['balance']
 				);
 				$budget["TOTAL"] += $task['total'];
 				$project["TOTAL"] += $task['total'];
 				$phase["TOTAL"] += $task['total'];
-				
+
 				$budget["Tahun_2010"] += $task['thn2010'];
 				$project["Tahun_2010"] += $task['thn2010'];
 				$phase["Tahun_2010"] += $task['thn2010'];
-				
+
 				$budget["Tahun_2011"] += $task['thn2011'];
 				$project["Tahun_2011"] += $task['thn2011'];
 				$phase["Tahun_2011"] += $task['thn2011'];
-				
+
 				$budget["Tahun_2012"] += $task['thn2012'];
 				$project["Tahun_2012"] += $task['thn2012'];
 				$phase["Tahun_2012"] += $task['thn2012'];
-				
+
 				$budget["Tahun_2013"] += $task['thn2013'];
 				$project["Tahun_2013"] += $task['thn2013'];
 				$phase["Tahun_2013"] += $task['thn2013'];
-				
+
 				$budget["Tahun_2014"] += $task['thn2014'];
 				$project["Tahun_2014"] += $task['thn2014'];
 				$phase["Tahun_2014"] += $task['thn2014'];
-				
+
 				$budget["Tahun_2015"] += $task['thn2015'];
 				$project["Tahun_2015"] += $task['thn2015'];
 				$phase["Tahun_2015"] += $task['thn2015'];
+				
+				$budget["BALANCE"] += $task['balance'];
+				$project["BALANCE"] += $task['balance'];
+				$phase["BALANCE"] += $task['balance'];
 				$l++;
 			}
 			$k++;
@@ -98,7 +104,9 @@ foreach ($data as $budget_name => $projects) {
 	}
 	$i++;
 }
-echo $_GET['callback'] . '(' . json_encode($jsonArr) . ')';exit;
+//echo json_encode($jsonArr);
+echo $_GET['callback'] . '(' . json_encode($jsonArr) . ')';
+exit;
 
 $numrows = pg_numrows($result);
 
@@ -2995,8 +3003,10 @@ if ($dummy) {
 	
 }
 
-var_dump($jsonArr);exit;
-echo json_encode($jsonArr);exit;
+var_dump($jsonArr);
+exit;
+echo json_encode($jsonArr);
+exit;
 
 //	echo json_encode($data);exit;
 // free memory

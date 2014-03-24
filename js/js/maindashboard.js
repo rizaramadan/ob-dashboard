@@ -47,7 +47,6 @@ $.getJSON('http://localhost/ob/BudgetProgressPaymentplan.php?callback=?&year=' +
     ;
 });
 
-
 $.getJSON("http://localhost/ob/BudgetCashflow.php?callback=?&currency=&year=" + globalyear, function(result) {
     for (var i in result['totalbudget']) {
         topright_totalbudget.push(result['totalbudget'][i]);
@@ -566,8 +565,9 @@ function refreshBudgetProgressPaymentplan() {
 
 
 function refreshBudgetCost() {
+    var currency = $("#currency").val();
     $('#bottom-right').treegrid({
-        url: "http://localhost/ob/BudgetCost.php?callback=?",
+        url: "http://localhost/ob/BudgetCost.php?callback=?&currency=" + currency,
         idField: 'id',
         treeField: 'NAME',
 //                        onLoadSuccess: function(row, data) {
@@ -607,7 +607,7 @@ function refreshBudgetCost() {
 }
 
 function formatCurrency(val, row, index) {
-    var region = $("#currency").val() == "idr" ? "id-ID": "en-US";
+    var region = $("#currency").val() == "idr" ? "id-ID" : "en-US";
     return $("<div>").append($("<div>", {text: val}).formatCurrency({region: region})).html();
 }
 
