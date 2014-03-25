@@ -13,7 +13,7 @@ include "Utils.php";
 
 $project_id = getCleanParam($_GET, 'project');
 $budget_id = getCleanParam($_GET, 'budget');
-$currency = isset($_GET['currency']) ? $_GET['currency'] : "idr";
+$currency = isset($_POST['currency']) ? $_POST['currency'] : "idr";
 $dummy = true;
 
 $result = pg_exec($dbconn, getBudgetVsCostQuery($project_id, $budget_id, $currency));
@@ -104,8 +104,8 @@ foreach ($data as $budget_name => $projects) {
 	}
 	$i++;
 }
-//echo json_encode($jsonArr);
-echo $_GET['callback'] . '(' . json_encode($jsonArr) . ')';
+echo json_encode($jsonArr);
+//echo $_GET['callback'] . '(' . json_encode($jsonArr) . ')';
 exit;
 
 $numrows = pg_numrows($result);

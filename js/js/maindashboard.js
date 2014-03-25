@@ -105,7 +105,7 @@ var treegrid;
 var data;
 
 
-refreshBudgetCost();
+//refreshBudgetCost();
 /* retrieve data */
 
 var colorTotalPaymentplan = "blue";
@@ -356,7 +356,7 @@ function toprightGraph(currency) {
 $(function() {
     topleft();
     toprightGraph("");
-    refreshBudgetCost();
+//    refreshBudgetCost();
 //    refreshBudgetGrossNett();
     refreshBudgetComparison();
 });
@@ -388,7 +388,7 @@ $("#globalyear").change(function() {
 $("#currency").change(function() {
     refreshBudgetCashflow();
     refreshBudgetComparison();
-    refreshBudgetCost();
+//    refreshBudgetCost();
 });
 /* select */
 
@@ -483,7 +483,7 @@ $("#btnGlobalProject").click(function() {
     budgetTopLeft;
     refreshBudgetProgressPaymentplan();
     budgetMiddleLeft;
-    refreshBudgetCost();
+//    refreshBudgetCost();
     budgetTopRight;
     refreshBudgetCashflow();
     budgetBottomRight1;
@@ -505,7 +505,7 @@ $("#btnGlobalYear").click(function() {
     budgetTopLeft;
     refreshBudgetProgressPaymentplan();
     budgetMiddleLeft;
-    refreshBudgetCost();
+//    refreshBudgetCost();
     budgetTopRight;
     refreshBudgetCashflow();
     budgetBottomRight1;
@@ -520,7 +520,7 @@ $("#btnTopLeftBudget").click(function() {
 });
 
 $("#btnMiddleLeft").click(function() {
-    refreshBudgetCost();
+//    refreshBudgetCost();
 });
 
 $("#btnTopRight").click(function() {
@@ -564,47 +564,47 @@ function refreshBudgetProgressPaymentplan() {
 }
 
 
-function refreshBudgetCost() {
-    var currency = $("#currency").val();
-    $('#bottom-right').treegrid({
-        url: "http://localhost/ob/BudgetCost.php?callback=?&currency=" + currency,
-        idField: 'id',
-        treeField: 'NAME',
-//                        onLoadSuccess: function(row, data) {
-//                            var fields = [
-//                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-TOTAL", 
-//                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-BALANCE", 
-//                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-Tahun_2010", 
-//                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-Tahun_2011", 
-//                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-Tahun_2012", 
-//                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-Tahun_2013", 
-//                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-Tahun_2014", 
-//                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-Tahun_2015"
-//                            ];
-//                            var region = $("#currency").val() == "idr" ? "id-ID": "en-US";
-//
-//                            $(fields.join(', ')).formatCurrency({region: region});
-//                        },
-//                        loadFilter: function(data, parentId) {
-//                            console.log(data);
-//                            return data;
-//                        },
-        columns: [[
-                {field: 'NAME', title: 'BUDGET > PROJECT > PHASE > TASK', width: 470},
-                {
-                    field: 'TOTAL', title: 'TOTAL', width: 100,
-                    formatter: formatCurrency
-                },
-                {field: 'BALANCE', title: 'BALANCE', width: 100, formatter: formatCurrency},
-                {field: 'Tahun_2010', title: '2010', width: 100, formatter: formatCurrency},
-                {field: 'Tahun_2011', title: '2011', width: 100, formatter: formatCurrency},
-                {field: 'Tahun_2012', title: '2012', width: 100, formatter: formatCurrency},
-                {field: 'Tahun_2013', title: '2013', width: 100, formatter: formatCurrency},
-                {field: 'Tahun_2014', title: '2014', width: 100, formatter: formatCurrency},
-                {field: 'Tahun_2015', title: '2015', width: 100, formatter: formatCurrency}
-            ]]
-    });
-}
+//function refreshBudgetCost() {
+//    var currency = $("#currency").val();
+//    $('#bottom-right').treegrid({
+//        url: "http://localhost/ob/BudgetCost.php?callback=?&currency=" + currency,
+//        idField: 'id',
+//        treeField: 'NAME',
+////                        onLoadSuccess: function(row, data) {
+////                            var fields = [
+////                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-TOTAL", 
+////                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-BALANCE", 
+////                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-Tahun_2010", 
+////                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-Tahun_2011", 
+////                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-Tahun_2012", 
+////                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-Tahun_2013", 
+////                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-Tahun_2014", 
+////                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-Tahun_2015"
+////                            ];
+////                            var region = $("#currency").val() == "idr" ? "id-ID": "en-US";
+////
+////                            $(fields.join(', ')).formatCurrency({region: region});
+////                        },
+////                        loadFilter: function(data, parentId) {
+////                            console.log(data);
+////                            return data;
+////                        },
+//        columns: [[
+//                {field: 'NAME', title: 'BUDGET > PROJECT > PHASE > TASK', width: 470},
+//                {
+//                    field: 'TOTAL', title: 'TOTAL', width: 100,
+//                    formatter: formatCurrency
+//                },
+//                {field: 'BALANCE', title: 'BALANCE', width: 100, formatter: formatCurrency},
+//                {field: 'Tahun_2010', title: '2010', width: 100, formatter: formatCurrency},
+//                {field: 'Tahun_2011', title: '2011', width: 100, formatter: formatCurrency},
+//                {field: 'Tahun_2012', title: '2012', width: 100, formatter: formatCurrency},
+//                {field: 'Tahun_2013', title: '2013', width: 100, formatter: formatCurrency},
+//                {field: 'Tahun_2014', title: '2014', width: 100, formatter: formatCurrency},
+//                {field: 'Tahun_2015', title: '2015', width: 100, formatter: formatCurrency}
+//            ]]
+//    });
+//}
 
 function formatCurrency(val, row, index) {
     var region = $("#currency").val() == "idr" ? "id-ID" : "en-US";

@@ -88,9 +88,72 @@
                 <input class="std_btn" type='button' value='Apply' id='btnMiddleLeft' />
                 <br />
                 <br />
-                <div id="bottom-right" style="width:1300px;height:300px">
-                </div>
-
+                <table id="tbl-budgetCost" class="easyui-treegrid" 
+                       style='height: 300px;'
+                       data-options="
+                       url      :'http://localhost/ob/BudgetCost.php',
+                       idField  :'id',
+                       treeField:'NAME'"
+                       >
+                    <thead>
+                        <tr>
+                            <th data-options="
+                                field   :'NAME',
+                                width   :470">
+                                BUDGET > PROJECT > PHASE > TASK
+                            </th>
+                            <th data-options="
+                                field   :   'TOTAL',
+                                width   :   100,
+                                align   :   'right',
+                                formatter: formatCurrency">
+                                Total
+                            </th>
+                            <th data-options="
+                                field:'BALANCE',
+                                width:80,
+                                formatter: formatCurrency">
+                                Balance
+                            </th>
+                            <th data-options="
+                                field: 'Tahun_2010', 
+                                width: 100,
+                                formatter: formatCurrency">
+                                2010
+                            </th>
+                            <th data-options="
+                                field: 'Tahun_2011', 
+                                width: 100,
+                                formatter: formatCurrency">
+                                2011
+                            </th>
+                            <th data-options="
+                                field: 'Tahun_2012', 
+                                width: 100,
+                                formatter: formatCurrency">
+                                2012
+                            </th>
+                            <th data-options="
+                                field: 'Tahun_2013', 
+                                width: 100,
+                                formatter: formatCurrency">
+                                2013
+                            </th>
+                            <th data-options="
+                                field: 'Tahun_2014', 
+                                width: 100,
+                                formatter: formatCurrency">
+                                2014
+                            </th>
+                            <th data-options="
+                                field: 'Tahun_2015', 
+                                width: 100,
+                                formatter: formatCurrency">
+                                2015
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
             </div>  
 
             <div id="bottom-right-header2" style='width:100%; float:left'>
@@ -156,8 +219,10 @@
         <script>
                             $(function() {
                                 $gridPerbandingan = $("#tbl-perbandingan");
+                                $treegridBudgetCost = $("#tbl-budgetCost");
                                 $("#currency").change(function() {
                                     $gridPerbandingan.datagrid('reload', {currency: $(this).val()});
+                                    $treegridBudgetCost.treegrid('reload', {currency: $(this).val()});
                                 });
 
 
