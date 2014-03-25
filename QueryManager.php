@@ -152,11 +152,15 @@ PGSQL;
 	return $query;
 }
 
-function getBudgetComparison($budget1, $budget2, $project_id) {
-	$retval = "select budget_name, c_budget_id, project_name, c_project_id, group_name, em_pjt_phasegroup_id, phase_name, c_projectphase_id, task_name, project_task, amount, amount_usd,
-			sum(case when c_budget_id " . $budget1 . " then amountbudget else 0 end) as budget1,
-			sum(case when c_budget_id " . $budget2 . " then amountbudget else 0 end) as budget2
-		from ( select cb.name as budget_name, cbl.c_budget_id, 
+function getBudgetComparison($budget1, $budget2, $project_id, $currency = "idr") {
+	$query = <<<PGSQL
+			SELECT	budget_name, c_budget_id, project_name, c_project_id, 
+					group_name, em_pjt_phasegroup_id, phase_name, 
+					c_projectphase_id, task_name, project_task, amount, 
+					amount_usd, 
+					sum(case when c_budget_id {$budget1} then amountbudget else 0 end) as budget1,
+					sum(case when c_budget_id {$budget2} then amountbudget else 0 end) as budget2
+		FROM ( select cb.name as budget_name, cbl.c_budget_id, 
 			cp.name as project_name,pp.c_project_id,	
 			pg.name as group_name, pp.em_pjt_phasegroup_id,
 			pp.name as phase_name, pp.c_projectphase_id,	
@@ -171,10 +175,11 @@ function getBudgetComparison($budget1, $budget2, $project_id) {
 			inner join c_budgetline cbl on cbl.em_bgt_c_projecttask_id = pt.c_projecttask_id
 			inner join c_budget cb on cbl.c_budget_id = cb.c_budget_id
 			 inner join c_project cp on cp.c_project_id = pp.c_project_id
-			where pp.c_project_id " . $project_id . " and cb.ad_client_id = '142F2095A9FE48ECB13CD19A06A0BD9C' order by budget_name, project_name, group_name desc, phase_name, task_name) as foo
-			group by budget_name, c_budget_id, project_name, c_project_id, group_name, em_pjt_phasegroup_id, phase_name, c_projectphase_id, task_name, project_task, amount, amount_usd";
-	//print_r($retval); exit;
-	return $retval;
+			where pp.c_project_id {$project_id} and cb.ad_client_id = '142F2095A9FE48ECB13CD19A06A0BD9C' order by budget_name, project_name, group_name desc, phase_name, task_name) as foo
+			group by budget_name, c_budget_id, project_name, c_project_id, group_name, em_pjt_phasegroup_id, phase_name, c_projectphase_id, task_name, project_task, amount, amount_usd
+PGSQL;
+			
+	return $query;
 }
 
 function getBudgetBuildingQuery() {

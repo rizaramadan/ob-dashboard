@@ -11,13 +11,11 @@ include "dbcon.php";
 include "QueryManager.php";
 include "Utils.php";
 
-$project_id = getCleanParam($_GET, 'project');
-$budget_id = getCleanParam($_GET, 'budget');
+$project_id = getCleanParam($_POST, 'project_id');
+$budget_id = getCleanParam($_POST, 'budget_id');
 $currency = isset($_POST['currency']) ? $_POST['currency'] : "idr";
-$dummy = true;
 
 $result = pg_exec($dbconn, getBudgetVsCostQuery($project_id, $budget_id, $currency));
-
 
 $data = array();
 while ($row = pg_fetch_assoc($result)) {
@@ -92,7 +90,7 @@ foreach ($data as $budget_name => $projects) {
 				$budget["Tahun_2015"] += $task['thn2015'];
 				$project["Tahun_2015"] += $task['thn2015'];
 				$phase["Tahun_2015"] += $task['thn2015'];
-				
+
 				$budget["BALANCE"] += $task['balance'];
 				$project["BALANCE"] += $task['balance'];
 				$phase["BALANCE"] += $task['balance'];

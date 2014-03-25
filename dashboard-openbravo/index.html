@@ -180,11 +180,42 @@
                     <input class="std_btn" type='button' value='Apply' id='btnBottomLeft' />
                 </span>
 
+                <div style='clear:both'></div>
+                <br />
+                <br />
 
-                <br />
-                <br />
-                <div id="bottom-right2" style='width:1300px;height:400px;'></div>
-                <br />
+                <table id="tbl-budgetComparison" class='easyui-treegrid'
+                       style='height: 300px'
+                       data-options="
+                       url: 'http://localhost/ob/BudgetComparison.php',
+                       idField: 'id',
+                       treeField: 'name'
+                       ">
+                    <thead>
+                        <tr>
+                            <th data-options="
+                                field: 'name',
+                                width: 800
+                                ">
+                                BUDGET > PROJECT > GROUP > PHASE >TASK 
+                            </th>
+                            <th data-options="
+                                field: 'budget_1',
+                                width: 200,
+                                formatter: formatCurrency
+                                ">
+                                BUDGET 1
+                            </th>
+                            <th data-options="
+                                field: 'budget_2',
+                                width: 200,
+                                formatter: formatCurrency
+                                ">
+                                BUDGET 2
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
 
             </div>
 
@@ -220,12 +251,18 @@
                             $(function() {
                                 $gridPerbandingan = $("#tbl-perbandingan");
                                 $treegridBudgetCost = $("#tbl-budgetCost");
-                                $("#currency").change(function() {
-                                    $gridPerbandingan.datagrid('reload', {currency: $(this).val()});
-                                    $treegridBudgetCost.treegrid('reload', {currency: $(this).val()});
-                                });
 
+                                updateBudgetCost = function() {
+                                    $treegridBudgetCost.treegrid('reload', {
+                                        currency: $("#currency").val(),
+                                        project_id: $("#globalproject").val(),
+                                        budget_id: $("#budgetMiddleLeft").val()
+                                    });
+                                };
 
+                                $("#currency").change(updateBudgetCost);
+                                $("#budgetMiddleLeft").change(updateBudgetCost);
+                                $("#globalproject").change(updateBudgetCost);
                             });
         </script>
     </body>

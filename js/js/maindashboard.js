@@ -358,7 +358,7 @@ $(function() {
     toprightGraph("");
 //    refreshBudgetCost();
 //    refreshBudgetGrossNett();
-    refreshBudgetComparison();
+//    refreshBudgetComparison();
 });
 /* call */
 
@@ -387,7 +387,7 @@ $("#globalyear").change(function() {
 
 $("#currency").change(function() {
     refreshBudgetCashflow();
-    refreshBudgetComparison();
+//    refreshBudgetComparison();
 //    refreshBudgetCost();
 });
 /* select */
@@ -489,7 +489,7 @@ $("#btnGlobalProject").click(function() {
     budgetBottomRight1;
     budgetBottomRight2;
     //alert("b. budget bottom right1 :"+budgetBottomRight1+", right 2:"+budgetBottomRight2);
-    refreshBudgetComparison();
+//    refreshBudgetComparison();
 //    refreshBudgetGrossNett();
 
 });
@@ -511,7 +511,7 @@ $("#btnGlobalYear").click(function() {
     budgetBottomRight1;
     budgetBottomRight2;
     //alert("b. budget bottom right1 :"+budgetBottomRight1+", right 2:"+budgetBottomRight2);
-    refreshBudgetComparison();
+//    refreshBudgetComparison();
 
 });
 
@@ -528,7 +528,7 @@ $("#btnTopRight").click(function() {
 });
 
 $("#btnBottomLeft").click(function() {
-    refreshBudgetComparison();
+//    refreshBudgetComparison();
 });
 
 ///---------------------------------------------------------------------------------------------------------------------------------------------
@@ -645,65 +645,65 @@ function refreshBudgetCashflow() {
     });
 
 }
-
-function refreshBudgetComparison() {
-
-    currency = $("#currency").val();
-    rows_bottom.length = 0;
-    $('#bottom-right2').treegrid({
-        url: "http://localhost/ob/BudgetComparison.php?callback2=?&budget1=" + budgetBottomRight1 + "&budget2=" + budgetBottomRight2 + "&project=" + globalproject_id + "&currency=" + currency,
-        idField: 'id',
-        treeField: 'name',
-        columns: [[
-                {field: 'name', title: 'BUDGET > PROJECT > GROUP > PHASE >TASK', width: 800},
-                {field: 'budget_1', title: 'BUDGET 1', width: 200, formatter: formatCurrency},
-                {field: 'budget_2', title: 'BUDGET 2', width: 200, formatter: formatCurrency}
-            ]]
-    });
-
-
-    /* $.ajax({
-     url: "http://localhost/ob/BudgetComparison.php",
-     data: {
-     budget1: budgetBottomRight1,
-     budget2: budgetBottomRight2,
-     project: globalproject_id
-     },
-     type: "GET",
-     dataType: "html",
-     success: function (data) {
-     $('#bottom-right2').html(data);
-     },
-     error: function (xhr, status) {
-     alert("Sorry, there was a problem!");
-     },
-     complete: function (xhr, status) {
-     //$('#showresults').slideDown('slow')
-     }
-     });*/
-    /*$.ajax({
-     url: "http://localhost/ob/BudgetComparison.php",
-     data: {
-     budget1: budgetBottomRight1,
-     budget2: budgetBottomRight2,
-     project: globalproject_id,
-     currency: $("#currency").val()
-     },
-     type: "GET",
-     dataType: "html",
-     success: function (data) {
-     $('#bottom-right2').html(data);
-     },
-     error: function (xhr, status) {
-     alert("Sorry, there was a problem!");
-     },
-     complete: function (xhr, status) {
-     //$('#showresults').slideDown('slow')
-     }
-     });*/
-
-
-}
+//
+//function refreshBudgetComparison() {
+//
+//    currency = $("#currency").val();
+//    rows_bottom.length = 0;
+//    $('#bottom-right2').treegrid({
+//        url: "http://localhost/ob/BudgetComparison.php?callback2=?&budget1=" + budgetBottomRight1 + "&budget2=" + budgetBottomRight2 + "&project=" + globalproject_id + "&currency=" + currency,
+//        idField: 'id',
+//        treeField: 'name',
+//        columns: [[
+//                {field: 'name', title: 'BUDGET > PROJECT > GROUP > PHASE >TASK', width: 800},
+//                {field: 'budget_1', title: 'BUDGET 1', width: 200, formatter: formatCurrency},
+//                {field: 'budget_2', title: 'BUDGET 2', width: 200, formatter: formatCurrency}
+//            ]]
+//    });
+//
+//
+//    /* $.ajax({
+//     url: "http://localhost/ob/BudgetComparison.php",
+//     data: {
+//     budget1: budgetBottomRight1,
+//     budget2: budgetBottomRight2,
+//     project: globalproject_id
+//     },
+//     type: "GET",
+//     dataType: "html",
+//     success: function (data) {
+//     $('#bottom-right2').html(data);
+//     },
+//     error: function (xhr, status) {
+//     alert("Sorry, there was a problem!");
+//     },
+//     complete: function (xhr, status) {
+//     //$('#showresults').slideDown('slow')
+//     }
+//     });*/
+//    /*$.ajax({
+//     url: "http://localhost/ob/BudgetComparison.php",
+//     data: {
+//     budget1: budgetBottomRight1,
+//     budget2: budgetBottomRight2,
+//     project: globalproject_id,
+//     currency: $("#currency").val()
+//     },
+//     type: "GET",
+//     dataType: "html",
+//     success: function (data) {
+//     $('#bottom-right2').html(data);
+//     },
+//     error: function (xhr, status) {
+//     alert("Sorry, there was a problem!");
+//     },
+//     complete: function (xhr, status) {
+//     //$('#showresults').slideDown('slow')
+//     }
+//     });*/
+//
+//
+//}
 
 //function refreshBudgetGrossNett() {
 //
