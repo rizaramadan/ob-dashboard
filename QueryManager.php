@@ -154,9 +154,9 @@ PGSQL;
 
 function getBudgetComparison($budget1, $budget2, $project_id, $currency = "idr") {
 	$amountBudget = "round(cbl.amount/1000000, 2)";
-	if ($currency == "usd") 
+	if ($currency == "usd")
 		$amountBudget = "ROUND(cbl.amount/cb.em_bgt_kurs, 2)";
-	
+
 	$query = <<<PGSQL
 			SELECT	project_name, group_name, em_pjt_phasegroup_id, phase_name, 
 					c_projectphase_id, task_name, project_task,
@@ -179,19 +179,30 @@ function getBudgetComparison($budget1, $budget2, $project_id, $currency = "idr")
 			where pp.c_project_id is not null and cb.ad_client_id = '142F2095A9FE48ECB13CD19A06A0BD9C' order by project_name, group_name desc, phase_name, task_name) as foo
 			group by project_name, group_name, em_pjt_phasegroup_id, phase_name, c_projectphase_id, task_name, project_task
 PGSQL;
-			
+
 	return $query;
 }
 
-function getBudgetBuildingQuery() {
-	$retval = "select b.name as budgetname, (select sum(amount) from c_budgetline where c_budget_id = b.c_budget_id)/1000000 as amount, 
-		(select sum(amount/em_bgt_kurs) from c_budgetline where c_budget_id = b.c_budget_id)/1000000 as amount_usd,
-		b.em_bgt_constructionarea as gross,
-		b.em_bgt_rentarea as nett,
-		b.em_bgt_kurs as kurs
-		from c_budget b
-		group by b.name, b.c_budget_id, b.em_bgt_constructionarea, b.em_bgt_rentarea;";
-	return $retval;
+function getBudgetBuildingQuery($currency = "idr") {
+	$budget = "SUM(cbl.amount)/1000000";
+	if ($currency == "usd") {
+		$budget = "SUM(cbl.amount/cb.em_bgt_kurs)";
+	}
+	$query = <<<PGSQL
+		SELECT
+			cb."name",
+			COALESCE(ROUND({$budget}, 2), 0) AS budget,
+			COALESCE(cb.em_bgt_constructionarea, 0) AS gross_floor_area,
+			COALESCE(ROUND({$budget}/cb.em_bgt_constructionarea), 0) AS budget_per_gross,
+			COALESCE(cb.em_bgt_rentarea, 0) AS rent_floor_area,
+			COALESCE(ROUND({$budget}/cb.em_bgt_rentarea), 0) AS budget_per_nett
+		FROM c_budget cb
+		LEFT JOIN c_budgetline cbl 
+			ON cb.c_budget_id = cbl.c_budget_id
+		GROUP BY cb."name", cb.em_bgt_constructionarea, cb.em_bgt_rentarea, 
+			cb.em_bgt_constructionarea			
+PGSQL;
+	return $query;
 }
 
 /**
