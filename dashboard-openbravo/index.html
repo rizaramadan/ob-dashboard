@@ -251,6 +251,21 @@
                             $(function() {
                                 $gridPerbandingan = $("#tbl-perbandingan");
                                 $treegridBudgetCost = $("#tbl-budgetCost");
+                                $treegridComparison = $("#tbl-budgetComparison");
+
+                                updateTreegridComparison = function() {
+                                    $treegridComparison.treegrid('reload', {
+                                        currency: $("#currency").val(),
+                                        project_id: $("#globalproject").val(),
+                                        budget1: $("#budgetBottomRight1").val(),
+                                        budget2: $("#budgetBottomRight2").val()
+                                    });
+                                };
+                                
+                                $("#currency").change(updateTreegridComparison);
+                                $("#globalproject").change(updateTreegridComparison);
+                                $("#budgetBottomRight1").change(updateTreegridComparison);
+                                $("#budgetBottomRight2").change(updateTreegridComparison);
 
                                 updateBudgetCost = function() {
                                     $treegridBudgetCost.treegrid('reload', {

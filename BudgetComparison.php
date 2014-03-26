@@ -11,62 +11,69 @@ include "dbcon.php";
 include "QueryManager.php";
 include "Utils.php";
 
-$budget1 = getCleanParam($_GET, 'budget1');
-$budget2 = getCleanParam($_GET, 'budget2');
+$budget1 = getCleanParam($_POST, 'budget1');
+$budget2 = getCleanParam($_POST, 'budget2');
+$project_id = getCleanParam($_POST, 'project_id');
+$currency = isset($_POST['currency']) ? $_POST['currency'] : "idr";
 
-$project_id = getCleanParam($_GET, 'project');
-$budget_id = getCleanParam($_GET, 'budget');
+$result = pg_exec($dbconn, getBudgetComparison($budget1, $budget2, $project_id, $currency));
 
-$result = pg_exec($dbconn, getBudgetComparison($budget1, $budget2, $project_id));
+$data = array();
+while ($row = pg_fetch_assoc($result)) {
+	$data["TOTAL"][$row["project_name"]]
+			[$row["phase_name"]][$row["task_name"]] = $row;
+}
 
-//$data = array();
-//while ($row = pg_fetch_assoc($result)) {
-//	$data[$row["budget_name"]][$row["project_name"]]
-//			[$row["phase_name"]][$row["task_name"]] = $row;
-//}
-//
-//
-//
-//$jsonArr = array();
-//$i = 0;
-//foreach ($data as $budget_name => $projects) {
-//	$budget = &$jsonArr[$i];
-//	$budget = array(
-//		"id" => strval($i),
-//		"name" => $budget_name
-//	);
-//	$j = 0;
-//	foreach ($projects as $project_name => $phases) {
-//		$project = &$budget["children"][$j];
-//		$project = array(
-//			"id" => strval($i) . strval($j),
-//			"name" => $project_name
-//		);
-//		$k = 0;
-//		foreach ($phases as $phase_name => $tasks) {
-//			$phase = &$project["children"][$k];
-//			$phase = array(
-//				"id" => strval($i) . strval($j) . strval($k),
-//				"name" => $phase_name
-//			);
-//			$l = 0;
-//			foreach ($tasks as $task_name => $task) {
-//				$phase["children"][$l] = array(
-//					"id" => strval($i) . strval($j) . strval($k) . strval($l),
-//					"name" => $task_name,
-//					"budget_1" => $task['budget_1'],
-//					"budget_2" => $task['budget_2']
-//				);
-//				$l++;
-//			}
-//			$k++;
-//		}
-//		$j++;
-//	}
-//	$i++;
-//}
-//echo json_encode($jsonArr);
-//exit;
+
+
+$jsonArr = array();
+$i = 0;
+foreach ($data as $budget_name => $projects) {
+	$budget = &$jsonArr[$i];
+	$budget = array(
+		"id" => strval($i),
+		"name" => $budget_name
+	);
+	$j = 0;
+	foreach ($projects as $project_name => $phases) {
+		$project = &$budget["children"][$j];
+		$project = array(
+			"id" => strval($i) . strval($j),
+			"name" => $project_name
+		);
+		$k = 0;
+		foreach ($phases as $phase_name => $tasks) {
+			$phase = &$project["children"][$k];
+			$phase = array(
+				"id" => strval($i) . strval($j) . strval($k),
+				"name" => $phase_name
+			);
+			$l = 0;
+			foreach ($tasks as $task_name => $task) {
+				$phase["children"][$l] = array(
+					"id" => strval($i) . strval($j) . strval($k) . strval($l),
+					"name" => $task_name,
+					"budget_1" => $task['budget1'],
+					"budget_2" => $task['budget2']
+				);
+
+				$budget["budget_1"] += $task['budget1'];
+				$budget["budget_2"] += $task['budget2'];
+				$project["budget_1"] += $task['budget1'];
+				$project["budget_2"] += $task['budget2'];
+				$phase["budget_1"] += $task['budget1'];
+				$phase["budget_2"] += $task['budget2'];
+
+				$l++;
+			}
+			$k++;
+		}
+		$j++;
+	}
+	$i++;
+}
+echo json_encode($jsonArr);
+exit;
 
 $numrows = pg_numrows($result);
 
