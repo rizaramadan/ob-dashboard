@@ -24,8 +24,6 @@ while ($row = pg_fetch_assoc($result)) {
 			[$row["phase_name"]][$row["task_name"]] = $row;
 }
 
-
-
 $jsonArr = array();
 $i = 0;
 foreach ($data as $budget_name => $projects) {

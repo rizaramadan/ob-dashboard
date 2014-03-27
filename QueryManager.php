@@ -167,15 +167,13 @@ function getBudgetComparison($budget1, $budget2, $project_id, $currency = "idr")
 			pg.name as group_name, pp.em_pjt_phasegroup_id,
 			pp.name as phase_name, pp.c_projectphase_id,	
 			pt.name as task_name, pt.c_projecttask_id as project_task,  
-			{$amountBudget} as amountbudget, date_part('year', inv.dateinvoiced ) as actualyear
+			{$amountBudget} as amountbudget
 			from c_projecttask pt 
-			left outer join c_invoiceline invl on pt.m_product_id = (case when invl.bom_parent_id is null then invl.m_product_id else invl.bom_parent_id end)
-			left outer join c_invoice inv on invl.c_invoice_id = inv.c_invoice_id
-			inner join c_projectphase pp on pt.c_projectphase_id = pp.c_projectphase_id
+			left join c_projectphase pp on pt.c_projectphase_id = pp.c_projectphase_id
 			left outer join pjt_phasegroup pg on pp.em_pjt_phasegroup_id = pg.pjt_phasegroup_id
-			inner join c_budgetline cbl on cbl.em_bgt_c_projecttask_id = pt.c_projecttask_id
-			inner join c_budget cb on cbl.c_budget_id = cb.c_budget_id
-			 inner join c_project cp on cp.c_project_id = pp.c_project_id
+			left join c_budgetline cbl on cbl.em_bgt_c_projecttask_id = pt.c_projecttask_id
+			left join c_budget cb on cbl.c_budget_id = cb.c_budget_id
+			left join c_project cp on cp.c_project_id = pp.c_project_id
 			where pp.c_project_id is not null and cb.ad_client_id = '142F2095A9FE48ECB13CD19A06A0BD9C' order by project_name, group_name desc, phase_name, task_name) as foo
 			group by project_name, group_name, em_pjt_phasegroup_id, phase_name, c_projectphase_id, task_name, project_task
 PGSQL;
