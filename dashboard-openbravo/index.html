@@ -34,8 +34,7 @@
                 <label for="globalyear">Year : </label>
                 <select id='globalyear'></select>
                 <label for="currency">Currency:</label>
-                <select id="currency" 
-                        onchange='$("#tbl-perbandingan").datagrid("reload", {currency: this.value})'>
+                <select id="currency">
                     <option value="idr">IDR</option>
                     <option value="usd">USD</option>
                 </select>
@@ -88,72 +87,7 @@
                 <input class="std_btn" type='button' value='Apply' id='btnMiddleLeft' />
                 <br />
                 <br />
-                <table id="tbl-budgetCost" class="easyui-treegrid" 
-                       style='height: 300px;'
-                       data-options="
-                       url      :'http://localhost/ob/BudgetCost.php',
-                       idField  :'id',
-                       treeField:'NAME'"
-                       >
-                    <thead>
-                        <tr>
-                            <th data-options="
-                                field   :'NAME',
-                                width   :470">
-                                BUDGET > PROJECT > PHASE > TASK
-                            </th>
-                            <th data-options="
-                                field   :   'TOTAL',
-                                width   :   100,
-                                align   :   'right',
-                                formatter: formatCurrency">
-                                Total
-                            </th>
-                            <th data-options="
-                                field:'BALANCE',
-                                width:80,
-                                formatter: formatCurrency">
-                                Balance
-                            </th>
-                            <th data-options="
-                                field: 'Tahun_2010', 
-                                width: 100,
-                                formatter: formatCurrency">
-                                2010
-                            </th>
-                            <th data-options="
-                                field: 'Tahun_2011', 
-                                width: 100,
-                                formatter: formatCurrency">
-                                2011
-                            </th>
-                            <th data-options="
-                                field: 'Tahun_2012', 
-                                width: 100,
-                                formatter: formatCurrency">
-                                2012
-                            </th>
-                            <th data-options="
-                                field: 'Tahun_2013', 
-                                width: 100,
-                                formatter: formatCurrency">
-                                2013
-                            </th>
-                            <th data-options="
-                                field: 'Tahun_2014', 
-                                width: 100,
-                                formatter: formatCurrency">
-                                2014
-                            </th>
-                            <th data-options="
-                                field: 'Tahun_2015', 
-                                width: 100,
-                                formatter: formatCurrency">
-                                2015
-                            </th>
-                        </tr>
-                    </thead>
-                </table>
+                <table id="tbl-budgetCost" style="height: 350px"></table>
             </div>  
 
             <div id="bottom-right-header2" style='width:100%; float:left'>
@@ -179,45 +113,10 @@
                     </select>
                     <input class="std_btn" type='button' value='Apply' id='btnBottomLeft' />
                 </span>
-
                 <div style='clear:both'></div>
                 <br />
                 <br />
-
-                <!--                <table id="tbl-budgetComparison" class='easyui-treegrid'
-                                       style='height: 300px'
-                                       data-options="
-                                       url: 'http://localhost/ob/BudgetComparison.php',
-                                       idField: 'id',
-                                       treeField: 'name'
-                                       ">
-                                    <thead>
-                                        <tr>
-                                            <th data-options="
-                                                field: 'name',
-                                                width: 800
-                                                ">
-                                                BUDGET > PROJECT > GROUP > PHASE >TASK 
-                                            </th>
-                                            <th data-options="
-                                                field: 'budget_1',
-                                                width: 200,
-                                                formatter: formatCurrency
-                                                ">
-                                                BUDGET 1
-                                            </th>
-                                            <th data-options="
-                                                field: 'budget_2',
-                                                width: 200,
-                                                formatter: formatCurrency
-                                                ">
-                                                BUDGET 2
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                </table>-->
                 <table id="tbl-budgetComparison"  style="height:400px"></table>
-
             </div>
 
             <div id="bottom-most-header" style='width:100%; float:left'>
@@ -226,121 +125,195 @@
                     <span>Menunjukkan Perbandingan Budget dengan Area</span>
                 </center>
                 <br />
-                <table class="easyui-datagrid" id="tbl-perbandingan" 
-                       style="width:760px; margin: 0 auto;"
-                       data-options="
-                       url:'http://localhost/ob/BudgetGrossNett.php', 
-                       fitColumns:true, 
-                       singleSelect:true">
-                    <thead>
-                        <tr>
-                            <th data-options="
-                                field:'name',
-                                width: 
-                                '100'">
-                                Budget Name
-                            </th>
-                            <th data-options="
-                                field:'budget', 
-                                width: '100', 
-                                align:'right',
-                                formatter: formatCurrency">
-                                Budget
-                            </th>
-                            <th data-options="
-                                field:'gross_floor_area', 
-                                width: '100', 
-                                align:'right'">
-                                Gross Floor Area
-                            </th>
-                            <th data-options="
-                                field:'budget_per_gross', 
-                                width: '100', 
-                                align:'right',
-                                formatter: formatCurrency">
-                                Budget Per Gross
-                            </th>
-                            <th data-options="
-                                field:'rent_floor_area', 
-                                width: '100', 
-                                align:'right'">
-                                Rent Floor Area
-                            </th>
-                            <th data-options="
-                                field:'budget_per_nett',
-                                width: '100',
-                                align:'right',
-                                formatter: formatCurrency">
-                                Budget Per Nett
-                            </th>
-                        </tr>
-                    </thead>
-                </table>
                 <br />
-
+                <table id="tbl-budgetGrossNet" style="height: 200px;"></table>
             </div>
-
         </div>
 
         <script src="../js/js/maindashboard.js"></script>
         <script>
-                            $(function() {
-                                $gridPerbandingan = $("#tbl-perbandingan");
-                                $treegridBudgetCost = $("#tbl-budgetCost");
+            $(function() {
+                initTblBudgetComparison();
+                initTblBudgetCost();
+                initTblBudgetGrossNet();
+            });
 
-                                initTblBudgetComparison();
-
-
-
-
-
-                                updateGridPerbandingan = function() {
-                                    $gridPerbandingan.datagrid('reload', {
-                                        currency: $("#currency").val()
-                                    });
-                                }
-
-                                $("#currency").change(updateGridPerbandingan);
-
-
-                                updateBudgetCost = function() {
-                                    $treegridBudgetCost.treegrid('reload', {
-                                        currency: $("#currency").val(),
-                                        project_id: $("#globalproject").val(),
-                                        budget_id: $("#budgetMiddleLeft").val()
-                                    });
-                                };
-
-                                $("#currency").change(updateBudgetCost);
-                                $("#budgetMiddleLeft").change(updateBudgetCost);
-                                $("#globalproject").change(updateBudgetCost);
-                            });
-
-                            function initTblBudgetComparison() {
-                                $("#tbl-budgetComparison").treegrid({
-                                    url: "http://localhost/ob/BudgetComparison.php",
-                                    idField: "id",
-                                    treeField: "name",
-                                    columns: [[
-                                            {title: "BUDGET > PROJECT > GROUP > PHASE >TASK ",
-                                                field: "name", width: 800, formatter: formatCurrency},
-                                            {title: "Budget 1", field: "budget_1", width: 200, formatter: formatCurrency},
-                                            {title: "Budget 2 ", field: "budget_2", width: 200, formatter: formatCurrency}
-                                        ]]
-                                });
-
-                                // handle events
-                                $("#currency, #budgetBottomRight1, #budgetBottomRight2, #globalproject")
-                                        .change(function() {
-                                            $("#tbl-budgetComparison").treegrid('reload', {
-                                                budget1: $("#budgetBottomRight1").val(),
-                                                budget2: $("#budgetBottomRight2").val(),
-                                                project_id: $("#globalproject").val(),
-                                                currency: $("#currency").val()
-                                            });
-                                        })
-
+            function initTblBudgetComparison() {
+                $("#tbl-budgetComparison").treegrid({
+                    url: "http://localhost/ob/BudgetComparison.php",
+                    idField: "id",
+                    treeField: "name",
+                    columns: [[
+                            {
+                                title: "BUDGET > PROJECT > GROUP > PHASE >TASK ",
+                                field: "name",
+                                width: 800
+                            },
+                            {
+                                title: "Budget 1",
+                                field: "budget_1",
+                                width: 200,
+                                formatter: formatCurrency
+                            },
+                            {
+                                title: "Budget 2 ",
+                                field: "budget_2",
+                                width: 200,
+                                formatter: formatCurrency
                             }
+                        ]]
+                });
+
+                // handle events
+                $("#currency, #budgetBottomRight1, #budgetBottomRight2, #globalproject")
+                        .change(function() {
+                            $("#tbl-budgetComparison").treegrid('reload', {
+                                budget1: $("#budgetBottomRight1").val(),
+                                budget2: $("#budgetBottomRight2").val(),
+                                project_id: $("#globalproject").val(),
+                                currency: $("#currency").val()
+                            });
+                        })
+
+            }
+
+            function initTblBudgetCost() {
+                $("#tbl-budgetCost").treegrid({
+                    url: "http://localhost/ob/BudgetCost.php",
+                    idField: "id",
+                    treeField: "NAME",
+                    columns: [[
+                            {
+                                field: "NAME",
+                                title: "BUDGET > PROJECT > PHASE > TASK",
+                                width: 470
+                            },
+                            {
+                                field: "TOTAL",
+                                title: "Total",
+                                width: 100,
+                                align: "right",
+                                formatter: formatCurrency
+                            },
+                            {
+                                field: "BALANCE",
+                                title: "Balance",
+                                width: 100,
+                                align: "right",
+                                formatter: formatCurrency
+                            },
+                            {
+                                field: "Tahun_2010",
+                                title: "2010",
+                                width: 100,
+                                align: "right",
+                                formatter: formatCurrency
+                            },
+                            {
+                                field: "Tahun_2011",
+                                title: "2011",
+                                width: 100,
+                                align: "right",
+                                formatter: formatCurrency
+                            },
+                            {
+                                field: "Tahun_2012",
+                                title: "2012",
+                                width: 100,
+                                align: "right",
+                                formatter: formatCurrency
+                            },
+                            {
+                                field: "Tahun_2013",
+                                title: "2013",
+                                width: 100,
+                                align: "right",
+                                formatter: formatCurrency
+                            },
+                            {
+                                field: "Tahun_2014",
+                                title: "2014",
+                                width: 100,
+                                align: "right",
+                                formatter: formatCurrency
+                            },
+                            {
+                                field: "Tahun_2015",
+                                title: "2015",
+                                width: 100,
+                                align: "right",
+                                formatter: formatCurrency
+                            },
+                        ]]
+                });
+
+                $("#currency, #budgetMiddleLeft, #globalproject").change(function(e) {
+                    $("#tbl-budgetCost").treegrid('reload', {
+                        currency: $("#currency").val(),
+                        project_id: $("#globalproject").val(),
+                        budget_id: $("#budgetMiddleLeft").val()
+                    });
+
+                });
+            }
+
+            function initTblBudgetGrossNet() {
+                $("#tbl-budgetGrossNet").datagrid({
+                    url: "http://localhost/ob/BudgetGrossNett.php",
+                    fitColumns: true,
+                    singleSelect: true,
+                    columns: [[
+                            {
+                                field: 'name',
+                                title: 'Budget Name',
+                                width: 100
+                            },
+                            {
+                                field: 'budget',
+                                title: 'Budget',
+                                width: 100,
+                                align: 'right',
+                                formatter: formatCurrency
+                            },
+                            {
+                                field: 'gross_floor_area',
+                                title: 'Gross Floor Area',
+                                width: 100,
+                                align: 'right',
+                                formatter: formatCurrency
+                            },
+                            {
+                                field: 'budget_per_gross',
+                                title: 'Budget Per Gross',
+                                width: 100,
+                                align: 'right',
+                                formatter: formatCurrency
+                            },
+                            {
+                                field: 'rent_floor_area',
+                                title: 'Rent Floor Area',
+                                width: 100,
+                                align: 'right',
+                                formatter: formatCurrency
+                            },
+                            {
+                                field: 'budget_per_nett',
+                                title: 'Budget Per Nett',
+                                width: 100,
+                                align: 'right',
+                                formatter: formatCurrency
+                            }
+                        ]]
+                });
+
+                $("#currency, #globalproject").change(function(e) {
+                    $("#tbl-budgetGrossNet").datagrid('reload', {
+                        currency: $("#currency").val(),
+                        project_id: $("#globalproject").val()
+                    });
+                });
+            }
+
 
         </script>
     </body>
