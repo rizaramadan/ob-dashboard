@@ -184,38 +184,39 @@
                 <br />
                 <br />
 
-                <table id="tbl-budgetComparison" class='easyui-treegrid'
-                       style='height: 300px'
-                       data-options="
-                       url: 'http://localhost/ob/BudgetComparison.php',
-                       idField: 'id',
-                       treeField: 'name'
-                       ">
-                    <thead>
-                        <tr>
-                            <th data-options="
-                                field: 'name',
-                                width: 800
-                                ">
-                                BUDGET > PROJECT > GROUP > PHASE >TASK 
-                            </th>
-                            <th data-options="
-                                field: 'budget_1',
-                                width: 200,
-                                formatter: formatCurrency
-                                ">
-                                BUDGET 1
-                            </th>
-                            <th data-options="
-                                field: 'budget_2',
-                                width: 200,
-                                formatter: formatCurrency
-                                ">
-                                BUDGET 2
-                            </th>
-                        </tr>
-                    </thead>
-                </table>
+                <!--                <table id="tbl-budgetComparison" class='easyui-treegrid'
+                                       style='height: 300px'
+                                       data-options="
+                                       url: 'http://localhost/ob/BudgetComparison.php',
+                                       idField: 'id',
+                                       treeField: 'name'
+                                       ">
+                                    <thead>
+                                        <tr>
+                                            <th data-options="
+                                                field: 'name',
+                                                width: 800
+                                                ">
+                                                BUDGET > PROJECT > GROUP > PHASE >TASK 
+                                            </th>
+                                            <th data-options="
+                                                field: 'budget_1',
+                                                width: 200,
+                                                formatter: formatCurrency
+                                                ">
+                                                BUDGET 1
+                                            </th>
+                                            <th data-options="
+                                                field: 'budget_2',
+                                                width: 200,
+                                                formatter: formatCurrency
+                                                ">
+                                                BUDGET 2
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                </table>-->
+                <table id="tbl-budgetComparison"  style="height:400px"></table>
 
             </div>
 
@@ -286,7 +287,12 @@
                             $(function() {
                                 $gridPerbandingan = $("#tbl-perbandingan");
                                 $treegridBudgetCost = $("#tbl-budgetCost");
-                                $treegridComparison = $("#tbl-budgetComparison");
+
+                                initTblBudgetComparison();
+
+
+
+
 
                                 updateGridPerbandingan = function() {
                                     $gridPerbandingan.datagrid('reload', {
@@ -296,19 +302,6 @@
 
                                 $("#currency").change(updateGridPerbandingan);
 
-                                updateTreegridComparison = function() {
-                                    $treegridComparison.treegrid('reload', {
-                                        currency: $("#currency").val(),
-                                        project_id: $("#globalproject").val(),
-                                        budget1: $("#budgetBottomRight1").val(),
-                                        budget2: $("#budgetBottomRight2").val()
-                                    });
-                                };
-
-                                $("#currency").change(updateTreegridComparison);
-                                $("#globalproject").change(updateTreegridComparison);
-                                $("#budgetBottomRight1").change(updateTreegridComparison);
-                                $("#budgetBottomRight2").change(updateTreegridComparison);
 
                                 updateBudgetCost = function() {
                                     $treegridBudgetCost.treegrid('reload', {
@@ -322,6 +315,33 @@
                                 $("#budgetMiddleLeft").change(updateBudgetCost);
                                 $("#globalproject").change(updateBudgetCost);
                             });
+
+                            function initTblBudgetComparison() {
+                                $("#tbl-budgetComparison").treegrid({
+                                    url: "http://localhost/ob/BudgetComparison.php",
+                                    idField: "id",
+                                    treeField: "name",
+                                    columns: [[
+                                            {title: "BUDGET > PROJECT > GROUP > PHASE >TASK ",
+                                                field: "name", width: 800, formatter: formatCurrency},
+                                            {title: "Budget 1", field: "budget_1", width: 200, formatter: formatCurrency},
+                                            {title: "Budget 2 ", field: "budget_2", width: 200, formatter: formatCurrency}
+                                        ]]
+                                });
+
+                                // handle events
+                                $("#currency, #budgetBottomRight1, #budgetBottomRight2, #globalproject")
+                                        .change(function() {
+                                            $("#tbl-budgetComparison").treegrid('reload', {
+                                                budget1: $("#budgetBottomRight1").val(),
+                                                budget2: $("#budgetBottomRight2").val(),
+                                                project_id: $("#globalproject").val(),
+                                                currency: $("#currency").val()
+                                            });
+                                        })
+
+                            }
+
         </script>
     </body>
 </html>
