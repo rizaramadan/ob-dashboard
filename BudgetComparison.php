@@ -30,21 +30,27 @@ foreach ($data as $budget_name => $projects) {
 	$budget = &$jsonArr[$i];
 	$budget = array(
 		"id" => strval($i),
-		"name" => $budget_name
+		"name" => $budget_name,
+		"budget_1" => 0,
+		"budget_2" => 0
 	);
 	$j = 0;
 	foreach ($projects as $project_name => $phases) {
 		$project = &$budget["children"][$j];
 		$project = array(
 			"id" => strval($i) . strval($j),
-			"name" => $project_name
+			"name" => $project_name,
+			"budget_1" => 0,
+			"budget_2" => 0
 		);
 		$k = 0;
 		foreach ($phases as $phase_name => $tasks) {
 			$phase = &$project["children"][$k];
 			$phase = array(
 				"id" => strval($i) . strval($j) . strval($k),
-				"name" => $phase_name
+				"name" => $phase_name,
+				"budget_1" => 0,
+				"budget_2" => 0
 			);
 			$l = 0;
 			foreach ($tasks as $task_name => $task) {
