@@ -20,7 +20,7 @@ function getBudgetQuery($project_id, $budget_id, $year) {
 	global $firstyear;
 	$retval = "select c_budgetline_id, c_budgetline.c_project_id as project_id, c_budgetline.em_bgt_c_projectphase_id as project_phase, c_budgetline.em_bgt_c_projecttask_id as project_task,
 			(c_budgetline.amount/1000000) as amount, em_pjt_phasegroup_id, ppg.name, cp.name as projectName,
-			c_currency_convert(amount, '303','100',c_period.startdate, null, '*') as amount_usd, c_budgetline.c_budget_id as name ,c_budgetline.c_budget_id as budget,
+			c_currency_convert(amount, '303','100',c_period.startdate, null, '*')/1000 as amount_usd, c_budgetline.c_budget_id as name ,c_budgetline.c_budget_id as budget,
 			c_period.startdate as actualdate, date_part('year',c_period.startdate) as actualyear, c_period.name as period_name, c_budgetline.c_budget_id as budget_id, (date_part('year',c_period.startdate) -  " . $firstyear . ") * 12 + date_part('month',c_period.startdate) as bulan
 		from c_period left outer join c_budgetline on c_budgetline.c_period_id = c_period.c_period_id
 		left outer join c_projectphase pp on c_budgetline.em_bgt_c_projectphase_id = pp.c_projectphase_id
@@ -57,7 +57,7 @@ function getProjectProgressQuery($project_id, $year) {
 function getPaymentPlan($project_id, $year) {
 	global $firstyear;
 	$retval = "
-		select ((o.grandtotal*p.percentage/100)/1000000) as amount, ((date_part('year',duedate) -  " . $firstyear . ") * 12 + date_part('month',duedate))::integer as bulan, c_currency_convert(amount, '303','100',duedate, null, '*') as amount_usd
+		select ((o.grandtotal*p.percentage/100)/1000000) as amount, ((date_part('year',duedate) -  " . $firstyear . ") * 12 + date_part('month',duedate))::integer as bulan, c_currency_convert(amount, '303','100',duedate, null, '*')/1000 as amount_usd
 				from por_payment_schedule p
 				inner join c_order o on p.c_order_id = o.c_order_id
 			where o.c_project_id " . $project_id . "
@@ -76,7 +76,7 @@ function getActualPaymentQuery($project_id) {
 	global $firstyear;
 	$retval = "select 
 			invl.c_project_id as project_id,pt.c_projectphase_id as project_phase,pt.c_projecttask_id as project_task,inv.dateinvoiced as actualdate, (invl.priceactual*invl.qtyinvoiced)/1000000 as amount,
-			c_currency_convert(invl.priceactual*invl.qtyinvoiced, '303','100',inv.dateinvoiced, null, '*') as amount_usd,
+			c_currency_convert(invl.priceactual*invl.qtyinvoiced, '303','100',inv.dateinvoiced, null, '*')/1000 as amount_usd,
 			(date_part('year',inv.dateinvoiced) - " . $firstyear . ") * 12 + date_part('month',inv.dateinvoiced) as bulan
 		from c_invoiceline invl
 			inner join c_invoice inv on invl.c_invoice_id = inv.c_invoice_id
@@ -90,9 +90,9 @@ function getBudgetVsCostQuery($project_id, $budget_id, $currency = "idr") {
 	$amountBudget = "round(cbl.amount/1000000, 2)";
 	if ($currency == "usd") {
 		$amount = "c_currency_convert(invl.priceactual*invl.qtyinvoiced, "
-				. "'303','100', '2012-10-10'::date, null, "
-				. "'142F2095A9FE48ECB13CD19A06A0BD9C')";
-		$amountBudget = "ROUND(cbl.amount/cb.em_bgt_kurs, 2)";
+				. "'303', '100', '2012-10-10'::date, null, "
+				. "'142F2095A9FE48ECB13CD19A06A0BD9C')/1000";
+		$amountBudget = "ROUND(cbl.amount/cb.em_bgt_kurs, 2)/1000";
 	}
 
 	$query = <<<PGSQL
@@ -130,7 +130,7 @@ function getBudgetVsCostQuery($project_id, $budget_id, $currency = "idr") {
 							THEN invl.m_product_id else invl.bom_parent_id end)
 					LEFT OUTER JOIN c_invoice inv 
 						ON invl.c_invoice_id = inv.c_invoice_id
-					INNER JOIN c_projectphase pp 
+					INNER JOIN c_projectphase pp  
 						ON pt.c_projectphase_id = pp.c_projectphase_id
 					INNER JOIN c_budgetline cbl 
 						ON cbl.em_bgt_c_projecttask_id = pt.c_projecttask_id
@@ -155,7 +155,7 @@ PGSQL;
 function getBudgetComparison($budget1, $budget2, $project_id, $currency = "idr") {
 	$amountBudget = "round(cbl.amount/1000000, 2)";
 	if ($currency == "usd")
-		$amountBudget = "ROUND(cbl.amount/cb.em_bgt_kurs, 2)";
+		$amountBudget = "ROUND(cbl.amount/cb.em_bgt_kurs, 2)/1000";
 
 	$query = <<<PGSQL
 			SELECT	project_name, group_name, em_pjt_phasegroup_id, phase_name, 
@@ -184,7 +184,7 @@ PGSQL;
 function getBudgetBuildingQuery($currency = "idr") {
 	$budget = "SUM(cbl.amount)/1000000";
 	if ($currency == "usd") {
-		$budget = "SUM(cbl.amount/cb.em_bgt_kurs)";
+		$budget = "SUM(cbl.amount/cb.em_bgt_kurs)/1000";
 	}
 	$query = <<<PGSQL
 		SELECT
@@ -226,7 +226,7 @@ function getTotalBudget($dbconn, $budget_id, $project_id) {
  */
 function getRealBudget($dbconn, $project_id, $budget_id, $currency = NULL) {
 	global $firstyear, $barCount;
-	$query = "select (date_part('year',p.startdate) -  " . $firstyear . ")  * 12 + date_part('month',p.startdate) as bulan,	sum(amount/1000000) as amount, sum(amount*cb.em_bgt_kurs)/1000 as amount_usd
+	$query = "select (date_part('year',p.startdate) -  " . $firstyear . ")  * 12 + date_part('month',p.startdate) as bulan,	sum(amount/1000000) as amount, sum(amount/cb.em_bgt_kurs)/1000 as amount_usd
 			  from c_budgetline bl inner join c_period p on bl.c_period_id = p.c_period_id inner join c_budget cb on cb.c_budget_id = bl.c_budget_id
 			  where bl.c_project_id " . $project_id . " and bl.c_budget_id " . $budget_id . " group by bulan order by bulan ";
 	$result = pg_exec($dbconn, $query);
