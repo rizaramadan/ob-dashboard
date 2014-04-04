@@ -23,12 +23,14 @@ var budgetTopRight;
 var budgetMiddleLeft;
 var budgetBottomLeft1;
 var budgetBottomRight2;
+
+var baseUrl = "http://localhost";
 /* var init */
 
 /* retrieve data */
 /* ------------------------------------------------------------------------------- -------------------------------------------------------------------------------*/
 
-$.getJSON('http://192.168.2.253:8888/ob/BudgetProgressPaymentplan.php?callback=?&year=' + globalyear, function(result) {
+$.getJSON(baseUrl + '/ob/BudgetProgressPaymentplan.php?callback=?&year=' + globalyear, function(result) {
     for (var i in result['databudget']) {
         topleft_budget.push(result['databudget'][i]);
     }
@@ -47,7 +49,7 @@ $.getJSON('http://192.168.2.253:8888/ob/BudgetProgressPaymentplan.php?callback=?
     ;
 });
 
-$.getJSON("http://192.168.2.253:8888/ob/BudgetCashflow.php?callback=?&currency=&year=" + globalyear, function(result) {
+$.getJSON(baseUrl + "/ob/BudgetCashflow.php?callback=?&currency=&year=" + globalyear, function(result) {
     for (var i in result['totalbudget']) {
         topright_totalbudget.push(result['totalbudget'][i]);
     }
@@ -72,7 +74,7 @@ $.getJSON("http://192.168.2.253:8888/ob/BudgetCashflow.php?callback=?&currency=&
 
 refreshBudgetSelectionOption();
 
-$.getJSON("http://192.168.2.253:8888/ob/getproject.php?callback=?", function(j) {
+$.getJSON(baseUrl + "/ob/getproject.php?callback=?", function(j) {
     var options = '';
     options += '<option value="">All Project </option>';
     for (var i = 0; i < j.length; i++) {
@@ -83,7 +85,7 @@ $.getJSON("http://192.168.2.253:8888/ob/getproject.php?callback=?", function(j) 
     projecttopleft = $("#optProjectTopLeft").val();
 });
 
-$.getJSON("http://192.168.2.253:8888/ob/getyear.php?callback=?", function(j) {
+$.getJSON(baseUrl + "/ob/getyear.php?callback=?", function(j) {
     var options = '';
     var currentYear = new Date().getFullYear();
     options += '<option value="">All Year </option>';
@@ -427,7 +429,7 @@ var rows_bottom = new Array();
 
 
 var rows_bottommost = new Array();
-$.getJSON("http://192.168.2.253:8888/ob/BudgetGrossNett.php?callback=?", function(result) {
+$.getJSON(baseUrl + "/ob/BudgetGrossNett.php?callback=?", function(result) {
     for (var i in result) {
         var rows2 = [];
         rows2[0] = result[i][0];
@@ -541,7 +543,7 @@ function refreshBudgetProgressPaymentplan() {
     topleft_x.length = 0;
     topleft_payment_plan.length = 0;
 
-    $.getJSON('http://192.168.2.253:8888/ob/BudgetProgressPaymentplan.php?callback=?', 'project=' + globalproject_id + '&budget=' + budgetTopLeft + '&year=' + globalyear, function(result) {
+    $.getJSON(baseUrl + '/ob/BudgetProgressPaymentplan.php?callback=?', 'project=' + globalproject_id + '&budget=' + budgetTopLeft + '&year=' + globalyear, function(result) {
         for (var i in result['databudget']) {
             topleft_budget.push(result['databudget'][i]);
         }
@@ -620,7 +622,7 @@ function refreshBudgetCashflow() {
     currency = $("#currency").val();
 
 
-    $.getJSON("http://192.168.2.253:8888/ob/BudgetCashflow.php?callback=?", 'budget=' + budgetTopRight + '&year=' + globalyear + '&currency=' + currency, function(result) {
+    $.getJSON(baseUrl + "/ob/BudgetCashflow.php?callback=?", 'budget=' + budgetTopRight + '&year=' + globalyear + '&currency=' + currency, function(result) {
         for (var i in result['totalbudget']) {
             topright_totalbudget.push(result['totalbudget'][i]);
         }
@@ -721,7 +723,7 @@ function refreshGantt() {
 
     if (globalproject_id === null || globalproject_id === 'undefined' || !globalproject_id)
         globalproject_id = "";
-    $.getJSON("http://localhost/ob/gantt.php?callback=?", "project=" + globalproject_id + '&year=' + globalyear, function(result) {
+    $.getJSON(baseUrl + "/ob/gantt.php?callback=?", "project=" + globalproject_id + '&year=' + globalyear, function(result) {
         if (ganttFirstRun) {
             gantt.config.scale_unit = "year";
             gantt.config.step = 1;
@@ -752,7 +754,7 @@ function refreshGantt() {
 
 function refreshBudgetSelectionOption() {
     // alert(globalproject_id);
-    $.getJSON("http://192.168.2.253:8888/ob/getbudget.php?callback=?", "&project=" + globalproject_id, function(j) {
+    $.getJSON(baseUrl + "/ob/getbudget.php?callback=?", "&project=" + globalproject_id, function(j) {
         var options = '';
         for (var i = 0; i < j.length; i++) {
             options += '<option value="' + j[i].c_budget_id + '">' + j[i].name + '</option>';
@@ -778,4 +780,189 @@ function refreshBudgetSelectionOption() {
         //alert("a. budget bottom right1 :"+budgetBottomRight1+", right 2:"+budgetBottomRight2);
     });
 }
+
+
+$(function() {
+    initTblBudgetComparison();
+    initTblBudgetCost();
+    initTblBudgetGrossNet();
+});
+
+function initTblBudgetComparison() {
+    $("#tbl-budgetComparison").treegrid({
+        url: baseUrl + "/ob/BudgetComparison.php",
+        idField: "id",
+        treeField: "name",
+        columns: [[
+                {
+                    title: "BUDGET > PROJECT > GROUP > PHASE >TASK ",
+                    field: "name",
+                    width: 800
+                },
+                {
+                    title: "Budget 1",
+                    field: "budget_1",
+                    width: 200,
+                    formatter: formatCurrency
+                },
+                {
+                    title: "Budget 2 ",
+                    field: "budget_2",
+                    width: 200,
+                    formatter: formatCurrency
+                }
+            ]]
+    });
+
+    // handle events
+    $("#currency, #budgetBottomRight1, #budgetBottomRight2, #globalproject")
+            .change(function() {
+                $("#tbl-budgetComparison").treegrid('reload', {
+                    budget1: $("#budgetBottomRight1").val(),
+                    budget2: $("#budgetBottomRight2").val(),
+                    project_id: $("#globalproject").val(),
+                    currency: $("#currency").val()
+                });
+            })
+
+}
+
+function initTblBudgetCost() {
+    $("#tbl-budgetCost").treegrid({
+        url: baseUrl + "/ob/BudgetCost.php",
+        idField: "id",
+        treeField: "NAME",
+        columns: [[
+                {
+                    field: "NAME",
+                    title: "BUDGET > PROJECT > PHASE > TASK",
+                    width: 470
+                },
+                {
+                    field: "TOTAL",
+                    title: "Total",
+                    width: 100,
+                    align: "right",
+                    formatter: formatCurrency
+                },
+                {
+                    field: "BALANCE",
+                    title: "Balance",
+                    width: 100,
+                    align: "right",
+                    formatter: formatCurrency
+                },
+                {
+                    field: "Tahun_2010",
+                    title: "2010",
+                    width: 100,
+                    align: "right",
+                    formatter: formatCurrency
+                },
+                {
+                    field: "Tahun_2011",
+                    title: "2011",
+                    width: 100,
+                    align: "right",
+                    formatter: formatCurrency
+                },
+                {
+                    field: "Tahun_2012",
+                    title: "2012",
+                    width: 100,
+                    align: "right",
+                    formatter: formatCurrency
+                },
+                {
+                    field: "Tahun_2013",
+                    title: "2013",
+                    width: 100,
+                    align: "right",
+                    formatter: formatCurrency
+                },
+                {
+                    field: "Tahun_2014",
+                    title: "2014",
+                    width: 100,
+                    align: "right",
+                    formatter: formatCurrency
+                },
+                {
+                    field: "Tahun_2015",
+                    title: "2015",
+                    width: 100,
+                    align: "right",
+                    formatter: formatCurrency
+                },
+            ]]
+    });
+
+    $("#currency, #budgetMiddleLeft, #globalproject").change(function(e) {
+        $("#tbl-budgetCost").treegrid('reload', {
+            currency: $("#currency").val(),
+            project_id: $("#globalproject").val(),
+            budget_id: $("#budgetMiddleLeft").val()
+        });
+
+    });
+}
+
+function initTblBudgetGrossNet() {
+    $("#tbl-budgetGrossNet").datagrid({
+        url: baseUrl + "/ob/BudgetGrossNett.php",
+        fitColumns: true,
+        singleSelect: true,
+        columns: [[
+                {
+                    field: 'name',
+                    title: 'Budget Name',
+                    width: 100
+                },
+                {
+                    field: 'budget',
+                    title: 'Budget',
+                    width: 100,
+                    align: 'right',
+                    formatter: formatCurrency
+                },
+                {
+                    field: 'gross_floor_area',
+                    title: 'Gross Floor Area',
+                    width: 100,
+                    align: 'right',
+                    formatter: formatCurrency
+                },
+                {
+                    field: 'budget_per_gross',
+                    title: 'Budget Per Gross',
+                    width: 100,
+                    align: 'right',
+                    formatter: formatCurrency
+                },
+                {
+                    field: 'rent_floor_area',
+                    title: 'Rent Floor Area',
+                    width: 100,
+                    align: 'right',
+                    formatter: formatCurrency
+                },
+                {
+                    field: 'budget_per_nett',
+                    title: 'Budget Per Nett',
+                    width: 100,
+                    align: 'right',
+                    formatter: formatCurrency
+                }
+            ]]
+    });
+
+    $("#currency, #globalproject").change(function(e) {
+        $("#tbl-budgetGrossNet").datagrid('reload', {
+            currency: $("#currency").val(),
+            project_id: $("#globalproject").val()
+        });
+    });
+}
+
+
 			
