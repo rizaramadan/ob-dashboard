@@ -28,7 +28,7 @@ var budgetBottomRight2;
 /* retrieve data */
 /* ------------------------------------------------------------------------------- -------------------------------------------------------------------------------*/
 
-$.getJSON('http://localhost/ob/BudgetProgressPaymentplan.php?callback=?&year=' + globalyear, function(result) {
+$.getJSON('http://192.168.2.253:8888/ob/BudgetProgressPaymentplan.php?callback=?&year=' + globalyear, function(result) {
     for (var i in result['databudget']) {
         topleft_budget.push(result['databudget'][i]);
     }
@@ -47,7 +47,7 @@ $.getJSON('http://localhost/ob/BudgetProgressPaymentplan.php?callback=?&year=' +
     ;
 });
 
-$.getJSON("http://localhost/ob/BudgetCashflow.php?callback=?&currency=&year=" + globalyear, function(result) {
+$.getJSON("http://192.168.2.253:8888/ob/BudgetCashflow.php?callback=?&currency=&year=" + globalyear, function(result) {
     for (var i in result['totalbudget']) {
         topright_totalbudget.push(result['totalbudget'][i]);
     }
@@ -72,7 +72,7 @@ $.getJSON("http://localhost/ob/BudgetCashflow.php?callback=?&currency=&year=" + 
 
 refreshBudgetSelectionOption();
 
-$.getJSON("http://localhost/ob/getproject.php?callback=?", function(j) {
+$.getJSON("http://192.168.2.253:8888/ob/getproject.php?callback=?", function(j) {
     var options = '';
     options += '<option value="">All Project </option>';
     for (var i = 0; i < j.length; i++) {
@@ -83,7 +83,7 @@ $.getJSON("http://localhost/ob/getproject.php?callback=?", function(j) {
     projecttopleft = $("#optProjectTopLeft").val();
 });
 
-$.getJSON("http://localhost/ob/getyear.php?callback=?", function(j) {
+$.getJSON("http://192.168.2.253:8888/ob/getyear.php?callback=?", function(j) {
     var options = '';
     var currentYear = new Date().getFullYear();
     options += '<option value="">All Year </option>';
@@ -427,7 +427,7 @@ var rows_bottom = new Array();
 
 
 var rows_bottommost = new Array();
-$.getJSON("http://localhost/ob/BudgetGrossNett.php?callback=?", function(result) {
+$.getJSON("http://192.168.2.253:8888/ob/BudgetGrossNett.php?callback=?", function(result) {
     for (var i in result) {
         var rows2 = [];
         rows2[0] = result[i][0];
@@ -541,7 +541,7 @@ function refreshBudgetProgressPaymentplan() {
     topleft_x.length = 0;
     topleft_payment_plan.length = 0;
 
-    $.getJSON('http://localhost/ob/BudgetProgressPaymentplan.php?callback=?', 'project=' + globalproject_id + '&budget=' + budgetTopLeft + '&year=' + globalyear, function(result) {
+    $.getJSON('http://192.168.2.253:8888/ob/BudgetProgressPaymentplan.php?callback=?', 'project=' + globalproject_id + '&budget=' + budgetTopLeft + '&year=' + globalyear, function(result) {
         for (var i in result['databudget']) {
             topleft_budget.push(result['databudget'][i]);
         }
@@ -620,7 +620,7 @@ function refreshBudgetCashflow() {
     currency = $("#currency").val();
 
 
-    $.getJSON("http://localhost/ob/BudgetCashflow.php?callback=?", 'budget=' + budgetTopRight + '&year=' + globalyear + '&currency=' + currency, function(result) {
+    $.getJSON("http://192.168.2.253:8888/ob/BudgetCashflow.php?callback=?", 'budget=' + budgetTopRight + '&year=' + globalyear + '&currency=' + currency, function(result) {
         for (var i in result['totalbudget']) {
             topright_totalbudget.push(result['totalbudget'][i]);
         }
@@ -752,7 +752,7 @@ function refreshGantt() {
 
 function refreshBudgetSelectionOption() {
     // alert(globalproject_id);
-    $.getJSON("http://localhost/ob/getbudget.php?callback=?", "&project=" + globalproject_id, function(j) {
+    $.getJSON("http://192.168.2.253:8888/ob/getbudget.php?callback=?", "&project=" + globalproject_id, function(j) {
         var options = '';
         for (var i = 0; i < j.length; i++) {
             options += '<option value="' + j[i].c_budget_id + '">' + j[i].name + '</option>';
