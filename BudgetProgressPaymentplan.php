@@ -114,5 +114,6 @@ if (isset($_GET['year']) && $_GET['year'] != "") {
 
 pg_close($dbconn);
 
-echo $_GET['callback'] . '(' . json_encode($data) . ')';
+//echo $_GET['callback'] . '(' . json_encode($data) . ')';
+echo json_encode($data);
 ?>

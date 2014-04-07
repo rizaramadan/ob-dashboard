@@ -1,3 +1,13 @@
+$.blockUI.defaults.css = {
+    border: 'none',
+    padding: '15px',
+    backgroundColor: '#000',
+    '-webkit-border-radius': '10px',
+    '-moz-border-radius': '10px',
+    opacity: .5,
+    color: '#fff'
+}
+
 /* var init */
 var topleft_progress = new Array();
 var topleft_budget = new Array();
@@ -29,48 +39,6 @@ var baseUrl = "http://localhost";
 
 /* retrieve data */
 /* ------------------------------------------------------------------------------- -------------------------------------------------------------------------------*/
-
-$.getJSON(baseUrl + '/ob/BudgetProgressPaymentplan.php?callback=?&year=' + globalyear, function(result) {
-    for (var i in result['databudget']) {
-        topleft_budget.push(result['databudget'][i]);
-    }
-    ;
-    for (var i in result['datax']) {
-        topleft_x.push(result['datax'][i]);
-    }
-    ;
-    for (var i in result['progress']) {
-        topleft_progress.push(result['progress'][i]);
-    }
-    ;
-    for (var i in result['payment_plan']) {
-        topleft_payment_plan.push(result['payment_plan'][i]);
-    }
-    ;
-});
-
-$.getJSON(baseUrl + "/ob/BudgetCashflow.php?callback=?&currency=&year=" + globalyear, function(result) {
-    for (var i in result['totalbudget']) {
-        topright_totalbudget.push(result['totalbudget'][i]);
-    }
-    ;
-    for (var i in result['budgetplan']) {
-        topright_budgetplan.push(result['budgetplan'][i]);
-    }
-    ;
-    for (var i in result['totalpayment']) {
-        topright_totalpayment.push(result['totalpayment'][i]);
-    }
-    ;
-    for (var i in result['paymentplan']) {
-        topright_paymentplan.push(result['paymentplan'][i]);
-    }
-    ;
-    for (var i in result['datax']) {
-        topright_x.push(result['datax'][i]);
-    }
-    ;
-});
 
 refreshBudgetSelectionOption();
 
@@ -116,254 +84,6 @@ var colorTotalBudget = "#ed2b50";
 var colorBudget = "#fd3b60";
 var colorTotalProgress = "#81c64d";
 
-/* func init */
-function topleft() {
-    $('#top-left').highcharts({
-        colors: [
-            colorTotalProgress, //'#4572A7', 
-            colorTotalBudget,
-            colorTotalPaymentplan//'#DB843D', 
-                    //'#AA4643', 
-                    //'#89A54E', 
-                    //'#80699B', 
-                    //'#3D96AE', 
-                    //'#92A8CD', 
-                    //'#A47D7C' 
-        ],
-        chart: {
-            zoomType: 'xy'
-        },
-        credits: {
-            enabled: false
-        },
-        title: {
-            text: 'Grafik Budget, Progress & Forecast Payment',
-            style: {
-                fontSize: '24px'
-            }
-        },
-        subtitle: {
-            text: 'Berisikan perbandingan data budget, progress proyek dan forecast payment'
-        },
-        xAxis: [{
-                categories: topleft_x
-            }],
-        yAxis: [{// Primary yAxis
-                labels: {
-                    formatter: function() {
-                        return this.value + '%';
-                    },
-                    style: {
-                        color: '#89A54E'
-                    }
-                },
-                title: {
-                    text: 'Persentase',
-                    style: {
-                        color: '#89A54E'
-                    }
-                },
-                opposite: false
-
-            }],
-        tooltip: {
-            shared: true
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'left',
-            x: 120,
-            verticalAlign: 'top',
-            y: 80,
-            floating: true,
-            backgroundColor: '#dedede'
-        },
-        series: [{
-                name: 'Actual Progress',
-                //color: '#AA4643',
-                type: 'column',
-                yAxis: 0,
-                index: 2,
-                data: topleft_progress,
-                tooltip: {
-                    valueSuffix: ' %'
-                }
-
-            }, {
-                name: 'Budget',
-                type: 'spline',
-                dataLabels: {enabled: true},
-                //color: '#95D2F7',
-                yAxis: 0,
-                index: 1,
-                data: topleft_budget,
-                marker: {
-                    enabled: false
-                },
-                tooltip: {
-                    valueSuffix: ' %'
-                }
-
-            }, {
-                name: 'Payment Plan',
-                //color: '#89A54E',
-                type: 'spline',
-                index: 3,
-                data: topleft_payment_plan,
-                tooltip: {
-                    valueSuffix: ' %'
-                }
-            }]
-    });
-}
-
-function toprightGraph(currency) {
-    var prefix = "Rp. ";
-    var currInfo = "Rupiah";
-    if (currency === 'usd') {
-        prefix = "$ ";
-        currInfo = "USD";
-    }
-    $('#top-right').highcharts({
-        colors: [
-            colorTotalBudget, //'#4572A7', 
-            colorBudget, //'#80699B', 
-            colorTotalPaymentplan, // '#89A54E', 
-            colorPaymentplan//'#DB843D', 
-                    //'#92A8CD', 
-                    //'#3D96AE',
-                    //'#AA4643', 
-                    //'#A47D7C', 
-                    //'#B5CA92'
-        ],
-        plotOptions: {
-            column: {
-                pointPadding: 0.01,
-                borderWidth: 0
-            }
-        },
-        chart: {
-            zoomType: 'xy'
-        },
-        credits: {
-            enabled: false
-        },
-        title: {
-            text: 'Grafik Budget & Aliran Dana',
-            style: {
-                fontSize: '24px'
-            }
-        },
-        subtitle: {
-            text: 'menampilkan data aliran budget dan aliran dana '
-        },
-        xAxis: [{
-                categories: topright_x
-            }],
-        yAxis: [{// Primary yAxis
-                labels: {
-                    formatter: function() {
-                        return prefix + this.value;
-                    },
-                    style: {
-                        color: '#89A54E'
-                    }
-                },
-                title: {
-                    text: currInfo,
-                    style: {
-                        color: '#89A54E'
-                    }
-                },
-                opposite: false
-
-            }],
-        tooltip: {
-            shared: true
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'left',
-            x: 120,
-            verticalAlign: 'top',
-            y: 80,
-            floating: true,
-            backgroundColor: '#dedede'
-        },
-        series: [{
-                name: 'Month to Date Budget',
-                type: 'spline',
-                yAxis: 0,
-                index: 2,
-                dashStyle: 'ShortDash',
-                marker: {
-                    enabled: false
-                },
-                data: topright_totalbudget,
-                tooltip: {
-                    //valueSuffix: ' Billion',
-                    valuePrefix: prefix
-                }
-
-            }, {
-                name: 'Monthly Budget',
-                type: 'column',
-                dataLabels: {
-                    enabled: true
-                },
-                yAxis: 0,
-                index: 1,
-                data: topright_budgetplan,
-                tooltip: {
-                    //valueSuffix: ' Billion',
-                    valuePrefix: prefix
-                }
-
-            }, {
-                name: 'Month to Date Payment',
-                type: 'spline',
-                index: 3,
-                dashStyle: 'ShortDash',
-                marker: {
-                    enabled: false
-                },
-                data: topright_totalpayment,
-                tooltip: {
-                    //valueSuffix: ' Billion',
-                    valuePrefix: prefix
-                }
-            }, {
-                name: 'Forecast Payment',
-                type: 'column',
-                dataLabels: {
-                    enabled: true
-                },
-                yAxis: 0,
-                index: 1,
-                data: topright_paymentplan,
-                marker: {
-                    enabled: false
-                },
-                tooltip: {
-                    //valueSuffix: ' Billion',
-                    valuePrefix: prefix
-                }
-
-            }]
-    });
-}
-/* func init */
-
-/* call */
-$(function() {
-    topleft();
-    toprightGraph("");
-//    refreshBudgetCost();
-//    refreshBudgetGrossNett();
-//    refreshBudgetComparison();
-});
-/* call */
-
 /* select */
 $("#optBudgetTopLeft").change(function() {
     budgetTopLeft = $(this).val();
@@ -387,11 +107,6 @@ $("#globalyear").change(function() {
     refreshBudgetSelectionOption();
 });
 
-$("#currency").change(function() {
-    refreshBudgetCashflow();
-//    refreshBudgetComparison();
-//    refreshBudgetCost();
-});
 /* select */
 
 /* button select budget of graph budget progress payment*/
@@ -429,18 +144,6 @@ var rows_bottom = new Array();
 
 
 var rows_bottommost = new Array();
-$.getJSON(baseUrl + "/ob/BudgetGrossNett.php?callback=?", function(result) {
-    for (var i in result) {
-        var rows2 = [];
-        rows2[0] = result[i][0];
-        rows2[1] = result[i][1];
-        rows2[2] = result[i][2];
-        rows2[3] = result[i][3];
-        rows_bottommost.push(rows2);
-    }
-    ;
-});
-
 google.load('visualization', '1', {packages: ['table']});
 google.setOnLoadCallback(drawTable2);
 //google.setOnLoadCallback(drawTable3);
@@ -483,11 +186,9 @@ $("#btnGlobalProject").click(function() {
 
 
     budgetTopLeft;
-    refreshBudgetProgressPaymentplan();
     budgetMiddleLeft;
 //    refreshBudgetCost();
     budgetTopRight;
-    refreshBudgetCashflow();
     budgetBottomRight1;
     budgetBottomRight2;
     //alert("b. budget bottom right1 :"+budgetBottomRight1+", right 2:"+budgetBottomRight2);
@@ -505,11 +206,9 @@ $("#btnGlobalYear").click(function() {
 
 
     budgetTopLeft;
-    refreshBudgetProgressPaymentplan();
     budgetMiddleLeft;
 //    refreshBudgetCost();
     budgetTopRight;
-    refreshBudgetCashflow();
     budgetBottomRight1;
     budgetBottomRight2;
     //alert("b. budget bottom right1 :"+budgetBottomRight1+", right 2:"+budgetBottomRight2);
@@ -517,207 +216,15 @@ $("#btnGlobalYear").click(function() {
 
 });
 
-$("#btnTopLeftBudget").click(function() {
-    refreshBudgetProgressPaymentplan();
-});
-
-$("#btnMiddleLeft").click(function() {
-//    refreshBudgetCost();
-});
-
-$("#btnTopRight").click(function() {
-    refreshBudgetCashflow();
-});
-
-$("#btnBottomLeft").click(function() {
-//    refreshBudgetComparison();
-});
-
 ///---------------------------------------------------------------------------------------------------------------------------------------------
 /// FUNCTIONS SECTION
 ///---------------------------------------------------------------------------------------------------------------------------------------------
 
-function refreshBudgetProgressPaymentplan() {
-    topleft_progress.length = 0;
-    topleft_budget.length = 0;
-    topleft_x.length = 0;
-    topleft_payment_plan.length = 0;
-
-    $.getJSON(baseUrl + '/ob/BudgetProgressPaymentplan.php?callback=?', 'project=' + globalproject_id + '&budget=' + budgetTopLeft + '&year=' + globalyear, function(result) {
-        for (var i in result['databudget']) {
-            topleft_budget.push(result['databudget'][i]);
-        }
-        ;
-        for (var i in result['datax']) {
-            topleft_x.push(result['datax'][i]);
-        }
-        ;
-        for (var i in result['progress']) {
-            topleft_progress.push(result['progress'][i]);
-        }
-        ;
-        for (var i in result['payment_plan']) {
-            topleft_payment_plan.push(result['payment_plan'][i]);
-        }
-        ;
-        topleft();
-    });
-
-}
-
-
-//function refreshBudgetCost() {
-//    var currency = $("#currency").val();
-//    $('#bottom-right').treegrid({
-//        url: "http://localhost/ob/BudgetCost.php?callback=?&currency=" + currency,
-//        idField: 'id',
-//        treeField: 'NAME',
-////                        onLoadSuccess: function(row, data) {
-////                            var fields = [
-////                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-TOTAL", 
-////                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-BALANCE", 
-////                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-Tahun_2010", 
-////                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-Tahun_2011", 
-////                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-Tahun_2012", 
-////                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-Tahun_2013", 
-////                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-Tahun_2014", 
-////                                ".datagrid-body .datagrid-cell.datagrid-cell-c2-Tahun_2015"
-////                            ];
-////                            var region = $("#currency").val() == "idr" ? "id-ID": "en-US";
-////
-////                            $(fields.join(', ')).formatCurrency({region: region});
-////                        },
-////                        loadFilter: function(data, parentId) {
-////                            console.log(data);
-////                            return data;
-////                        },
-//        columns: [[
-//                {field: 'NAME', title: 'BUDGET > PROJECT > PHASE > TASK', width: 470},
-//                {
-//                    field: 'TOTAL', title: 'TOTAL', width: 100,
-//                    formatter: formatCurrency
-//                },
-//                {field: 'BALANCE', title: 'BALANCE', width: 100, formatter: formatCurrency},
-//                {field: 'Tahun_2010', title: '2010', width: 100, formatter: formatCurrency},
-//                {field: 'Tahun_2011', title: '2011', width: 100, formatter: formatCurrency},
-//                {field: 'Tahun_2012', title: '2012', width: 100, formatter: formatCurrency},
-//                {field: 'Tahun_2013', title: '2013', width: 100, formatter: formatCurrency},
-//                {field: 'Tahun_2014', title: '2014', width: 100, formatter: formatCurrency},
-//                {field: 'Tahun_2015', title: '2015', width: 100, formatter: formatCurrency}
-//            ]]
-//    });
-//}
 
 function formatCurrency(val, row, index) {
     var region = $("#currency").val() == "idr" ? "id-ID" : "en-US";
     return $("<div>").append($("<div>", {text: val}).formatCurrency({region: region})).html();
 }
-
-function refreshBudgetCashflow() {
-    topright_totalbudget.length = 0;
-    topright_budgetplan.length = 0;
-    topright_totalpayment.length = 0;
-    topright_paymentplan.length = 0;
-    topright_x.length = 0;
-    currency = $("#currency").val();
-
-
-    $.getJSON(baseUrl + "/ob/BudgetCashflow.php?callback=?", 'budget=' + budgetTopRight + '&year=' + globalyear + '&currency=' + currency, function(result) {
-        for (var i in result['totalbudget']) {
-            topright_totalbudget.push(result['totalbudget'][i]);
-        }
-        ;
-        for (var i in result['budgetplan']) {
-            topright_budgetplan.push(result['budgetplan'][i]);
-        }
-        ;
-        for (var i in result['totalpayment']) {
-            topright_totalpayment.push(result['totalpayment'][i]);
-        }
-        ;
-        for (var i in result['paymentplan']) {
-            topright_paymentplan.push(result['paymentplan'][i]);
-        }
-        ;
-        for (var i in result['datax']) {
-            topright_x.push(result['datax'][i]);
-        }
-        ;
-        toprightGraph(currency);
-    });
-
-}
-//
-//function refreshBudgetComparison() {
-//
-//    currency = $("#currency").val();
-//    rows_bottom.length = 0;
-//    $('#bottom-right2').treegrid({
-//        url: "http://localhost/ob/BudgetComparison.php?callback2=?&budget1=" + budgetBottomRight1 + "&budget2=" + budgetBottomRight2 + "&project=" + globalproject_id + "&currency=" + currency,
-//        idField: 'id',
-//        treeField: 'name',
-//        columns: [[
-//                {field: 'name', title: 'BUDGET > PROJECT > GROUP > PHASE >TASK', width: 800},
-//                {field: 'budget_1', title: 'BUDGET 1', width: 200, formatter: formatCurrency},
-//                {field: 'budget_2', title: 'BUDGET 2', width: 200, formatter: formatCurrency}
-//            ]]
-//    });
-//
-//
-//    /* $.ajax({
-//     url: "http://localhost/ob/BudgetComparison.php",
-//     data: {
-//     budget1: budgetBottomRight1,
-//     budget2: budgetBottomRight2,
-//     project: globalproject_id
-//     },
-//     type: "GET",
-//     dataType: "html",
-//     success: function (data) {
-//     $('#bottom-right2').html(data);
-//     },
-//     error: function (xhr, status) {
-//     alert("Sorry, there was a problem!");
-//     },
-//     complete: function (xhr, status) {
-//     //$('#showresults').slideDown('slow')
-//     }
-//     });*/
-//    /*$.ajax({
-//     url: "http://localhost/ob/BudgetComparison.php",
-//     data: {
-//     budget1: budgetBottomRight1,
-//     budget2: budgetBottomRight2,
-//     project: globalproject_id,
-//     currency: $("#currency").val()
-//     },
-//     type: "GET",
-//     dataType: "html",
-//     success: function (data) {
-//     $('#bottom-right2').html(data);
-//     },
-//     error: function (xhr, status) {
-//     alert("Sorry, there was a problem!");
-//     },
-//     complete: function (xhr, status) {
-//     //$('#showresults').slideDown('slow')
-//     }
-//     });*/
-//
-//
-//}
-
-//function refreshBudgetGrossNett() {
-//
-//    $.get("http://localhost/ob/BudgetGrossNett.php", function(result) {
-////					var table = '<table border="1" cellpadding="10" cellspacing="0" style="width:100%" class="budgetcost">';
-////					table+= '<tr><th>Name</th><th>Budget</th><th>Gross Floor Area</th><th>Budget per Gross</th><th>Rent Floor Area</th><th>Budget per Nett</th></tr>';
-////					table+='<tr><td>'+result.name+'</td><td>'+result.total+'</td><td>'+result.gross+'</td><td>'+result.totalPerGross+'</td><td>'+result.nett+'</td><td>'+result.totalPerNett+'</td></tr>';
-////					table+='</table>';
-//
-//        $('#bottom-most').html(result);
-//    });
-//}
 
 function refreshGantt() {
 
@@ -783,10 +290,292 @@ function refreshBudgetSelectionOption() {
 
 
 $(function() {
+//    topleft();
+//    toprightGraph("");
     initTblBudgetComparison();
     initTblBudgetCost();
     initTblBudgetGrossNet();
+    initChartProgressForecastPayment();
+    initChartCashFlow();
 });
+
+function initChartProgressForecastPayment() {
+    var $chart = $('#top-left').highcharts({
+        colors: [
+            colorTotalProgress, //'#4572A7', 
+            colorTotalBudget,
+            colorTotalPaymentplan//'#DB843D', 
+                    //'#AA4643', 
+                    //'#89A54E', 
+                    //'#80699B', 
+                    //'#3D96AE', 
+                    //'#92A8CD', 
+                    //'#A47D7C' 
+        ],
+        chart: {
+            zoomType: 'xy'
+        },
+        credits: {
+            enabled: false
+        },
+        title: {
+            text: 'Grafik Budget, Progress & Forecast Payment',
+            style: {
+                fontSize: '24px'
+            }
+        },
+        subtitle: {
+            text: 'Berisikan perbandingan data budget, progress proyek dan forecast payment'
+        },
+        xAxis: [{
+                categories: topleft_x
+            }],
+        yAxis: [{// Primary yAxis
+                labels: {
+                    formatter: function() {
+                        return this.value + '%';
+                    },
+                    style: {
+                        color: '#89A54E'
+                    }
+                },
+                title: {
+                    text: 'Persentase',
+                    style: {
+                        color: '#89A54E'
+                    }
+                },
+                opposite: false
+
+            }],
+        tooltip: {
+            shared: true
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'left',
+            x: 120,
+            verticalAlign: 'top',
+            y: 80,
+            floating: true,
+            backgroundColor: '#dedede'
+        },
+        series: [{
+                name: 'Actual Progress',
+                //color: '#AA4643',
+                type: 'column',
+                yAxis: 0,
+                index: 2,
+                data: [],
+                tooltip: {
+                    valueSuffix: ' %'
+                }
+
+            }, {
+                name: 'Budget',
+                type: 'spline',
+                dataLabels: {enabled: true},
+                //color: '#95D2F7',
+                yAxis: 0,
+                index: 1,
+                data: [],
+                marker: {
+                    enabled: false
+                },
+                tooltip: {
+                    valueSuffix: ' %'
+                }
+
+            }, {
+                name: 'Payment Plan',
+                //color: '#89A54E',
+                type: 'spline',
+                index: 3,
+                data: [],
+                tooltip: {
+                    valueSuffix: ' %'
+                }
+            }]
+    });
+
+    var $highcharts = $chart.highcharts();
+    (update = function() {
+        $chart.block();
+        $.getJSON(baseUrl + '/ob/BudgetProgressPaymentplan.php', {
+            project: $("#globalproject").val(),
+            budget: $("#optBudgetTopLeft").val(),
+            year: $("#globalyear").val()
+        }, function(result) {
+            $highcharts.xAxis[0].setCategories(result.datax);
+            $highcharts.series[0].setData(result.databudget);
+            $highcharts.series[1].setData(result.progress);
+            $highcharts.series[2].setData(result.payment_plan);
+            $chart.unblock();
+        });
+    })();
+
+    $("#globalproject, #optBudgetTopLeft, #globalyear").change(update);
+}
+
+function initChartCashFlow() {
+    var $chart = $('#top-right').highcharts({
+        colors: [
+            colorTotalBudget, //'#4572A7', 
+            colorBudget, //'#80699B', 
+            colorTotalPaymentplan, // '#89A54E', 
+            colorPaymentplan//'#DB843D', 
+                    //'#92A8CD', 
+                    //'#3D96AE',
+                    //'#AA4643', 
+                    //'#A47D7C', 
+                    //'#B5CA92'
+        ],
+        plotOptions: {
+            column: {
+                pointPadding: 0.01,
+                borderWidth: 0
+            }
+        },
+        chart: {
+            zoomType: 'xy'
+        },
+        credits: {
+            enabled: false
+        },
+        title: {
+            text: 'Grafik Budget & Aliran Dana',
+            style: {
+                fontSize: '24px'
+            }
+        },
+        subtitle: {
+            text: 'menampilkan data aliran budget dan aliran dana '
+        },
+        xAxis: [{
+                categories: []
+            }],
+        yAxis: [{// Primary yAxis
+                labels: {
+//                    formatter: function() {
+//                        return prefix + this.value;
+//                    },
+                    style: {
+                        color: '#89A54E'
+                    }
+                },
+                title: {
+//                    text: currInfo,
+                    style: {
+                        color: '#89A54E'
+                    }
+                },
+                opposite: false
+
+            }],
+        tooltip: {
+            shared: true
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'left',
+            x: 120,
+            verticalAlign: 'top',
+            y: 80,
+            floating: true,
+            backgroundColor: '#dedede'
+        },
+        series: [{
+                name: 'Month to Date Budget',
+                type: 'spline',
+                yAxis: 0,
+//                index: 2,
+                dashStyle: 'ShortDash',
+                marker: {
+                    enabled: false
+                },
+                data: [],
+                tooltip: {
+                    //valueSuffix: ' Billion',
+//                    valuePrefix: prefix
+                }
+
+            }, {
+                name: 'Monthly Budget',
+                type: 'column',
+                dataLabels: {
+                    enabled: true
+                },
+                yAxis: 0,
+//                index: 1,
+                data: [],
+                tooltip: {
+                    //valueSuffix: ' Billion',
+//                    valuePrefix: prefix
+                }
+
+            }, {
+                name: 'Month to Date Payment',
+                type: 'spline',
+//                index: 3,
+                dashStyle: 'ShortDash',
+                marker: {
+                    enabled: false
+                },
+                data: [],
+                tooltip: {
+                    //valueSuffix: ' Billion',
+//                    valuePrefix: prefix
+                }
+            }, {
+                name: 'Forecast Payment',
+                type: 'column',
+                dataLabels: {
+                    enabled: true
+                },
+                yAxis: 0,
+//                index: 1,
+                data: [],
+                marker: {
+                    enabled: false
+                },
+                tooltip: {
+                    //valueSuffix: ' Billion',
+//                    valuePrefix: prefix
+                }
+
+            }]
+    });
+
+    var $highcharts = $chart.highcharts();
+    console.log($highcharts);
+    (update = function() {
+        $chart.block();
+
+        var prefix = "Rp. ";
+        var currInfo = "Rupiah";
+        if (currency === 'usd') {
+            prefix = "$ ";
+            currInfo = "USD";
+        }
+
+        $.getJSON(baseUrl + "/ob/BudgetCashflow.php", {
+            budget: $("#optBudgetTopRight").val(),
+            year: $("#globalyear").val(),
+            currency: $("#currency").val(),
+            project: $("#globalproject").val()
+        }, function(result) {
+            $highcharts.xAxis[0].setCategories(result.datax);
+            $highcharts.series[0].setData(result.totalbudget);
+            $highcharts.series[1].setData(result.budgetplan);
+            $highcharts.series[2].setData(result.totalpayment);
+            $highcharts.series[3].setData(result.paymentplan);
+            $highcharts.yAxis[0].setTitle({text: currInfo});
+            $chart.unblock();
+        });
+    })();
+
+    $("#optBudgetTopRight, #globalyear, #currency, #globalproject").change(update);
+}
 
 function initTblBudgetComparison() {
     $("#tbl-budgetComparison").treegrid({
