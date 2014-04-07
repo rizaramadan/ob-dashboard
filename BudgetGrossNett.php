@@ -7,7 +7,9 @@ include "dbcon.php";
 include "QueryManager.php";
 include "Utils.php";
 
-header("Content-Type:application/json");
+header("Content-Type", "application/json");
+header("Access-Control-Allow-Origin", "*");
+
 $currency = isset($_POST['currency']) ? $_POST['currency'] : "idr";
 
 $result = pg_exec($dbconn, getBudgetBuildingQuery($currency));

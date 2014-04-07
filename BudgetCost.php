@@ -11,6 +11,9 @@ include "dbcon.php";
 include "QueryManager.php";
 include "Utils.php";
 
+header("Content-Type", "application/json");
+header("Access-Control-Allow-Origin", "*");
+
 $project_id = getCleanParam($_POST, 'project_id');
 $budget_id = getCleanParam($_POST, 'budget_id');
 $currency = isset($_POST['currency']) ? $_POST['currency'] : "idr";
@@ -33,12 +36,12 @@ foreach ($data as $budget_name => $projects) {
 		"GROUP" => "",
 		"BALANCE" => 0,
 		"TOTAL" => 0,
-			"Tahun_2010" => 0,
-			"Tahun_2011" => 0,
-			"Tahun_2012" => 0,
-			"Tahun_2013" => 0,
-			"Tahun_2014" => 0,
-			"Tahun_2015" => 0
+		"Tahun_2010" => 0,
+		"Tahun_2011" => 0,
+		"Tahun_2012" => 0,
+		"Tahun_2013" => 0,
+		"Tahun_2014" => 0,
+		"Tahun_2015" => 0
 	);
 	$j = 0;
 	foreach ($projects as $project_name => $phases) {
@@ -54,7 +57,6 @@ foreach ($data as $budget_name => $projects) {
 			"Tahun_2013" => 0,
 			"Tahun_2014" => 0,
 			"Tahun_2015" => 0
-
 		);
 		$k = 0;
 		foreach ($phases as $phase_name => $tasks) {

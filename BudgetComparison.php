@@ -11,6 +11,9 @@ include "dbcon.php";
 include "QueryManager.php";
 include "Utils.php";
 
+header("Content-Type", "application/json");
+header("Access-Control-Allow-Origin", "*");
+
 $budget1 = getCleanParam($_POST, 'budget1');
 $budget2 = getCleanParam($_POST, 'budget2');
 $project_id = getCleanParam($_POST, 'project_id');
