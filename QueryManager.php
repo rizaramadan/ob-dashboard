@@ -109,7 +109,6 @@ function getBudgetVsCostQuery($project_id, $budget_id, $currency = "idr") {
 			pt.c_projecttask_id as task_id, 
 			coalesce(sum({$budget}), 0) as budget,
 			coalesce(sum(cost.total), 0) as total_cost,
-			coalesce(sum({$budget}), 0) - sum(cost.total) as balance,
 			coalesce(sum(cost.thn2010), 0) as thn2010,
 			coalesce(sum(cost.thn2011), 0) as thn2011,
 			coalesce(sum(cost.thn2012), 0) as thn2012,
