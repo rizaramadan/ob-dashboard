@@ -85,7 +85,7 @@ foreach ($data as $budget_name => $projects) {
 					"Tahun_2013" => $task['thn2013'],
 					"Tahun_2014" => $task['thn2014'],
 					"Tahun_2015" => $task['thn2015'],
-					"BALANCE" => $task['balance']
+					"BALANCE" => $task['budget'] - $task['total_cost']
 				);
 				$budget["TOTAL"] += $task['budget'];
 				$project["TOTAL"] += $task['budget'];
