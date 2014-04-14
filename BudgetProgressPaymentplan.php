@@ -13,8 +13,8 @@ include "Utils.php";
 include "dummy.php";
 $dummy = false;
 
-header("Content-Type", "application/json");
-header("Access-Control-Allow-Origin", "*");
+header("Content-Type: application/json");
+header("Access-Control-Allow-Origin: *");
 
 
 $project_id = getCleanParam($_GET, 'project');

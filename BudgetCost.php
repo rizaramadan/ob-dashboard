@@ -11,8 +11,8 @@ include "dbcon.php";
 include "QueryManager.php";
 include "Utils.php";
 
-header("Content-Type", "application/json");
-header("Access-Control-Allow-Origin", "*");
+header("Content-Type: application/json");
+header("Access-Control-Allow-Origin: *");
 
 $project_id = getCleanParam($_POST, 'project_id');
 $budget_id = getCleanParam($_POST, 'budget_id');
@@ -78,7 +78,7 @@ foreach ($data as $budget_name => $projects) {
 				$phase["children"][$l] = array(
 					"id" => strval($i) . strval($j) . strval($k) . strval($l),
 					"NAME" => $task_name,
-					"TOTAL" => $task['total'],
+					"TOTAL" => $task['budget'],
 					"Tahun_2010" => $task['thn2010'],
 					"Tahun_2011" => $task['thn2011'],
 					"Tahun_2012" => $task['thn2012'],
@@ -87,9 +87,9 @@ foreach ($data as $budget_name => $projects) {
 					"Tahun_2015" => $task['thn2015'],
 					"BALANCE" => $task['balance']
 				);
-				$budget["TOTAL"] += $task['total'];
-				$project["TOTAL"] += $task['total'];
-				$phase["TOTAL"] += $task['total'];
+				$budget["TOTAL"] += $task['budget'];
+				$project["TOTAL"] += $task['budget'];
+				$phase["TOTAL"] += $task['budget'];
 
 				$budget["Tahun_2010"] += $task['thn2010'];
 				$project["Tahun_2010"] += $task['thn2010'];
