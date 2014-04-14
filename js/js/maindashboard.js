@@ -66,8 +66,6 @@ $.getJSON(baseUrl + "/ob/getyear.php?callback=?", function(j) {
     }
     $("select#globalyear").html(options);
     globalyear = $("#globalyear").val();
-
-
 });
 
 
@@ -260,7 +258,6 @@ function refreshGantt() {
 }
 
 function refreshBudgetSelectionOption() {
-    // alert(globalproject_id);
     $.getJSON(baseUrl + "/ob/getbudget.php?callback=?", "&project=" + globalproject_id, function(j) {
         var options = '';
         for (var i = 0; i < j.length; i++) {
@@ -283,15 +280,11 @@ function refreshBudgetSelectionOption() {
         budgetMiddleLeft = $("#budgetMiddleLeft").val();
         budgetBottomRight1 = $("#budgetBottomRight1").val();
         budgetBottomRight2 = $("#budgetBottomRight2").val();
-
-        //alert("a. budget bottom right1 :"+budgetBottomRight1+", right 2:"+budgetBottomRight2);
     });
 }
 
 
 $(function() {
-//    topleft();
-//    toprightGraph("");
     initTblBudgetComparison();
     initTblBudgetCost();
     initTblBudgetGrossNet();
@@ -302,15 +295,9 @@ $(function() {
 function initChartProgressForecastPayment() {
     var $chart = $('#top-left').highcharts({
         colors: [
-            colorTotalProgress, //'#4572A7', 
+            colorTotalProgress,
             colorTotalBudget,
-            colorTotalPaymentplan//'#DB843D', 
-                    //'#AA4643', 
-                    //'#89A54E', 
-                    //'#80699B', 
-                    //'#3D96AE', 
-                    //'#92A8CD', 
-                    //'#A47D7C' 
+            colorTotalPaymentplan
         ],
         chart: {
             zoomType: 'xy'
@@ -578,9 +565,19 @@ function initChartCashFlow() {
 }
 
 function initTblBudgetComparison() {
+    // handle events
+    $("#budgetBottomRight1 option:eq(0)").prop("selected", true);
+    $("#budgetBottomRight2 option:eq(1)").prop("selected", true);
+
     $("#tbl-budgetComparison").treegrid({
         url: baseUrl + "/ob/BudgetComparison.php",
         idField: "id",
+        queryParams: {
+            budget1: $("#budgetBottomRight1").val(),
+            budget2: $("#budgetBottomRight2").val(),
+            project_id: $("#globalproject").val(),
+            currency: $("#currency").val()
+        },
         treeField: "name",
         columns: [[
                 {
@@ -603,7 +600,6 @@ function initTblBudgetComparison() {
             ]]
     });
 
-    // handle events
     $("#currency, #budgetBottomRight1, #budgetBottomRight2, #globalproject")
             .change(function() {
                 $("#tbl-budgetComparison").treegrid('reload', {
@@ -614,11 +610,19 @@ function initTblBudgetComparison() {
                 });
             })
 
+
+
+
 }
 
 function initTblBudgetCost() {
     $("#tbl-budgetCost").treegrid({
         url: baseUrl + "/ob/BudgetCost.php",
+        queryParams: {
+            currency: $("#currency").val(),
+            project_id: $("#globalproject").val(),
+            budget_id: $("#budgetMiddleLeft").val()
+        },
         idField: "id",
         treeField: "NAME",
         columns: [[
