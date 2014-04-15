@@ -31,7 +31,7 @@ label{
 
 table.budgetcost th {
     font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica,
-    sans-serif;
+        sans-serif;
     color: #6D929B;
     border-right: 1px solid #C1DAD7;
     border-bottom: 1px solid #C1DAD7;
@@ -52,7 +52,7 @@ table.budgetcost th.nobg {
 
 table.budgetcost td {
     font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica,
-    sans-serif;
+        sans-serif;
     border-right: 1px solid #C1DAD7;
     border-bottom: 1px solid #C1DAD7;
     background: #fff;
@@ -88,4 +88,9 @@ div#navbar:hover{
     font-family:'Lucida Grande', 'Lucida Sans Unicode', Verdana, Arial, Helvetica, sans-serif;
     font-size:12px;
     float:left
+}
+
+
+.dhx_qi_big_icon.icon_delete, .dhx_qi_big_icon.icon_edit {
+    display: none;
 }

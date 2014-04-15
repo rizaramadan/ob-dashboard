@@ -234,6 +234,13 @@ function refreshGantt() {
             gantt.config.step = 1;
             gantt.config.date_scale = "%Y";
             gantt.config.min_column_width = 35;
+            gantt.config.readonly = true;
+            gantt.config.drag_move = false; //disables the possibility to move tasks by dnd
+            gantt.config.drag_links = false; //disables the possibility to create links by dnd
+            gantt.config.drag_progress = false; //disables the possibility to change the task //progress 
+            gantt.config.drag_resize = false; //disables the possibility to resize tasks by dnd
+            gantt.config.editable = false;
+            gantt.config.details_on_dblclick = false;
 
             gantt.config.scale_height = 90;
 
