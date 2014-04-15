@@ -13,7 +13,7 @@ include "Utils.php";
 include "dummy.php";
 $dummy = false;
 
-header("Content-Type: application/json");
+//header("Content-Type: application/json");
 header("Access-Control-Allow-Origin: *");
 
 
@@ -76,8 +76,6 @@ for ($i = 0; $i < count($dataProgress); ++$i) {
 	$dataProgress[$i] = round($dataProgress[$i] / $totalBudget * 100, 2);
 }
 
-
-
 /*
   Query untuk mengisi value dari projects payments (payment plan)
  */
@@ -96,13 +94,15 @@ for ($i = 0; $i < count($dayaPaymentplan); ++$i) {
 	$dayaPaymentplan[$i] = round($dayaPaymentplan[$i] / $totalBudget * 100, 2);
 }
 
-
 if (isset($_GET['year']) && $_GET['year'] != "") {
 	$mulai = ($_GET['year'] - $firstyear) * 12;
 	$data['datax'] = array_slice($datax, $mulai, 12);
 	$data['databudget'] = array_slice($dataBudget, $mulai, 12);
 	if ($mulai < count($dataProgress)) {
-		$data['progress'] = array_slice($dataProgress, $mulai, 12);
+		if ($_GET['year'] == date('Y'))
+			$data['progress'] = array_slice($dataProgress, $mulai, strval(date('m')));
+		else
+			$data['progress'] = array_slice($dataProgress, $mulai, 12);
 	}
 	$data['payment_plan'] = array_slice($dayaPaymentplan, $mulai, 12);
 } else {
@@ -111,6 +111,8 @@ if (isset($_GET['year']) && $_GET['year'] != "") {
 	$data['progress'] = $dataProgress;
 	$data['payment_plan'] = $dayaPaymentplan;
 }
+
+//var_dump($data);exit;
 
 pg_close($dbconn);
 
