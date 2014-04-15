@@ -106,7 +106,12 @@ if (isset($_GET['year']) && $_GET['year'] != "") {
 	$data['budgetplan'] = array_slice($databudgetplan, $mulai, 12);
 	$data['totalbudget'] = array_slice($datatotalbudget, $mulai, 12);
 	$data['paymentplan'] = array_slice($datapaymentPlan, $mulai, 12);
-	$data['totalpayment'] = array_slice($datapaymentTotal, $mulai, 12);
+	if (date('Y') == $_GET['year'])
+		$data['totalpayment'] = array_slice($datapaymentTotal, $mulai, intval(date('m')));
+	elseif ($_GET['year'] > date('Y'))
+		$data['totalpayment'] = [];
+	else
+		$data['totalpayment'] = array_slice($datapaymentTotal, $mulai, 12);
 	$data['datax'] = array_slice($datax, $mulai, 12);
 } else {
 	$data['budgetplan'] = $databudgetplan;

@@ -101,6 +101,8 @@ if (isset($_GET['year']) && $_GET['year'] != "") {
 	if ($mulai < count($dataProgress)) {
 		if ($_GET['year'] == date('Y'))
 			$data['progress'] = array_slice($dataProgress, $mulai, strval(date('m')));
+		elseif ($_GET['year'] > date('Y'))
+			$data['progress'] = [];
 		else
 			$data['progress'] = array_slice($dataProgress, $mulai, 12);
 	}
