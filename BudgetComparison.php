@@ -23,7 +23,7 @@ $result = pg_exec($dbconn, getBudgetComparison($budget1, $budget2, $project_id, 
 
 $data = array();
 while ($row = pg_fetch_assoc($result)) {
-	$data["TOTAL"][$row["project_name"]]
+	$data["TOTAL"][$row["project_name"]][$row["group_name"]]
 			[$row["phase_name"]][$row["task_name"]] = $row;
 }
 
@@ -38,7 +38,7 @@ foreach ($data as $budget_name => $projects) {
 		"budget_2" => 0
 	);
 	$j = 0;
-	foreach ($projects as $project_name => $phases) {
+	foreach ($projects as $project_name => $groups) {
 		$project = &$budget["children"][$j];
 		$project = array(
 			"id" => strval($i) . strval($j),
@@ -46,31 +46,44 @@ foreach ($data as $budget_name => $projects) {
 			"budget_1" => 0,
 			"budget_2" => 0
 		);
+
 		$k = 0;
-		foreach ($phases as $phase_name => $tasks) {
-			$phase = &$project["children"][$k];
-			$phase = array(
+		foreach ($groups as $group_name => $phases) {
+			$group = &$project["children"][$k];
+			$group = array(
 				"id" => strval($i) . strval($j) . strval($k),
-				"name" => $phase_name,
+				"name" => $group_name,
 				"budget_1" => 0,
 				"budget_2" => 0
 			);
+
 			$l = 0;
-			foreach ($tasks as $task_name => $task) {
-				$phase["children"][$l] = array(
+			foreach ($phases as $phase_name => $tasks) {
+				$phase = &$group["children"][$l];
+				$phase = array(
 					"id" => strval($i) . strval($j) . strval($k) . strval($l),
-					"name" => $task_name,
-					"budget_1" => $task['budget1'],
-					"budget_2" => $task['budget2']
+					"name" => $phase_name,
+					"budget_1" => 0,
+					"budget_2" => 0
 				);
-
-				$budget["budget_1"] += $task['budget1'];
-				$budget["budget_2"] += $task['budget2'];
-				$project["budget_1"] += $task['budget1'];
-				$project["budget_2"] += $task['budget2'];
-				$phase["budget_1"] += $task['budget1'];
-				$phase["budget_2"] += $task['budget2'];
-
+				$m = 0;
+				foreach ($tasks as $task_name => $task) {
+					$phase["children"][$m] = array(
+						"id" => strval($i) . strval($j) . strval($k) . strval($l) . strval($m),
+						"name" => $task_name,
+						"budget_1" => $task['budget1'],
+						"budget_2" => $task['budget2']
+					);
+					$budget["budget_1"] += $task['budget1'];
+					$budget["budget_2"] += $task['budget2'];
+					$project["budget_1"] += $task['budget1'];
+					$project["budget_2"] += $task['budget2'];
+					$group["budget_2"] += $task['budget2'];
+					$group["budget_2"] += $task['budget2'];
+					$phase["budget_1"] += $task['budget1'];
+					$phase["budget_2"] += $task['budget2'];
+					$m++;
+				}
 				$l++;
 			}
 			$k++;

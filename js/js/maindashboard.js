@@ -628,7 +628,7 @@ function initTblBudgetCost() {
         columns: [[
                 {
                     field: "NAME",
-                    title: "BUDGET > PROJECT > PHASE > TASK",
+                    title: "BUDGET > PROJECT > GROUP > PHASE > TASK",
                     width: 470
                 },
                 {

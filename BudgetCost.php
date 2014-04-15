@@ -11,7 +11,7 @@ include "dbcon.php";
 include "QueryManager.php";
 include "Utils.php";
 
-header("Content-Type: application/json");
+//header("Content-Type: application/json");
 header("Access-Control-Allow-Origin: *");
 
 $project_id = getCleanParam($_POST, 'project_id');
@@ -22,7 +22,7 @@ $result = pg_exec($dbconn, getBudgetVsCostQuery($project_id, $budget_id, $curren
 
 $data = array();
 while ($row = pg_fetch_assoc($result)) {
-	$data[$row["budget_name"]][$row["project_name"]]
+	$data[$row["budget_name"]][$row["project_name"]][$row["group_name"]]
 			[$row["phase_name"]][$row["task_name"]] = $row;
 }
 
@@ -44,7 +44,7 @@ foreach ($data as $budget_name => $projects) {
 		"Tahun_2015" => 0
 	);
 	$j = 0;
-	foreach ($projects as $project_name => $phases) {
+	foreach ($projects as $project_name => $groups) {
 		$project = &$budget["children"][$j];
 		$project = array(
 			"id" => strval($i) . strval($j),
@@ -59,11 +59,11 @@ foreach ($data as $budget_name => $projects) {
 			"Tahun_2015" => 0
 		);
 		$k = 0;
-		foreach ($phases as $phase_name => $tasks) {
-			$phase = &$project["children"][$k];
-			$phase = array(
+		foreach ($groups as $group_name => $phases) {
+			$group = &$project["children"][$k];
+			$group = array(
 				"id" => strval($i) . strval($j) . strval($k),
-				"NAME" => $phase_name,
+				"NAME" => $group_name,
 				"BALANCE" => 0,
 				"TOTAL" => 0,
 				"Tahun_2010" => 0,
@@ -74,50 +74,77 @@ foreach ($data as $budget_name => $projects) {
 				"Tahun_2015" => 0
 			);
 			$l = 0;
-			foreach ($tasks as $task_name => $task) {
-				$phase["children"][$l] = array(
+			foreach ($phases as $phase_name => $tasks) {
+				$phase = &$group["children"][$l];
+				$phase = array(
 					"id" => strval($i) . strval($j) . strval($k) . strval($l),
-					"NAME" => $task_name,
-					"TOTAL" => $task['budget'],
-					"Tahun_2010" => $task['thn2010'],
-					"Tahun_2011" => $task['thn2011'],
-					"Tahun_2012" => $task['thn2012'],
-					"Tahun_2013" => $task['thn2013'],
-					"Tahun_2014" => $task['thn2014'],
-					"Tahun_2015" => $task['thn2015'],
-					"BALANCE" => $task['budget'] - $task['total_cost']
+					"NAME" => $phase_name,
+					"BALANCE" => 0,
+					"TOTAL" => 0,
+					"Tahun_2010" => 0,
+					"Tahun_2011" => 0,
+					"Tahun_2012" => 0,
+					"Tahun_2013" => 0,
+					"Tahun_2014" => 0,
+					"Tahun_2015" => 0
 				);
-				$budget["TOTAL"] += $task['budget'];
-				$project["TOTAL"] += $task['budget'];
-				$phase["TOTAL"] += $task['budget'];
 
-				$budget["Tahun_2010"] += $task['thn2010'];
-				$project["Tahun_2010"] += $task['thn2010'];
-				$phase["Tahun_2010"] += $task['thn2010'];
+				$m = 0;
+				foreach ($tasks as $task_name => $task) {
+					$phase["children"][$m] = array(
+						"id" => strval($i) . strval($j) . strval($k) . strval($l) . strval($m),
+						"NAME" => $task_name,
+						"TOTAL" => $task['budget'],
+						"Tahun_2010" => $task['thn2010'],
+						"Tahun_2011" => $task['thn2011'],
+						"Tahun_2012" => $task['thn2012'],
+						"Tahun_2013" => $task['thn2013'],
+						"Tahun_2014" => $task['thn2014'],
+						"Tahun_2015" => $task['thn2015'],
+						"BALANCE" => $task['budget'] - $task['total_cost']
+					);
+					$budget["TOTAL"] += $task['budget'];
+					$project["TOTAL"] += $task['budget'];
+					$group["TOTAL"] += $task['budget'];
+					$phase["TOTAL"] += $task['budget'];
 
-				$budget["Tahun_2011"] += $task['thn2011'];
-				$project["Tahun_2011"] += $task['thn2011'];
-				$phase["Tahun_2011"] += $task['thn2011'];
+					$budget["Tahun_2010"] += $task['thn2010'];
+					$project["Tahun_2010"] += $task['thn2010'];
+					$group["Tahun_2010"] += $task['thn2010'];
+					$phase["Tahun_2010"] += $task['thn2010'];
 
-				$budget["Tahun_2012"] += $task['thn2012'];
-				$project["Tahun_2012"] += $task['thn2012'];
-				$phase["Tahun_2012"] += $task['thn2012'];
+					$budget["Tahun_2011"] += $task['thn2011'];
+					$project["Tahun_2011"] += $task['thn2011'];
+					$group["Tahun_2011"] += $task['thn2011'];
+					$phase["Tahun_2011"] += $task['thn2011'];
 
-				$budget["Tahun_2013"] += $task['thn2013'];
-				$project["Tahun_2013"] += $task['thn2013'];
-				$phase["Tahun_2013"] += $task['thn2013'];
+					$budget["Tahun_2012"] += $task['thn2012'];
+					$project["Tahun_2012"] += $task['thn2012'];
+					$group["Tahun_2012"] += $task['thn2012'];
+					$phase["Tahun_2012"] += $task['thn2012'];
 
-				$budget["Tahun_2014"] += $task['thn2014'];
-				$project["Tahun_2014"] += $task['thn2014'];
-				$phase["Tahun_2014"] += $task['thn2014'];
+					$budget["Tahun_2013"] += $task['thn2013'];
+					$project["Tahun_2013"] += $task['thn2013'];
+					$group["Tahun_2013"] += $task['thn2013'];
+					$phase["Tahun_2013"] += $task['thn2013'];
 
-				$budget["Tahun_2015"] += $task['thn2015'];
-				$project["Tahun_2015"] += $task['thn2015'];
-				$phase["Tahun_2015"] += $task['thn2015'];
+					$budget["Tahun_2014"] += $task['thn2014'];
+					$project["Tahun_2014"] += $task['thn2014'];
+					$group["Tahun_2014"] += $task['thn2014'];
+					$phase["Tahun_2014"] += $task['thn2014'];
 
-				$budget["BALANCE"] += $task['budget'] - $task['total_cost'];
-				$project["BALANCE"] += $task['budget'] - $task['total_cost'];
-				$phase["BALANCE"] += $task['budget'] - $task['total_cost'];
+					$budget["Tahun_2015"] += $task['thn2015'];
+					$project["Tahun_2015"] += $task['thn2015'];
+					$group["Tahun_2015"] += $task['thn2015'];
+					$phase["Tahun_2015"] += $task['thn2015'];
+
+					$budget["BALANCE"] += $task['budget'] - $task['total_cost'];
+					$project["BALANCE"] += $task['budget'] - $task['total_cost'];
+					$group["BALANCE"] += $task['budget'] - $task['total_cost'];
+					$phase["BALANCE"] += $task['budget'] - $task['total_cost'];
+
+					$m++;
+				}
 				$l++;
 			}
 			$k++;
