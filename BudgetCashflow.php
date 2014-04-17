@@ -109,7 +109,7 @@ if (isset($_GET['year']) && $_GET['year'] != "") {
 	if (date('Y') == $_GET['year'])
 		$data['totalpayment'] = array_slice($datapaymentTotal, $mulai, intval(date('m')));
 	elseif ($_GET['year'] > date('Y'))
-		$data['totalpayment'] = [];
+		$data['totalpayment'] = array();
 	else
 		$data['totalpayment'] = array_slice($datapaymentTotal, $mulai, 12);
 	$data['datax'] = array_slice($datax, $mulai, 12);
